@@ -1,6 +1,6 @@
 body {
-    background-color: rgb(79, 79, 79);
-    color: rgb(207, 0, 0);
+    background-color: rgb(229, 229, 229);
+    color: rgb(27, 27, 27);
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
     font-weight: normal;
@@ -24,15 +24,20 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60vw;
-    height: 80vh;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
 }
 
+.div-texte {
+    z-index: ;
+    display: block;
+}
+
 #map {
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     margin: 0;
     padding: 0;
 }

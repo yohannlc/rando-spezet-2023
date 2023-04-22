@@ -12,7 +12,7 @@ var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/outdoors-v12',
 center: [-3.7131733269314533,48.177434347124205],
-zoom: 12
+zoom: 12.3
 });
 
 map.on('load', () => {
