@@ -1,10 +1,6 @@
 /* ------------ Déclarations ------------ */
 
 // Circuits complets
-lineWitdh25 = 3;
-lineWitdh35 = 3;
-lineWitdh45 = 3;
-
 color25 = 'rgb(54, 147, 191)';
 color35 = 'rgb(196, 94, 189)';
 color45 = 'rgb(255, 108, 0)';
@@ -16775,140 +16771,42 @@ mapboxgl.accessToken = 'pk.eyJ1IjoieW9oYW5ubGMiLCJhIjoiY2xnczI4cHJ1MGF4dDNsb2Nie
   zoom: 12.3
 });
 
+function addPortion(portionName, portionColor, portionWidth, portionOpacity, portionCoordinates) {
+  map.addSource(portionName, {
+    'type': 'geojson',
+    'data': {
+      "type": "Feature",
+      "properties": {
+        "name": portionName
+      },
+      "geometry": {
+        "coordinates": portionCoordinates,
+        "type": "LineString"
+      }
+    }
+  });
+  map.addLayer({
+    'id': portionName,
+    'type': 'line',
+    'source': portionName,
+    'layout': {
+      'line-join': 'round',
+      'line-cap': 'round'
+    },
+    'paint': {
+      'line-color': portionColor,
+      'line-width': portionWidth,
+      'line-opacity': portionOpacity
+    }
+  });
+}
+
 map.on('load', () => {
-// 45km
-map.addSource('route-45', {
-  'type': 'geojson',
-  'data': {
-    "type": "Feature",
-    "properties": {
-      "name": "45km - Spézet 2023"
-    },
-    "geometry": {
-      "coordinates": circuit45,
-      "type": "LineString"
-    }
-  }
-});
-map.addLayer({
-  'id': 'route-45',
-  'type': 'line',
-  'source': 'route-45',
-  'layout': {
-    'line-join': 'round',
-    'line-cap': 'round'
-  },
-  'paint': {
-    'line-color': color45,
-    'line-width': lineWitdh45
-  }
-});
-
-// 35km
-map.addSource('route-35', {
-  'type': 'geojson',
-  'data': {
-    "type": "Feature",
-    "properties": {
-      "name": "35km - Spézet 2023"
-    },
-    "geometry": {
-      "coordinates": circuit35,
-      "type": "LineString"
-    }
-  }
-});
-map.addLayer({
-  'id': 'route-35',
-  'type': 'line',
-  'source': 'route-35',
-  'layout': {
-    'line-join': 'round',
-    'line-cap': 'round'
-  },
-  'paint': {
-    'line-color': color35,
-    'line-width': lineWitdh35
-  }
-});
-
-// 25km
-map.addSource('route-25', {
-  'type': 'geojson',
-  'data': {
-    "type": "Feature",
-    "properties": {
-      "name": "25km - Spézet 2023"
-    },
-    "geometry": {
-      "coordinates": circuit25,
-      "type": "LineString"
-    }
-  }
-});
-map.addLayer({
-  'id': 'route-25',
-  'type': 'line',
-  'source': 'route-25',
-  'layout': {
-    'line-join': 'round',
-    'line-cap': 'round'
-  },
-  'paint': {
-    'line-color': color25,
-    'line-width': lineWitdh25
-  }
-});
-
-// Verger1
-map.addSource('verger1', {
-  'type': 'geojson',
-  'data': {
-    "type": "Feature",
-    "properties": {
-      "name": "verger1"
-    },
-    "geometry": {
-      "coordinates": verger1,
-      "type": "LineString"
-    }
-  }
-});
-map.addLayer({
-  'id': 'verger1',
-  'type': 'line',
-  'source': 'verger1',
-  'paint': {
-    'line-color': colorPortions,
-    'line-width': lineWitdhPortions,
-    'line-opacity': lineOpacityPortions
-  }
-});
-
-// Verger2
-map.addSource('verger2', {
-  'type': 'geojson',
-  'data': {
-    "type": "Feature",
-    "properties": {
-      "name": "verger2"
-    },
-    "geometry": {
-      "coordinates": verger2,
-      "type": "LineString"
-    }
-  }
-});
-map.addLayer({
-  'id': 'verger2',
-  'type': 'line',
-  'source': 'verger2',
-  'paint': {
-    'line-color': colorPortions,
-    'line-width': lineWitdhPortions,
-    'line-opacity': lineOpacityPortions
-  }
-});
+  addPortion("circuit45", color45, 3, 1, circuit45);
+  addPortion("circuit35", color35, 3, 1, circuit35);
+  addPortion("circuit25", color25, 3, 1, circuit25);
+  addPortion("verger1", colorPortions, lineWitdhPortions, lineOpacityPortions, verger1);
+  //addPortion("verger2", colorPortions, lineWitdhPortions, lineOpacityPortions, verger2);
 
 });
 
