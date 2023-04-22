@@ -48,9 +48,15 @@ h1 {
     padding: 10px;
     position: absolute;
     z-index: 1;
-    left: 10px;
-    top: 45%;
+    left: 1vw;
     height: 10%;
+    top: 5vh;
+}
+
+@media screen and (max-width: 600px) {
+    .legend {
+        top: 1vh;
+    }
 }
     
 .legend h4 {
