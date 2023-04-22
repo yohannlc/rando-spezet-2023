@@ -1,4 +1,4 @@
-import { circuit25, circuit35, circuit45 } from "./coordonnees.js";
+import { circuit25, circuit35, circuit45 } from "/coordonnees.js";
 /* Déclarations */
 
 //Circuits complets
