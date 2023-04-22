@@ -12,14 +12,24 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
     <script src='https://unpkg.com/gpxparser'></script>
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-legend/v1.1.0/mapbox-gl-legend.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-legend/v1.1.0/mapbox-gl-legend.css' rel='stylesheet' />
 
 </head>
     <div class="div-map">
         <div id='map'></div>
+
+        <div id="county-legend" class="legend">
+            <h4>Circuits</h4>
+            <div><span style="background-color: rgb(63, 160, 102)"></span>25 km</div>
+            <div><span style="background-color: rgb(54, 147, 191)"></span>35 km</div>
+            <div><span style="background-color: rgb(255, 108, 0)"></span>45 km</div>
+        </div>
+
         <script src="js\mapbox-example.js"></script>
     </div>
     <div class="div-texte">
-        25 km
+        
     </div>
 </body>
 </html>
