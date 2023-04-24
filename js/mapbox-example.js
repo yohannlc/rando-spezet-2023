@@ -16730,10 +16730,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 */
 
 lineWitdhPortions = 12;
+circleRadius = 7;
 colorDebrou = "rgb(49, 218, 51)"; //Vert
 colorTronco = "rgb(88, 61, 21)"; //Marron
 colorPY = "rgb(123, 144, 63)"; //Vert/jaune foncé
 colorSouff = "rgb(233, 27, 27)"; //Rouge
+colorRavito = "rgb(218, 43, 43)"; //Vert clair
 lineOpacityPortions = 0.6;
 
 let verger1 = [
@@ -16829,7 +16831,22 @@ let stang1 = [
   ]
 ];
 
+let ravito1 = [
+  -3.682843734443054,
+  48.160898532989194
+];
 
+let ravito2 = [
+  -3.76203019252074,
+  48.155110934494644
+];
+
+let ravito3 = [
+  -3.7496976272579445,
+  48.1897297331804
+];
+
+//fonction pour ajouter une ligne
 function addPortion(portionName, portionType, portionCoordinates, portionLineWitdh, portionLineOpacity) {
   
   if (portionType == "debrou") {
@@ -16888,6 +16905,37 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
   }
 }
 
+//fonction pour ajouter un point
+function addPoint(pointName, pointType, pointCoordinates, pointColor) {
+  map.addSource(pointName, {
+    'type': 'geojson',
+    'data': {
+      "type": "Feature",
+      "properties": {
+        "name": pointName
+      },
+      "geometry": {
+        "coordinates": pointCoordinates,
+        "type": "Point"
+      }
+    }
+  });
+  map.addLayer({
+    'id': pointName,
+    'type': 'circle',
+    'source': pointName,
+    'paint': {
+      'circle-radius': circleRadius,
+      'circle-color': pointColor
+    }
+  });
+
+  if(pointType === "ravito") {
+    pointHoverEnter(pointName);
+    pointHoverLeave(pointName);
+  }
+}
+
 /* ------------------------------------------------ Création de la carte ------------------------------------------------ */
 
 zoomStart = 12.3; //zoom d'un pc pour voir tous les circuits
@@ -16914,13 +16962,17 @@ if (smartphone == true) {
 }
 map.addControl(new mapboxgl.ScaleControl());
 
-
 // Ajout des traces (circuits et portions)
 map.on('load', () => {
   //Création des circuits
   addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
+
+  //Création des points : addPoint(pointName, pointCoordinates, pointColor)
+  addPoint("ravito1", "ravito", ravito1, colorRavito);
+  addPoint("ravito2", "ravito", ravito2, colorRavito);
+  addPoint("ravito3", "ravito", ravito3, colorRavito);
 
   //Création des portions
   addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
@@ -17102,6 +17154,7 @@ function cacherDivTexteId() { // Fonction pour cacher
   divTexteId.classList.remove("show");
 }
 
+// Fonctions pour gérer le hover sur les portions
 function portionsHoverEnter(portion, type) {
   map.on('mouseenter', portion, function(e) {
     map.getCanvas().style.cursor = 'pointer';
@@ -17144,6 +17197,7 @@ function portionsHoverLeave(portion, type) {
   });
 }
 
+// Fonctions pour gérer le hover sur les circuits
 function circuitHoverEnter(portion) {
   map.on('mouseenter', portion, function(e) {
     if (!boolCircleCliq) {
@@ -17164,5 +17218,21 @@ function circuitHoverLeave(portion) {
     map.getCanvas().style.cursor = '';
     //cacherDivTexteId();
     //map.setPaintProperty(portion, 'line-width', lineWitdhCircuit);
+  });
+}
+
+// Fonctions pour gérer le hover sur les points
+function pointHoverEnter(point) {
+  map.on('mouseenter', point, function(e) {
+    map.getCanvas().style.cursor = 'pointer';
+    map.setPaintProperty(point, 'circle-radius', circleRadius+3);
+    afficherDivTexteId(point);
+  });
+}
+function pointHoverLeave(point) {
+  map.on('mouseleave', point, function(e) {
+    map.getCanvas().style.cursor = '';
+    map.setPaintProperty(point, 'circle-radius', circleRadius);
+    cacherDivTexteId();
   });
 }

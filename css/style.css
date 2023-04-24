@@ -51,7 +51,7 @@ h1 {
     left: 1vw;
     top: 5vh;
     width: 8vw;
-    min-width: 80px;
+    min-width: 100px;
 }
 
 @media screen and (max-width: 600px) {
@@ -70,6 +70,12 @@ h1 {
     height: 3px;
     margin-right: 5px;
     width: 20px;
+}
+
+#legendRavitos {
+    height: 15px;
+    width: 15px;
+    border-radius: 100px;
 }
 
 .legend div:hover {
@@ -132,7 +138,7 @@ p {
     left: 1vw;
     top: 25vh;
     width: 8vw;
-    min-width: 80px;
+    min-width: 100px;
     height: 60px;
     overflow: hidden;
 }
