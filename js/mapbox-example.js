@@ -16954,26 +16954,28 @@ map.on('click', function(e) {
   }
 });
 
-// Circuit25
-map.on('click', 'circuit25', function(e) {
-  tableauStates.stateCircuit25[0] = true;
-  afficherDivTexteId();
-  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
-});
+if (smartphone != true) {
+  // Circuit25
+  map.on('click', 'circuit25', function(e) {
+    tableauStates.stateCircuit25[0] = true;
+    afficherDivTexteId();
+    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+  });
 
-// Circuit35
-map.on('click', 'circuit35', function(e) {
-  tableauStates.stateCircuit35[0] = true;
-  afficherDivTexteId();
-  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
-});
+  // Circuit35
+  map.on('click', 'circuit35', function(e) {
+    tableauStates.stateCircuit35[0] = true;
+    afficherDivTexteId();
+    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+  });
 
-// Circuit45
-map.on('click', 'circuit45', function(e) {
-  tableauStates.stateCircuit45[0] = true;
-  afficherDivTexteId();
-  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
-});
+  // Circuit45
+  map.on('click', 'circuit45', function(e) {
+    tableauStates.stateCircuit45[0] = true;
+    afficherDivTexteId();
+    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+  });
+}
 
 // Verger1
 map.on('click', 'verger1', function(e) {
@@ -16982,6 +16984,44 @@ map.on('click', 'verger1', function(e) {
   afficherDivTexteId();
 });
 
+
+// Enregistrer les éléments de la légende dans une variable
+const legendItems = document.querySelectorAll('#county-legend div');
+
+// Ajouter un événement de clic à chaque élément de la légende
+legendItems.forEach(function(item, index) {
+  item.addEventListener('click', function() {
+    // Définir le nom de la couche et la largeur de la ligne correspondant à l'élément cliqué
+    let layerName;
+    switch(index) {
+      case 0:
+        tableauStates.stateCircuit25[0] = !tableauStates.stateCircuit25[0];
+        layerName = 'circuit25';
+        break;
+      case 1:
+        tableauStates.stateCircuit35[0] = !tableauStates.stateCircuit35[0];
+        layerName = 'circuit35';
+        break;
+      case 2:
+        tableauStates.stateCircuit45[0] = !tableauStates.stateCircuit45[0];
+        layerName = 'circuit45';
+        break;
+      default:
+        return;
+    }
+
+    for (let i of Object.values(tableauStates)) {
+      //si i est un circuit
+      if (i[1].includes("circuit")) {
+        if (i[0]) {
+          map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit+5);
+        } else {
+          map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);
+        }
+      }
+    }
+  });
+});
 
 
 /* ------------------------------------------------ Hover ------------------------------------------------ */
