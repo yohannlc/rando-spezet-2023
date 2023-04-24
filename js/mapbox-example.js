@@ -1,9 +1,11 @@
-/* ------------------------------------------------ Déclarations ------------------------------------------------ */
+/* ------------------------------------------------ Circuits complets ------------------------------------------------ */
 
-// Circuits complets
 color25 = 'rgb(54, 147, 191)';
 color35 = 'rgb(196, 94, 189)';
 color45 = 'rgb(255, 108, 0)';
+
+lineWitdhCircuit = 3;
+lineOpacityCircuit = 1;
 
 let circuit45 = [
     [
@@ -16713,17 +16715,25 @@ for (let i = 0; i < circuit25.length; i++) {
   circuit25[i][1] -= offset;
 }
 
-// Portions
+// Gérer le type d'appareil (pc ou smartphone)
+smartphone = false; //par défaut, on considère que c'est un pc
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { //si c'est un smartphone
+  smartphone = true;
+}
+
+/* ------------------------------------------------ Création des portions ------------------------------------------------ */
 /* Liste des types de portions
   - débrouissaillage
   - tronçonneuse
   - coupage d'herbe Pierre-Yves
   - souffleur
-
 */
 
 lineWitdhPortions = 12;
-colorPortions = "rgb(255, 255, 0)";
+colorDebrou = "rgb(49, 218, 51)"; //Vert
+colorTronco = "rgb(88, 61, 21)"; //Marron
+colorPY = "rgb(123, 144, 63)"; //Vert/jaune foncé
+colorSouff = "rgb(233, 27, 27)"; //Rouge
 lineOpacityPortions = 0.6;
 
 let verger1 = [
@@ -16769,12 +16779,113 @@ let verger1 = [
   ]
 ];
 
-// Gérer le type d'appareil (pc ou smartphone)
-smartphone = false; //par défaut, on considère que c'est un pc
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { //si c'est un smartphone
-  smartphone = true;
-}
+let verger2 = [
+  [
+    -3.70968798589314,
+    48.18200393746841
+  ],
+  [
+    -3.709460329058004,
+    48.18169344886064
+  ],
+  [
+    -3.709191280069092,
+    48.1812242625067
+  ],
+  [
+    -3.709139539880198,
+    48.18098276785639
+  ],
+  [
+    -3.709139539880198,
+    48.1808447704029
+  ]
+];
 
+let stang1 = [
+  [
+    -3.699401736185962,
+    48.17631227209304
+  ],
+  [
+    -3.699210901234835,
+    48.17638394524201
+  ],
+  [
+    -3.6990003247371988,
+    48.176452692861886
+  ],
+  [
+    -3.698809489786072,
+    48.176511201401894
+  ],
+  [
+    -3.698662524938783,
+    48.176544843782466
+  ],
+  [
+    -3.6985133665861554,
+    48.176549231917136
+  ]
+];
+
+
+function addPortion(portionName, portionType, portionCoordinates, portionLineWitdh, portionLineOpacity) {
+  
+  if (portionType == "debrou") {
+    portionColor = colorDebrou;
+  } else if (portionType == "tronco") {
+    portionColor = colorTronco;
+  } else if (portionType == "py") {
+    portionColor = colorPY;
+  } else if (portionType == "souff") {
+    portionColor = colorSouff;
+  } else if (portionName == "circuit45") {
+    portionColor = color45;
+  } else if (portionName == "circuit35") {
+    portionColor = color35;
+  } else if (portionName == "circuit25") {
+    portionColor = color25;
+  } else {
+    portionColor = "rgb(0, 0, 0)";
+  }
+  
+  map.addSource(portionName, {
+    'type': 'geojson',
+    'data': {
+      "type": "Feature",
+      "properties": {
+        "name": portionName
+      },
+      "geometry": {
+        "coordinates": portionCoordinates,
+        "type": "LineString"
+      }
+    }
+  });
+  map.addLayer({
+    'id': portionName,
+    'type': 'line',
+    'source': portionName,
+    'layout': {
+      'line-join': 'round',
+      'line-cap': 'round'
+    },
+    'paint': {
+      'line-color': portionColor,
+      'line-width': portionLineWitdh,
+      'line-opacity': portionLineOpacity
+    }
+  });
+
+  if(portionType === "circuit") {
+    circuitHoverEnter(portionName);
+    circuitHoverLeave(portionName);
+  } else {
+    portionsHoverEnter(portionName, portionType);
+    portionsHoverLeave(portionName, portionType);
+  }
+}
 
 /* ------------------------------------------------ Création de la carte ------------------------------------------------ */
 
@@ -16803,56 +16914,74 @@ if (smartphone == true) {
 map.addControl(new mapboxgl.ScaleControl());
 
 
-/* ------------------------------------------------ Création des portions ------------------------------------------------ */
-
-function addPortion(portionName, portionColor, portionWidth, portionOpacity, portionCoordinates) {
-  map.addSource(portionName, {
-    'type': 'geojson',
-    'data': {
-      "type": "Feature",
-      "properties": {
-        "name": portionName
-      },
-      "geometry": {
-        "coordinates": portionCoordinates,
-        "type": "LineString"
-      }
-    }
-  });
-  map.addLayer({
-    'id': portionName,
-    'type': 'line',
-    'source': portionName,
-    'layout': {
-      'line-join': 'round',
-      'line-cap': 'round'
-    },
-    'paint': {
-      'line-color': portionColor,
-      'line-width': portionWidth,
-      'line-opacity': portionOpacity
-    }
-  });
-}
-
+// Ajout des traces (circuits et portions)
 map.on('load', () => {
   //Création des circuits
-  addPortion("circuit45", color45, 3, 1, circuit45);
-  addPortion("circuit35", color35, 3, 1, circuit35);
-  addPortion("circuit25", color25, 3, 1, circuit25);
+  addPortion("circuit45", "circuit", circuit45, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit35", "circuit", circuit35, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit25", "circuit", circuit25, lineWitdhCircuit, lineOpacityCircuit);
 
   //Création des portions
-  addPortion("verger1", colorPortions, lineWitdhPortions, lineOpacityPortions, verger1);
-  //addPortion("verger2", colorPortions, lineWitdhPortions, lineOpacityPortions, verger2);
+  addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
 
 });
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
+let tableauStates = {
+  stateCircuit25: [false, "circuit25"],
+  stateCircuit35: [false, "circuit35"],
+  stateCircuit45: [false, "circuit45"],
+  stateVerger1: [false, "verger1"],
+  stateVerger2: [false, "verger2"],
+  stateStang1: [false, "stang1"]
+};
+
+map.on('click', function(e) {
+  console.log("click");
+  for (let i of Object.values(tableauStates)) {
+    if (i[0]) {
+      //si i est un circuit
+      if (i[1].includes("circuit")) {
+        map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);
+      } else {
+        map.setPaintProperty(i[1], 'line-width', lineWitdhPortions);
+      }
+      i[0] = false;
+      cacherDivTexteId();
+    }
+  }
+});
+
+// Circuit25
+map.on('click', 'circuit25', function(e) {
+  tableauStates.stateCircuit25[0] = true;
+  afficherDivTexteId();
+  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+});
+
+// Circuit35
+map.on('click', 'circuit35', function(e) {
+  tableauStates.stateCircuit35[0] = true;
+  afficherDivTexteId();
+  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+});
+
+// Circuit45
+map.on('click', 'circuit45', function(e) {
+  tableauStates.stateCircuit45[0] = true;
+  afficherDivTexteId();
+  map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+});
 
 // Verger1
 map.on('click', 'verger1', function(e) {
+  tableauStates.stateVerger1[0] = true;
   console.log(e.features[0].properties.name);
+  afficherDivTexteId();
 });
+
 
 
 /* ------------------------------------------------ Hover ------------------------------------------------ */
@@ -16868,22 +16997,31 @@ function cacherDivTexteId() { // Fonction pour cacher
 function portionsHoverEnter(portion, type) {
   map.on('mouseenter', portion, function(e) {
     map.getCanvas().style.cursor = 'pointer';
-    afficherDivTexteId();
-    if (type = 'debrouissallage') {
-      map.setPaintProperty(portion, 'line-color', color45);
+    if (type = 'debrou') {
+      map.setPaintProperty(portion, 'line-color', colorDebrou);
+    } else if (type = 'tronco') {
+      map.setPaintProperty(portion, 'line-color', colorTronco);
+    } else if (type = 'py') {
+      map.setPaintProperty(portion, 'line-color', colorPy);
+    } else if (type = 'souff') {
+      map.setPaintProperty(portion, 'line-color', colorSouff);
     } else {
       map.setPaintProperty(portion, 'line-color', colorPortions);
     }
-    map.setPaintProperty(portion, 'line-width', 20);
+    map.setPaintProperty(portion, 'line-width', lineWitdhPortions+10);
   });
 }
-
 function portionsHoverLeave(portion, type) {
   map.on('mouseleave', portion, function(e) {
     map.getCanvas().style.cursor = '';
-    cacherDivTexteId();
-    if (type = 'debrouissallage') {
-      map.setPaintProperty(portion, 'line-color', color45);
+    if (type = 'debrou') {
+      map.setPaintProperty(portion, 'line-color', colorDebrou);
+    } else if (type = 'tronco') {
+      map.setPaintProperty(portion, 'line-color', colorTronco);
+    } else if (type = 'py') {
+      map.setPaintProperty(portion, 'line-color', colorPy);
+    } else if (type = 'souff') {
+      map.setPaintProperty(portion, 'line-color', colorSouff);
     } else {
       map.setPaintProperty(portion, 'line-color', colorPortions);
     }
@@ -16891,6 +17029,17 @@ function portionsHoverLeave(portion, type) {
   });
 }
 
-// Verger1
-portionsHoverEnter('verger1', 'debrouissallage');
-portionsHoverLeave('verger1', 'debrouissallage');
+function circuitHoverEnter(portion) {
+  map.on('mouseenter', portion, function(e) {
+    map.getCanvas().style.cursor = 'pointer';
+    //afficherDivTexteId();
+    //map.setPaintProperty(portion, 'line-width', lineWitdhCircuit+5);
+  });
+}
+function circuitHoverLeave(portion) {
+  map.on('mouseleave', portion, function(e) {
+    map.getCanvas().style.cursor = '';
+    //cacherDivTexteId();
+    //map.setPaintProperty(portion, 'line-width', lineWitdhCircuit);
+  });
+}
