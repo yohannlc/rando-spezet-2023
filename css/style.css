@@ -50,6 +50,8 @@ h1 {
     z-index: 1;
     left: 1vw;
     top: 5vh;
+    width: 8vw;
+    min-width: 80px;
 }
 
 @media screen and (max-width: 600px) {
@@ -104,6 +106,7 @@ h1 {
     visibility: hidden;
     transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
 }
+
 #divTexteId.show {
     opacity: 1;
     visibility: visible;
@@ -116,4 +119,89 @@ p {
 
 .bold {
     font-weight: bold;
+}
+
+.div-params {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+    left: 1vw;
+    top: 25vh;
+    width: 8vw;
+    min-width: 80px;
+    height: 50px;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 600px) {
+    .div-params {
+        display: none;
+    }
+}
+
+span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.circ-cliq {
+    font-size: 0.7em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.184);
+    -webkit-transition: .4s;
+    transition: .4s;
+    border-radius: 100px;
+    width: 50px;
+}
+
+.slider:before {
+    position: absolute;
+    border-radius: 100px;
+    content: "";
+    height: 22px;
+    width: 26px;
+    left: 4px;
+    top: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: rgb(54, 147, 191);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px rgb(54, 147, 191);
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(60%);
+    -ms-transform: translateX(60%);
+    transform: translateX(60%);
 }
