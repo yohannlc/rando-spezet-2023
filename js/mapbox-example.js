@@ -7,7 +7,7 @@ color45 = 'rgb(255, 108, 0)';
 lineWitdhCircuit = 3;
 lineOpacityCircuit = 1;
 
-let circuit45 = [
+let coordsCircuit45 = [
     [
       -3.713795,
       48.190524,
@@ -7261,7 +7261,7 @@ let circuit45 = [
     ]
 ];
 
-let circuit35 = [
+let coordsCircuit35 = [
   [
     -3.713795,
     48.190524,
@@ -13240,7 +13240,7 @@ let circuit35 = [
   ]
 ];
 
-let circuit25 = [
+let coordsCircuit25 = [
   [
     -3.713795,
     48.190524,
@@ -16705,14 +16705,14 @@ let circuit25 = [
 
 let offset = 0.0001;
 
-for (let i = 0; i < circuit45.length; i++) {
-  circuit45[i][0] += offset;
-  circuit45[i][1] += offset;
+for (let i = 0; i < coordsCircuit45.length; i++) {
+  coordsCircuit45[i][0] += offset;
+  coordsCircuit45[i][1] += offset;
 }
 
-for (let i = 0; i < circuit25.length; i++) {
-  circuit25[i][0] -= offset;
-  circuit25[i][1] -= offset;
+for (let i = 0; i < coordsCircuit25.length; i++) {
+  coordsCircuit25[i][0] -= offset;
+  coordsCircuit25[i][1] -= offset;
 }
 
 // Gérer le type d'appareil (pc ou smartphone)
@@ -16884,6 +16884,7 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
   } else {
     portionsHoverEnter(portionName, portionType);
     portionsHoverLeave(portionName, portionType);
+    //portionsClick(portionName);
   }
 }
 
@@ -16917,9 +16918,9 @@ map.addControl(new mapboxgl.ScaleControl());
 // Ajout des traces (circuits et portions)
 map.on('load', () => {
   //Création des circuits
-  addPortion("circuit45", "circuit", circuit45, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit35", "circuit", circuit35, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit25", "circuit", circuit25, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
 
   //Création des portions
   addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
@@ -16929,15 +16930,35 @@ map.on('load', () => {
 });
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
-let tabStatesTraces = {
+let tabStatesCircuits = {
   stateCircuit25: [false, "circuit25"],
   stateCircuit35: [false, "circuit35"],
-  stateCircuit45: [false, "circuit45"],
-  stateVerger1: [false, "verger1"],
-  stateVerger2: [false, "verger2"],
-  stateStang1: [false, "stang1"]
+  stateCircuit45: [false, "circuit45"]
 };
 
+let tabStatesPortions = [
+  "verger1",
+  false,
+  "verger2",
+  false,
+  "stang1",
+  false,
+]
+
+// Voir si on a coché la case "Circuits Cliquables"
+let checkboxCircCliq = document.getElementById("cirqCliq");
+checkboxCircCliq.checked = false;
+boolCircleCliq = false;
+
+function changeCheckboxCircCliq() {
+  checkboxCircCliq.checked = document.getElementById("cirqCliq").checked;
+  if (checkboxCircCliq.checked == true) {
+    boolCircleCliq = true;
+  } else {
+    boolCircleCliq = false;
+    resetAllTraces();
+  }
+}
 
 // Enregistrer les éléments de la légende dans une variable
 const legendItems = document.querySelectorAll('#county-legend div');
@@ -16949,19 +16970,24 @@ for (let i of legendItems) {
 
 function resetAllTraces() {
   let j = 0;
-  for (let i of Object.values(tabStatesTraces)) {               // Pour chaque trace
+  for (let i of Object.values(tabStatesCircuits)) {               // Pour chaque circuit
     if (i[0]) {                                                     // Si la trace est activée
       i[0] = false;                                                    // On remet l'état de la trace à false
-      if (i[1].includes("circuit")) {                                  // Si c'est un circuit
-        map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);       // On remet la largeur de la ligne à la normale
-        stateLine(i[1], i[0], items[j]);                                  // On remet le texte de la légende à la normale
-      } else {                                                         // Sinon, c'est une portion
-        map.setPaintProperty(i[1], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
-      } 
+      map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);       // On remet la largeur de la ligne à la normale
+      stateLine(i[1], i[0], items[j]);                                  // On remet le texte de la légende à la normale
       cacherDivTexteId();
     }
-    j++;                                                        // Permet de suivre quel élément du tableau tabStatesTraces on est en train de traiter
+    j++;                                                        // Permet de suivre quel élément du tableau tabStatesCircuits on est en train de traiter
   }
+
+  // Pour chaque portion du tableau tabStatesPortions
+  for (let i = 0; i < tabStatesPortions.length; i+=2) {
+    if (tabStatesPortions[i+1]) {                                                     // Si la trace est activée
+      tabStatesPortions[i+1] = false;                                                    // On remet l'état de la trace à false
+      map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);       // On remet la largeur de la ligne à la normale
+      cacherDivTexteId();
+    }
+  }  
 }
 
 // Lors d'un click n'importe où sur la carte
@@ -16979,37 +17005,65 @@ function stateLine(name, state, ite) {
   }
 }
 
+// Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
+// Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
+if (smartphone != true) { 
 
-if (smartphone != true) { // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
-  
   // Circuit25
   map.on('click', 'circuit25', function(e) {
-    tabStatesTraces.stateCircuit25[0] = true;
-    afficherDivTexteId();
-    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit25[0], items[0]);
+    if(boolCircleCliq) {
+      tabStatesCircuits.stateCircuit25[0] = true;
+      afficherDivTexteId();
+      stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit25[0], items[0]);
+    }
   });
 
   // Circuit35
   map.on('click', 'circuit35', function(e) {
-    tabStatesTraces.stateCircuit35[0] = true;
-    afficherDivTexteId();
-    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit35[0], items[1]);
+    if(boolCircleCliq) {
+      tabStatesCircuits.stateCircuit35[0] = true;
+      afficherDivTexteId();
+      stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit35[0], items[1]);
+    }
   });
 
   // Circuit45
   map.on('click', 'circuit45', function(e) {
-    tabStatesTraces.stateCircuit45[0] = true;
-    afficherDivTexteId();
-    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit45[0], items[2]);
+    if(boolCircleCliq) {
+      tabStatesCircuits.stateCircuit45[0] = true;
+      afficherDivTexteId();
+      stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit45[0], items[2]);
+    }
   });
 }
 
+let testBool = false;
 // Verger1
-map.on('click', 'verger1', function(e) {
-  tabStatesTraces.stateVerger1[0] = true;
-  console.log(e.features[0].properties.name);
-  afficherDivTexteId();
-});
+
+/* stand by ...............
+function portionsClick(portionName) {
+  map.on('click', portionName, function(e) {
+    let portionState = false;
+    for (let i = 0; i < tabStatesPortions.length; i+=2) {
+      console.log(tabStatesPortions[i],"=?", portionName)
+      if (tabStatesPortions[i] == portionName) {
+        portionIndex = i;
+      }
+    }
+    console.log("is this still true ?", tabStatesPortions[portionIndex+1]);
+    if(tabStatesPortions[portionIndex+1] == false) {
+      console.log("afichage texte portion");
+      afficherDivTexteId(portionName);
+      tabStatesPortions[portionIndex+1] = true;
+      console.log("is this true ?", tabStatesPortions[portionIndex+1]);
+    } else {
+      console.log("cacher texte portion");
+      cacherDivTexteId();
+      tabStatesPortions[portionIndex+1] = false;
+    }
+  });
+}
+*/
 
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
@@ -17018,17 +17072,16 @@ legendItems.forEach(function(item, index) {
     // Définir le nom de la couche et la largeur de la ligne correspondant à l'élément cliqué
     switch(index) {
       case 0:
-        tabStatesTraces.stateCircuit25[0] = !tabStatesTraces.stateCircuit25[0];
-        stateLine('circuit25', tabStatesTraces.stateCircuit25[0], item);
+        tabStatesCircuits.stateCircuit25[0] = !tabStatesCircuits.stateCircuit25[0];
+        stateLine('circuit25', tabStatesCircuits.stateCircuit25[0], item);
         break;
       case 1:
-        tabStatesTraces.stateCircuit35[0] = !tabStatesTraces.stateCircuit35[0];
-        stateLine('circuit35', tabStatesTraces.stateCircuit35[0], item);
+        tabStatesCircuits.stateCircuit35[0] = !tabStatesCircuits.stateCircuit35[0];
+        stateLine('circuit35', tabStatesCircuits.stateCircuit35[0], item);
         break;
       case 2:
-        tabStatesTraces.stateCircuit45[0] = !tabStatesTraces.stateCircuit45[0];
-        console.log('circuit45', tabStatesTraces.stateCircuit45[0], item);
-        stateLine('circuit45', tabStatesTraces.stateCircuit45[0], item);
+        tabStatesCircuits.stateCircuit45[0] = !tabStatesCircuits.stateCircuit45[0];
+        stateLine('circuit45', tabStatesCircuits.stateCircuit45[0], item);
         break;
       default:
         return;
@@ -17039,9 +17092,12 @@ legendItems.forEach(function(item, index) {
 /* ------------------------------------------------ Hover ------------------------------------------------ */
 
 // Gérer l'affichage de la popup de texte
-function afficherDivTexteId() { // Fonction pour afficher
+function afficherDivTexteId(portionName) { // Fonction pour afficher
+  textId = document.getElementById("textId");
+  textId.innerHTML = portionName;
   divTexteId.classList.add("show");
 }
+
 function cacherDivTexteId() { // Fonction pour cacher
   divTexteId.classList.remove("show");
 }
@@ -17049,6 +17105,7 @@ function cacherDivTexteId() { // Fonction pour cacher
 function portionsHoverEnter(portion, type) {
   map.on('mouseenter', portion, function(e) {
     map.getCanvas().style.cursor = 'pointer';
+    afficherDivTexteId(portion);
     if (type = 'debrou') {
       map.setPaintProperty(portion, 'line-color', colorDebrou);
     } else if (type = 'tronco') {
@@ -17065,6 +17122,12 @@ function portionsHoverEnter(portion, type) {
 }
 function portionsHoverLeave(portion, type) {
   map.on('mouseleave', portion, function(e) {
+    /* stand by ...............
+    if(tabStatesPortions[1] == true) {
+       return;
+    } */
+    
+    cacherDivTexteId();
     map.getCanvas().style.cursor = '';
     if (type = 'debrou') {
       map.setPaintProperty(portion, 'line-color', colorDebrou);
@@ -17083,13 +17146,21 @@ function portionsHoverLeave(portion, type) {
 
 function circuitHoverEnter(portion) {
   map.on('mouseenter', portion, function(e) {
+    if (!boolCircleCliq) {
+      return;
+    }
     map.getCanvas().style.cursor = 'pointer';
+    //si on veut qu'un texte apparaisse quand on passe la souris dessus du circuit
     //afficherDivTexteId();
+    //si on veut que la trace grossisse quand on passe la souris dessus
     //map.setPaintProperty(portion, 'line-width', lineWitdhCircuit+5);
   });
 }
 function circuitHoverLeave(portion) {
   map.on('mouseleave', portion, function(e) {
+    if (!boolCircleCliq) {
+      return;
+    }
     map.getCanvas().style.cursor = '';
     //cacherDivTexteId();
     //map.setPaintProperty(portion, 'line-width', lineWitdhCircuit);
