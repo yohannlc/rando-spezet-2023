@@ -16929,7 +16929,7 @@ map.on('load', () => {
 });
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
-let tableauStates = {
+let tabStatesTraces = {
   stateCircuit25: [false, "circuit25"],
   stateCircuit35: [false, "circuit35"],
   stateCircuit45: [false, "circuit45"],
@@ -16938,91 +16938,99 @@ let tableauStates = {
   stateStang1: [false, "stang1"]
 };
 
+
+// Enregistrer les éléments de la légende dans une variable
+const legendItems = document.querySelectorAll('#county-legend div');
+
+let items = [];
+for (let i of legendItems) {
+  items.push(i);
+}
+
+// Lors d'un click n'importe où sur la carte
 map.on('click', function(e) {
   console.log("click");
-  for (let i of Object.values(tableauStates)) {
-    if (i[0]) {
-      //si i est un circuit
-      if (i[1].includes("circuit")) {
-        map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);
-      } else {
-        map.setPaintProperty(i[1], 'line-width', lineWitdhPortions);
-      }
-      i[0] = false;
+  let j = 0;
+  for (let i of Object.values(tabStatesTraces)) {               // Pour chaque trace
+    if (i[0]) {                                                     // Si la trace est activée
+      i[0] = false;                                                    // On remet l'état de la trace à false
+      if (i[1].includes("circuit")) {                                  // Si c'est un circuit
+        map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);       // On remet la largeur de la ligne à la normale
+        stateLine(i[1], i[0], items[j]);                                  // On remet le texte de la légende à la normale
+      } else {                                                         // Sinon, c'est une portion
+        map.setPaintProperty(i[1], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
+      } 
       cacherDivTexteId();
     }
+    j++;                                                        // Permet de suivre quel élément du tableau tabStatesTraces on est en train de traiter
   }
 });
 
-if (smartphone != true) {
+function stateLine(name, state, ite) {
+  if (state) {
+    map.setPaintProperty(name, 'line-width', lineWitdhCircuit+5);
+    ite.classList.add('bold');
+  } else {
+    map.setPaintProperty(name, 'line-width', lineWitdhCircuit);
+    ite.classList.remove('bold');
+  }
+}
+
+
+if (smartphone != true) { // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
+  
   // Circuit25
   map.on('click', 'circuit25', function(e) {
-    tableauStates.stateCircuit25[0] = true;
+    tabStatesTraces.stateCircuit25[0] = true;
     afficherDivTexteId();
-    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit25[0], items[0]);
   });
 
   // Circuit35
   map.on('click', 'circuit35', function(e) {
-    tableauStates.stateCircuit35[0] = true;
+    tabStatesTraces.stateCircuit35[0] = true;
     afficherDivTexteId();
-    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit35[0], items[1]);
   });
 
   // Circuit45
   map.on('click', 'circuit45', function(e) {
-    tableauStates.stateCircuit45[0] = true;
+    tabStatesTraces.stateCircuit45[0] = true;
     afficherDivTexteId();
-    map.setPaintProperty(e.features[0].properties.name, 'line-width', lineWitdhCircuit+5);
+    stateLine(e.features[0].properties.name, tabStatesTraces.stateCircuit45[0], items[2]);
   });
 }
 
 // Verger1
 map.on('click', 'verger1', function(e) {
-  tableauStates.stateVerger1[0] = true;
+  tabStatesTraces.stateVerger1[0] = true;
   console.log(e.features[0].properties.name);
   afficherDivTexteId();
 });
-
-
-// Enregistrer les éléments de la légende dans une variable
-const legendItems = document.querySelectorAll('#county-legend div');
 
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
   item.addEventListener('click', function() {
     // Définir le nom de la couche et la largeur de la ligne correspondant à l'élément cliqué
-    let layerName;
     switch(index) {
       case 0:
-        tableauStates.stateCircuit25[0] = !tableauStates.stateCircuit25[0];
-        layerName = 'circuit25';
+        tabStatesTraces.stateCircuit25[0] = !tabStatesTraces.stateCircuit25[0];
+        stateLine('circuit25', tabStatesTraces.stateCircuit25[0], item);
         break;
       case 1:
-        tableauStates.stateCircuit35[0] = !tableauStates.stateCircuit35[0];
-        layerName = 'circuit35';
+        tabStatesTraces.stateCircuit35[0] = !tabStatesTraces.stateCircuit35[0];
+        stateLine('circuit35', tabStatesTraces.stateCircuit35[0], item);
         break;
       case 2:
-        tableauStates.stateCircuit45[0] = !tableauStates.stateCircuit45[0];
-        layerName = 'circuit45';
+        tabStatesTraces.stateCircuit45[0] = !tabStatesTraces.stateCircuit45[0];
+        console.log('circuit45', tabStatesTraces.stateCircuit45[0], item);
+        stateLine('circuit45', tabStatesTraces.stateCircuit45[0], item);
         break;
       default:
         return;
     }
-
-    for (let i of Object.values(tableauStates)) {
-      //si i est un circuit
-      if (i[1].includes("circuit")) {
-        if (i[0]) {
-          map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit+5);
-        } else {
-          map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);
-        }
-      }
-    }
   });
 });
-
 
 /* ------------------------------------------------ Hover ------------------------------------------------ */
 
