@@ -1,4 +1,4 @@
-/* ------------ Déclarations ------------ */
+/* ------------------------------------------------ Déclarations ------------------------------------------------ */
 
 // Circuits complets
 color25 = 'rgb(54, 147, 191)';
@@ -16714,6 +16714,14 @@ for (let i = 0; i < circuit25.length; i++) {
 }
 
 // Portions
+/* Liste des types de portions
+  - débrouissaillage
+  - tronçonneuse
+  - coupage d'herbe Pierre-Yves
+  - souffleur
+
+*/
+
 lineWitdhPortions = 12;
 colorPortions = "rgb(255, 255, 0)";
 lineOpacityPortions = 0.6;
@@ -16761,15 +16769,41 @@ let verger1 = [
   ]
 ];
 
+// Gérer le type d'appareil (pc ou smartphone)
+smartphone = false; //par défaut, on considère que c'est un pc
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { //si c'est un smartphone
+  smartphone = true;
+}
 
-/* ------------ Création de la carte ------------ */
+
+/* ------------------------------------------------ Création de la carte ------------------------------------------------ */
+
+zoomStart = 12.3; //zoom d'un pc pour voir tous les circuits
+if (smartphone == true) {
+  zoomStart = 10.8; //zoom d'un smartphone pour voir tous les circuits
+}
+
+// Création de la map
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9oYW5ubGMiLCJhIjoiY2xnczI4cHJ1MGF4dDNsb2NienBja3pxbCJ9.pmfEZTINyfbOowGB0I77QA';
   var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/outdoors-v12',
-  center: [-3.7131733269314533,48.177434347124205],
-  zoom: 12.3
+  center: [-3.7151733269314533,48.177434347124205],
+  zoom: zoomStart
 });
+
+// Ajouter les contrôles à la carte
+if (smartphone == true) {
+  map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
+} else {
+  map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
+  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+}
+map.addControl(new mapboxgl.ScaleControl());
+
+
+/* ------------------------------------------------ Création des portions ------------------------------------------------ */
 
 function addPortion(portionName, portionColor, portionWidth, portionOpacity, portionCoordinates) {
   map.addSource(portionName, {
@@ -16802,21 +16836,18 @@ function addPortion(portionName, portionColor, portionWidth, portionOpacity, por
 }
 
 map.on('load', () => {
+  //Création des circuits
   addPortion("circuit45", color45, 3, 1, circuit45);
   addPortion("circuit35", color35, 3, 1, circuit35);
   addPortion("circuit25", color25, 3, 1, circuit25);
+
+  //Création des portions
   addPortion("verger1", colorPortions, lineWitdhPortions, lineOpacityPortions, verger1);
   //addPortion("verger2", colorPortions, lineWitdhPortions, lineOpacityPortions, verger2);
 
 });
 
-// Ajouter le contrôle de légende à la carte
-map.addControl(new mapboxgl.FullscreenControl());
-map.addControl(new mapboxgl.NavigationControl());
-map.addControl(new mapboxgl.ScaleControl());
-
-
-/* ------------ OnClick ------------ */
+/* ------------------------------------------------ OnClick ------------------------------------------------ */
 
 // Verger1
 map.on('click', 'verger1', function(e) {
@@ -16824,11 +16855,20 @@ map.on('click', 'verger1', function(e) {
 });
 
 
-/* ------------ Hover ------------ */
+/* ------------------------------------------------ Hover ------------------------------------------------ */
+
+// Gérer l'affichage de la popup de texte
+function afficherDivTexteId() { // Fonction pour afficher
+  divTexteId.classList.add("show");
+}
+function cacherDivTexteId() { // Fonction pour cacher
+  divTexteId.classList.remove("show");
+}
 
 function portionsHoverEnter(portion, type) {
   map.on('mouseenter', portion, function(e) {
     map.getCanvas().style.cursor = 'pointer';
+    afficherDivTexteId();
     if (type = 'debrouissallage') {
       map.setPaintProperty(portion, 'line-color', color45);
     } else {
@@ -16841,6 +16881,7 @@ function portionsHoverEnter(portion, type) {
 function portionsHoverLeave(portion, type) {
   map.on('mouseleave', portion, function(e) {
     map.getCanvas().style.cursor = '';
+    cacherDivTexteId();
     if (type = 'debrouissallage') {
       map.setPaintProperty(portion, 'line-color', color45);
     } else {
