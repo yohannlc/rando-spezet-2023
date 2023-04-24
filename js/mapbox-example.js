@@ -16947,9 +16947,7 @@ for (let i of legendItems) {
   items.push(i);
 }
 
-// Lors d'un click n'importe où sur la carte
-map.on('click', function(e) {
-  console.log("click");
+function resetAllTraces() {
   let j = 0;
   for (let i of Object.values(tabStatesTraces)) {               // Pour chaque trace
     if (i[0]) {                                                     // Si la trace est activée
@@ -16964,6 +16962,11 @@ map.on('click', function(e) {
     }
     j++;                                                        // Permet de suivre quel élément du tableau tabStatesTraces on est en train de traiter
   }
+}
+
+// Lors d'un click n'importe où sur la carte
+map.on('click', function(e) {
+  resetAllTraces();
 });
 
 function stateLine(name, state, ite) {
@@ -17011,6 +17014,7 @@ map.on('click', 'verger1', function(e) {
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
   item.addEventListener('click', function() {
+    resetAllTraces(); 
     // Définir le nom de la couche et la largeur de la ligne correspondant à l'élément cliqué
     switch(index) {
       case 0:
