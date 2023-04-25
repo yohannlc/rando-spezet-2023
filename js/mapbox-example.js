@@ -17024,19 +17024,19 @@ function resetAllTraces() {
   let j = 0;
   for (let i of Object.values(tabStatesCircuits)) {               // Pour chaque circuit
     if (i[0]) {                                                     // Si la trace est activée
-      i[0] = false;                                                    // On remet l'état de la trace à false
-      map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);       // On remet la largeur de la ligne à la normale
-      stateLine(i[1], i[0], items[j]);                                  // On remet le texte de la légende à la normale
+      i[0] = false;                                                   // On remet l'état de la trace à false
+      map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);     // On remet la largeur de la ligne à la normale
+      stateLine(i[1], i[0], items[j]);                                // On remet le texte de la légende à la normale
       cacherDivTexteId();
     }
-    j++;                                                        // Permet de suivre quel élément du tableau tabStatesCircuits on est en train de traiter
+    j++;                                                            // Permet de suivre quel élément du tableau tabStatesCircuits on est en train de traiter
   }
 
   // Pour chaque portion du tableau tabStatesPortions
   for (let i = 0; i < tabStatesPortions.length; i+=2) {
     if (tabStatesPortions[i+1]) {                                                     // Si la trace est activée
-      tabStatesPortions[i+1] = false;                                                    // On remet l'état de la trace à false
-      map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);       // On remet la largeur de la ligne à la normale
+      tabStatesPortions[i+1] = false;                                                   // On remet l'état de la trace à false
+      map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
       cacherDivTexteId();
     }
   }  
@@ -17092,26 +17092,22 @@ if (smartphone != true) {
 let testBool = false;
 // Verger1
 
-/* stand by ...............
+/*
+// stand by ........................................................
 function portionsClick(portionName) {
-  map.on('click', portionName, function(e) {
+  map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
     let portionState = false;
-    for (let i = 0; i < tabStatesPortions.length; i+=2) {
-      console.log(tabStatesPortions[i],"=?", portionName)
-      if (tabStatesPortions[i] == portionName) {
-        portionIndex = i;
+    for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
+      console.log(tabStatesPortions[i],"=?", portionName)       // Afficher le nom de la portion
+      if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
+        portionIndex = i;                                         // On enregistre l'index de la portion
       }
     }
-    console.log("is this still true ?", tabStatesPortions[portionIndex+1]);
-    if(tabStatesPortions[portionIndex+1] == false) {
+
+    if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
       console.log("afichage texte portion");
-      afficherDivTexteId(portionName);
-      tabStatesPortions[portionIndex+1] = true;
-      console.log("is this true ?", tabStatesPortions[portionIndex+1]);
-    } else {
-      console.log("cacher texte portion");
-      cacherDivTexteId();
-      tabStatesPortions[portionIndex+1] = false;
+      afficherDivTexteId(portionName);                          // On affiche le texte de la portion
+      tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
     }
   });
 }
@@ -17175,11 +17171,9 @@ function portionsHoverEnter(portion, type) {
 }
 function portionsHoverLeave(portion, type) {
   map.on('mouseleave', portion, function(e) {
-    /* stand by ...............
     if(tabStatesPortions[1] == true) {
        return;
-    } */
-    
+    }
     cacherDivTexteId();
     map.getCanvas().style.cursor = '';
     if (type = 'debrou') {
