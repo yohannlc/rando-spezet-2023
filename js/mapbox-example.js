@@ -16901,7 +16901,7 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
   } else {
     portionsHoverEnter(portionName, portionType);
     portionsHoverLeave(portionName, portionType);
-    //portionsClick(portionName);
+    portionsClick(portionName);
   }
 }
 
@@ -16946,11 +16946,12 @@ if (smartphone == true) {
 // Création de la map
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9oYW5ubGMiLCJhIjoiY2xnczI4cHJ1MGF4dDNsb2NienBja3pxbCJ9.pmfEZTINyfbOowGB0I77QA';
   var map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/mapbox/outdoors-v12',
-  center: [-3.7151733269314533,48.177434347124205],
-  zoom: zoomStart
-});
+    container: 'map',
+    style: 'mapbox://styles/mapbox/outdoors-v12',
+    center: [-3.7151733269314533,48.177434347124205],
+    zoom: zoomStart
+  }
+);
 
 // Ajouter les contrôles à la carte
 if (smartphone == true) {
@@ -17020,6 +17021,8 @@ for (let i of legendItems) {
   items.push(i);
 }
 
+let reset = false;
+
 function resetAllTraces() {
   let j = 0;
   for (let i of Object.values(tabStatesCircuits)) {               // Pour chaque circuit
@@ -17033,11 +17036,12 @@ function resetAllTraces() {
   }
 
   // Pour chaque portion du tableau tabStatesPortions
+  reset = true;
   for (let i = 0; i < tabStatesPortions.length; i+=2) {
     if (tabStatesPortions[i+1]) {                                                     // Si la trace est activée
       tabStatesPortions[i+1] = false;                                                   // On remet l'état de la trace à false
-      map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
       cacherDivTexteId();
+      map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
     }
   }  
 }
@@ -17087,31 +17091,26 @@ if (smartphone != true) {
       stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit45[0], items[2]);
     }
   });
-}
 
-let testBool = false;
-// Verger1
-
-/*
-// stand by ........................................................
-function portionsClick(portionName) {
-  map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
-    let portionState = false;
-    for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
-      console.log(tabStatesPortions[i],"=?", portionName)       // Afficher le nom de la portion
-      if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
-        portionIndex = i;                                         // On enregistre l'index de la portion
+  // stand by ........................................................
+  function portionsClick(portionName) {
+    map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
+      if (!portionName.includes("circuit")) {                   // Si la portion N'EST PAS un circuit
+        for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
+          if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
+            portionIndex = i;                                         // On enregistre l'index de la portion
+          }
+        }
+        if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
+          afficherDivTexteId(portionName);                          // On affiche le texte de la portion
+          tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
+        }
       }
-    }
+    });
+  }
 
-    if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
-      console.log("afichage texte portion");
-      afficherDivTexteId(portionName);                          // On affiche le texte de la portion
-      tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
-    }
-  });
+
 }
-*/
 
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
@@ -17122,14 +17121,17 @@ legendItems.forEach(function(item, index) {
       case 0:
         tabStatesCircuits.stateCircuit25[0] = !tabStatesCircuits.stateCircuit25[0];
         stateLine('circuit25', tabStatesCircuits.stateCircuit25[0], item);
+        afficherDivTexteId('Circuit 25');
         break;
       case 1:
         tabStatesCircuits.stateCircuit35[0] = !tabStatesCircuits.stateCircuit35[0];
         stateLine('circuit35', tabStatesCircuits.stateCircuit35[0], item);
+        afficherDivTexteId('Circuit 35');
         break;
       case 2:
         tabStatesCircuits.stateCircuit45[0] = !tabStatesCircuits.stateCircuit45[0];
         stateLine('circuit45', tabStatesCircuits.stateCircuit45[0], item);
+        afficherDivTexteId('Circuit 45');
         break;
       default:
         return;
@@ -17171,23 +17173,29 @@ function portionsHoverEnter(portion, type) {
 }
 function portionsHoverLeave(portion, type) {
   map.on('mouseleave', portion, function(e) {
-    if(tabStatesPortions[1] == true) {
-       return;
+    let ok = true;
+    // si un des bools de tabStatesPortions est à true, on ne fait rien
+    for (let i = 0; i < tabStatesPortions.length; i+=2) {
+      if (tabStatesPortions[i+1] == true) {
+        ok = false;
+      }
     }
-    cacherDivTexteId();
-    map.getCanvas().style.cursor = '';
-    if (type = 'debrou') {
-      map.setPaintProperty(portion, 'line-color', colorDebrou);
-    } else if (type = 'tronco') {
-      map.setPaintProperty(portion, 'line-color', colorTronco);
-    } else if (type = 'py') {
-      map.setPaintProperty(portion, 'line-color', colorPy);
-    } else if (type = 'souff') {
-      map.setPaintProperty(portion, 'line-color', colorSouff);
-    } else {
-      map.setPaintProperty(portion, 'line-color', colorPortions);
+    if (ok) {
+      cacherDivTexteId();
+      map.getCanvas().style.cursor = '';
+      if (type = 'debrou') {
+        map.setPaintProperty(portion, 'line-color', colorDebrou);
+      } else if (type = 'tronco') {
+        map.setPaintProperty(portion, 'line-color', colorTronco);
+      } else if (type = 'py') {
+        map.setPaintProperty(portion, 'line-color', colorPy);
+      } else if (type = 'souff') {
+        map.setPaintProperty(portion, 'line-color', colorSouff);
+      } else {
+        map.setPaintProperty(portion, 'line-color', colorPortions);
+      }
+      map.setPaintProperty(portion, 'line-width', lineWitdhPortions);
     }
-    map.setPaintProperty(portion, 'line-width', lineWitdhPortions);
   });
 }
 
