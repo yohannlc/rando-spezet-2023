@@ -21911,7 +21911,7 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
 
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   colorRavito = "rgb(248, 248, 42)";
-  circleRadius = 7;
+  circleRadius = 8;
 } else {
   colorRavito = "rgb(255, 255, 0)";
   circleRadius = 10;
@@ -22148,7 +22148,7 @@ function circuitsClick(circuitName) {
         if (i[1] == circuitName) {                                // Si le nom du circuit est le même que celui du circuit cliqué
           if (i[0] == false) {                                      // Si le circuit n'est pas activé
             i[0] = true;                                              // On active le circuit
-            afficherDivTexteId();                                     // On affiche le texte du circuit
+            afficherDivTexteId(circuitName);                                     // On affiche le texte du circuit
             stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en gras le texte de la légende
           } else {                                                  // Sinon
             i[0] = false;                                             // On désactive le circuit
@@ -22209,11 +22209,28 @@ legendItems.forEach(function(item, index) {
 /* ------------------------------------------------ Hover ------------------------------------------------ */
 
 // Gérer l'affichage de la popup de texte
-function afficherDivTexteId(portionName) { // Fonction pour afficher
-  textId = document.getElementById("textId");
-  textId.innerHTML = portionName;
+function afficherDivTexteId(portionName) {
+  // Sépare le mot en lettre et en chiffre
+  const match = portionName.match(/^([a-zA-Z]+)(\d+)/);
+  if (!match) {
+    // La chaîne ne correspond pas au format attendu
+    return;
+  }
+  const lettre = match[1];
+  const chiffre = match[2];
+  
+  // Met la première lettre en majuscule
+  const lettreMajuscule = lettre.charAt(0).toUpperCase() + lettre.slice(1);
+  
+  // Affiche le texte dans l'élément HTML
+  const textId = document.getElementById("textId");
+  textId.innerHTML = `${lettreMajuscule} ${chiffre}`;
+  
+  // Affiche la div
+  const divTexteId = document.getElementById("divTexteId");
   divTexteId.classList.add("show");
 }
+
 
 function cacherDivTexteId() { // Fonction pour cacher
   divTexteId.classList.remove("show");

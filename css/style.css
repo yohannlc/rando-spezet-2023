@@ -104,7 +104,7 @@ h1 {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     margin: 0;
-    padding: 10px;
+    padding: 20px;
     position: absolute;
     z-index: 10;
     right: 1vw;
@@ -113,8 +113,6 @@ h1 {
     width: 18vw;
     min-width: 300px;
 }
-
-
 
 @media screen and (max-width: 1000px) {
     .div-texte {
@@ -137,6 +135,21 @@ h1 {
     visibility: visible;
 }
 
+.div-texte-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+}
+
+.div-texte-top h4 {
+    margin: 0;
+}
+
+.close {
+    align-self: center;
+}
+  
 p {
     margin: 0px;
     padding: 0px;
@@ -149,6 +162,10 @@ h4 {
 
 .bold {
     font-weight: bold;
+}
+
+.para {
+    margin: 20px 0px;
 }
 
 .div-params {
