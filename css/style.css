@@ -1,12 +1,14 @@
 body {
     background-color: rgb(229, 229, 229);
     color: rgb(55, 55, 55);
+    /* color: rgb(255,255,255); */
     font-family: 'Open Sans', sans-serif;
     font-size: 14px;
-    font-weight: normal;
+    font-weight: lighter;
     line-height: 20px;
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 h1 {
@@ -100,8 +102,8 @@ h1 {
 
 @media screen and (max-width: 1000px) {
     .div-texte {
-        left: 3vw;
-        right: 3vw;
+        left: 14vw;
+        right: 5vw;
         top: 1.5vh;
         height: 20vh;
         width: auto;
@@ -142,10 +144,10 @@ h4 {
     position: absolute;
     z-index: 1;
     left: 1vw;
-    top: 25vh;
+    top: 35vh;
     width: 8vw;
     min-width: 100px;
-    height: 60px;
+    height: 60px; /* 120px si besoin */
     overflow: hidden;
 }
 

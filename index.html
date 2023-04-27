@@ -16,21 +16,30 @@
 </head>
     <div class="div-map">
         <div id='map'></div>
-
-        <div id="county-legend" class="legend">
-            <h4>Circuits</h4>
-            <div class="legend-circuit"><span style="background-color: rgb(54, 147, 191)"></span>25 km</div>
-            <div class="legend-circuit"><span style="background-color: rgb(196, 94, 189)"></span>35 km</div>
-            <div class="legend-circuit"><span style="background-color: rgb(255, 108, 0)"></span>45 km</div>
-            <div><span style="background-color: rgb(218, 43, 43)" id="legendRavitos"></span>Ravitos</div>
-        </div>
-        <div id="divParamsId" class="div-params">
-            <span class="circ-cliq" value="">Circuits cliquables</span>
-            <label class="switch">
-                <input type="checkbox" id="cirqCliq" onclick="changeCheckboxCircCliq()">
-                <span class="slider"></span>
-            </label>
-        </div>
+        <div class="left-component">
+            <div id="county-legend" class="legend">
+                <h4>Circuits</h4>
+                <div class="legend-circuit"><span style="background-color: rgb(54, 147, 191)"></span>25 km</div>
+                <div class="legend-circuit"><span style="background-color: rgb(196, 94, 189)"></span>35 km</div>
+                <div class="legend-circuit"><span style="background-color: rgb(255, 108, 0)"></span>45 km</div>
+                <div class="legend-circuit"><span style="background-color: rgb(0, 166, 147)"></span>17 km</div>
+                <div class="legend-circuit"><span style="background-color: rgb(129, 97, 154)"></span>13 km</div>
+                <div class="legend-circuit"><span style="background-color: rgb(241, 68, 68)"></span>8 km</div>
+                <div><span style="background-color: rgb(255, 0, 0)" id="legendRavitos"></span>Ravitos</div>
+            </div>
+            <div id="divParamsId" class="div-params">
+                <span class="circ-cliq" value="">Circuits cliquables</span>
+                <label class="switch">
+                    <input type="checkbox" id="cirqCliq" onclick="changeCheckboxCircCliq()">
+                    <span class="slider"></span>
+                </label>
+                <!-- <span class="mapstyle-cliq" value="">Vue satellites</span>
+                <label class="switch">
+                    <input type="checkbox" id="mapStyleCliq" onclick="changeMapStyle()">
+                    <span class="slider"></span>
+                </label> -->
+            </div>
+        </div>  
         <script src="js\mapbox-example.js"></script>
     </div>
 
