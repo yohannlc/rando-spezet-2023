@@ -1,7 +1,24 @@
+/* 
+Types d'affichage disponibles :
+  - tous les circtuis
+  - circuits VTT avec portions
+  - circuits VTT sans portions
+*/
+//  type = 'all';
+//type = 'vttSansPo';
+type = 'vttAvecPo';
+
+/*
+Styles de la carte disponibles :
+  - Normal : mapbox://styles/mapbox/outdoors-v12
+  - Satellite : mapbox://styles/mapbox/satellite-v9
+*/
 mapStyle = 'mapbox://styles/mapbox/outdoors-v12';
 //mapStyle = 'mapbox://styles/mapbox/satellite-v9';
 
 /* ------------------------------------------------ Création des circuits ------------------------------------------------ */
+
+// Déclarations des couleurs, épaisseurs et opacités des lignes en fonction du style de la carte
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   lineWitdhCircuit = 3;
   color25 = 'rgb(54, 147, 191)';
@@ -24,6 +41,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
 }
 lineOpacityCircuit = 1;
 
+// Déclaration des coordonnées des circuits
 let coordsCircuit45 = [
     [
       -3.713795,
@@ -21685,29 +21703,36 @@ let coordsCircuit8 = [
       ]
 ];
 
-for (let i = 0; i < coordsCircuit35.length; i++) {
-  coordsCircuit35[i][0] += offset;
-  coordsCircuit35[i][1] += offset;
-}
-
-for (let i = 0; i < coordsCircuit25.length; i++) {
-  coordsCircuit25[i][0] += offset*2;
-  coordsCircuit25[i][1] += offset*2;
-}
-
-for (let i = 0; i < coordsCircuit17.length; i++) {
-  coordsCircuit17[i][0] -= offset;
-  coordsCircuit17[i][1] -= offset;
-}
-
-for (let i = 0; i < coordsCircuit13.length; i++) {
-  coordsCircuit13[i][0] -= offset*2;
-  coordsCircuit13[i][1] -= offset*2;
-}
-
-for (let i = 0; i < coordsCircuit8.length; i++) {
-  coordsCircuit8[i][0] -= offset*3;
-  coordsCircuit8[i][1] -= offset*3;
+if (type == "all") {
+  for (let i = 0; i < coordsCircuit35.length; i++) {
+    coordsCircuit35[i][0] += offset;
+    coordsCircuit35[i][1] += offset;
+  }
+  for (let i = 0; i < coordsCircuit25.length; i++) {
+    coordsCircuit25[i][0] += offset*2;
+    coordsCircuit25[i][1] += offset*2;
+  }
+  for (let i = 0; i < coordsCircuit17.length; i++) {
+    coordsCircuit17[i][0] -= offset;
+    coordsCircuit17[i][1] -= offset;
+  }
+  for (let i = 0; i < coordsCircuit13.length; i++) {
+    coordsCircuit13[i][0] -= offset*2;
+    coordsCircuit13[i][1] -= offset*2;
+  }
+  for (let i = 0; i < coordsCircuit8.length; i++) {
+    coordsCircuit8[i][0] -= offset*3;
+    coordsCircuit8[i][1] -= offset*3;
+  }
+} else {
+  for (let i = 0; i < coordsCircuit45.length; i++) {
+    coordsCircuit45[i][0] += offset;
+    coordsCircuit45[i][1] += offset;
+  }
+  for (let i = 0; i < coordsCircuit25.length; i++) {
+    coordsCircuit25[i][0] -= offset;
+    coordsCircuit25[i][1] -= offset;
+  }
 }
 
 // Savoir quel est le type d'appareil (pc ou smartphone)
@@ -21769,7 +21794,6 @@ let verger1 = [
     48.182213286794735
   ]
 ];
-
 let verger2 = [
   [
     -3.70968798589314,
@@ -21792,7 +21816,6 @@ let verger2 = [
     48.1808447704029
   ]
 ];
-
 let stang1 = [
   [
     -3.699401736185962,
@@ -21818,11 +21841,6 @@ let stang1 = [
     -3.6985133665861554,
     48.176549231917136
   ]
-];
-
-let ravito1 = [
-  -3.682843734443054,
-  48.160898532989194
 ];
 
 //fonction pour ajouter une portion
@@ -21899,11 +21917,14 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   circleRadius = 10;
 }
 
+let ravito1 = [
+  -3.682843734443054,
+  48.160898532989194
+];
 let ravito2 = [
   -3.76203019252074,
   48.155110934494644
 ];
-
 let ravito3 = [
   -3.7496976272579445,
   48.1897297331804
@@ -21989,9 +22010,10 @@ map.addControl(new mapboxgl.ScaleControl());
 // Ajout des traces (circuits et portions)
 map.on('load', () => {
   //Création des circuits
-  addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+  // addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
+  // addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
+  // addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+
   addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
@@ -22002,9 +22024,7 @@ map.on('load', () => {
   addPoint("ravito3", "ravito", ravito3, colorRavito);
 
   //Création des portions
-  // addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
-  // addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
-  // addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+  addPortions();
 });
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
@@ -22294,4 +22314,32 @@ function pointHoverLeave(point) {
     map.setPaintProperty(point, 'circle-radius', circleRadius);
     cacherDivTexteId();
   });
+}
+
+/* ------------------------------------------------ Fonctions de changements ------------------------------------------------ */
+
+// Fonction qui change le type de d'affichage
+function changeType(checkboxType) {
+  if (checkboxType.checked) {
+    type = 'vttSansPo';
+    removePortions();
+  } else {
+    type = 'vttAvecPo';
+    addPortions();
+  }
+}
+
+function addPortions() {
+  addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+}
+
+function removePortions() {
+  map.removeLayer("verger1");
+  map.removeLayer("verger2");
+  map.removeLayer("stang1");
+  map.removeSource("verger1");
+  map.removeSource("verger2");
+  map.removeSource("stang1");
 }

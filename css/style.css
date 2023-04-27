@@ -147,7 +147,7 @@ h4 {
     top: 35vh;
     width: 8vw;
     min-width: 100px;
-    height: 60px; /* 120px si besoin */
+    height: 120px; /* changer la taille de la div des paramètres */
     overflow: hidden;
 }
 
@@ -162,7 +162,7 @@ span {
     overflow: hidden;
 }
 
-.circ-cliq {
+.label-cliq {
     font-size: 0.7em;
 }
 

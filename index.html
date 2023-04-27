@@ -28,12 +28,17 @@
                 <div><span style="background-color: rgb(255, 0, 0)" id="legendRavitos"></span>Ravitos</div>
             </div>
             <div id="divParamsId" class="div-params">
-                <span class="circ-cliq" value="">Circuits cliquables</span>
+                <span class="label-cliq" value="">Circuits cliquables</span>
                 <label class="switch">
                     <input type="checkbox" id="cirqCliq" onclick="changeCheckboxCircCliq()">
                     <span class="slider"></span>
                 </label>
-                <!-- <span class="mapstyle-cliq" value="">Vue satellites</span>
+                <span class="label-cliq" value="">Enlever les portions</span>
+                <label class="switch">
+                    <input type="checkbox" id="typeCliq" onclick="changeType(this)">
+                    <span class="slider"></span>
+                </label>
+                <!-- <span class="label-cliq" value="">Vue satellites</span>
                 <label class="switch">
                     <input type="checkbox" id="mapStyleCliq" onclick="changeMapStyle()">
                     <span class="slider"></span>
