@@ -21997,14 +21997,14 @@ var map = new mapboxgl.Map({
 });
 
 // Ajouter les contrôles à la carte
-if (smartphone == true) {
-  map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
-  map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
-} else {
+if (smartphone != true) {
   map.addControl(new mapboxgl.FullscreenControl(), 'top-right');
-  map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+  map.addControl(new mapboxgl.ScaleControl());
+} else {
+  // map.addControl(new mapboxgl.FullscreenControl(), 'bottom-right');
+  // map.addControl(new mapboxgl.NavigationControl(), 'bottom-right');
 }
-map.addControl(new mapboxgl.ScaleControl());
+map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
 // Ajout des traces (circuits et portions)
 map.on('load', () => {
