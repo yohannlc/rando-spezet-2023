@@ -4,7 +4,7 @@ Types d'affichage disponibles :
   - circuits VTT avec portions
   - circuits VTT sans portions
 */
-//  type = 'all';
+//type = 'all';
 //type = 'vttSansPo';
 type = 'vttAvecPo';
 
@@ -21741,7 +21741,6 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
   smartphone = true;
 }
 
-
 /* ------------------------------------------------ Création des portions ------------------------------------------------ */
 /* - débrouissaillage - tronçonneuse - coupage d'herbe Pierre-Yves - souffleur */
 
@@ -21909,8 +21908,9 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
 }
 
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
+
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  colorRavito = "red";
+  colorRavito = "rgb(248, 248, 42)";
   circleRadius = 7;
 } else {
   colorRavito = "rgb(255, 255, 0)";
@@ -21961,7 +21961,6 @@ function addPoint(pointName, pointType, pointCoordinates, pointColor) {
   }
 }
 
-
 /* ------------------------------------------------ Création de la carte ------------------------------------------------ */
 
 zoomStart = 12.3; //zoom d'un pc pour voir tous les circuits
@@ -22009,23 +22008,45 @@ map.addControl(new mapboxgl.ScaleControl());
 
 // Ajout des traces (circuits et portions)
 map.on('load', () => {
-  //Création des circuits
-  // addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
-  // addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
-  // addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+  //Créations des circuits VTT
+  addCircuitsVTT();
 
+  //Création des points : addPoint(pointName, pointCoordinates, pointColor)
+  addPoints();
+  
+  if (type == "all") {
+    //Création des circuits marche
+    addCircuitsMarche();
+  } else {
+    //Création des portions
+    addPortions();
+  }
+
+});
+
+function addCircuitsMarche() {
+  addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+}
+
+function addCircuitsVTT() {
   addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
+}
 
-  //Création des points : addPoint(pointName, pointCoordinates, pointColor)
+function addPortions() {
+  addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+}
+
+function addPoints() {
   addPoint("ravito1", "ravito", ravito1, colorRavito);
   addPoint("ravito2", "ravito", ravito2, colorRavito);
   addPoint("ravito3", "ravito", ravito3, colorRavito);
-
-  //Création des portions
-  addPortions();
-});
+}
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
 let tabStatesCircuits = {
@@ -22111,83 +22132,52 @@ function stateLine(name, state, ite) {
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
-
-
-
-  // // Circuit25
-  // map.on('click', 'circuit25', function(e) {
-  //   if(boolCircleCliq) {
-  //     tabStatesCircuits.stateCircuit25[0] = true;
-  //     afficherDivTexteId();
-  //     stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit25[0], items[0]);
-  //   }
-  // });
-
-  // // Circuit35
-  // map.on('click', 'circuit35', function(e) {
-  //   if(boolCircleCliq) {
-  //     tabStatesCircuits.stateCircuit35[0] = true;
-  //     afficherDivTexteId();
-  //     stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit35[0], items[1]);
-  //   }
-  // });
-
-  // // Circuit45
-  // map.on('click', 'circuit45', function(e) {
-  //   if(boolCircleCliq) {
-  //     tabStatesCircuits.stateCircuit45[0] = true;
-  //     afficherDivTexteId();
-  //     stateLine(e.features[0].properties.name, tabStatesCircuits.stateCircuit45[0], items[2]);
-  //   }
-  // });
-
   circuitsClick('circuit25');
   circuitsClick('circuit35');
   circuitsClick('circuit45');
   circuitsClick('circuit8');
   circuitsClick('circuit13');
   circuitsClick('circuit17');
-
-  // Fonction qui permet de cliquer sur les circuits
-  function circuitsClick(circuitName) {
-    map.on('click', circuitName, function(e) {                // Lors d'un click sur le circuit
-      if(boolCircleCliq) {                                      // Si la case "Circuits Cliquables" est cochée
-        for (let i of Object.values(tabStatesCircuits)) {         // Pour chaque circuit du tableau tabStatesCircuits
-          if (i[1] == circuitName) {                                // Si le nom du circuit est le même que celui du circuit cliqué
-            if (i[0] == false) {                                      // Si le circuit n'est pas activé
-              i[0] = true;                                              // On active le circuit
-              afficherDivTexteId();                                     // On affiche le texte du circuit
-              stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en gras le texte de la légende
-            } else {                                                  // Sinon
-              i[0] = false;                                             // On désactive le circuit
-              cacherDivTexteId();                                       // On cache le texte du circuit
-              stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en normal le texte de la légende
-            }
-          }
-        }
-      }
-    });
-  }
-
-  // stand by ........................................................
-  function portionsClick(portionName) {
-    map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
-      if (!portionName.includes("circuit")) {                   // Si la portion N'EST PAS un circuit
-        for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
-          if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
-            portionIndex = i;                                         // On enregistre l'index de la portion
-          }
-        }
-        if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
-          afficherDivTexteId(portionName);                          // On affiche le texte de la portion
-          tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
-        }
-      }
-    });
-  }
-
-
 }
+
+// Fonction qui permet de cliquer sur les circuits
+function circuitsClick(circuitName) {
+  map.on('click', circuitName, function(e) {                // Lors d'un click sur le circuit
+    if(boolCircleCliq) {                                      // Si la case "Circuits Cliquables" est cochée
+      for (let i of Object.values(tabStatesCircuits)) {         // Pour chaque circuit du tableau tabStatesCircuits
+        if (i[1] == circuitName) {                                // Si le nom du circuit est le même que celui du circuit cliqué
+          if (i[0] == false) {                                      // Si le circuit n'est pas activé
+            i[0] = true;                                              // On active le circuit
+            afficherDivTexteId();                                     // On affiche le texte du circuit
+            stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en gras le texte de la légende
+          } else {                                                  // Sinon
+            i[0] = false;                                             // On désactive le circuit
+            cacherDivTexteId();                                       // On cache le texte du circuit
+            stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en normal le texte de la légende
+          }
+        }
+      }
+    }
+  });
+}
+
+// stand by ........................................................
+function portionsClick(portionName) {
+  map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
+    if (!portionName.includes("circuit")) {                   // Si la portion N'EST PAS un circuit
+      for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
+        if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
+          portionIndex = i;                                         // On enregistre l'index de la portion
+        }
+      }
+      if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
+        afficherDivTexteId(portionName);                          // On affiche le texte de la portion
+        tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
+      }
+    }
+  });
+}
+// stand by ........................................................
 
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
@@ -22276,7 +22266,7 @@ function portionsHoverLeave(portion, type) {
   });
 }
 
-// Fonctions pour gérer le hover sur les circuits
+// Fonctions pour gérer le hover sur les circuits (pas utilisé, il faut cliquer sur le circuit pour l'activer)
 function circuitHoverEnter(portion) {
   map.on('mouseenter', portion, function(e) {
     if (!boolCircleCliq) {
@@ -22327,12 +22317,6 @@ function changeType(checkboxType) {
     type = 'vttAvecPo';
     addPortions();
   }
-}
-
-function addPortions() {
-  addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
 }
 
 function removePortions() {
