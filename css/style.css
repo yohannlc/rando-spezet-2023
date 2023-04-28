@@ -189,10 +189,8 @@ h4 {
     overflow: hidden;
 }
 
-@media screen and (max-width: 1000px) {
-    .div-params {
-        display: none;
-    }
+.label-cliq {
+    font-size: 0.7em;
 }
 
 span {
@@ -200,8 +198,17 @@ span {
     overflow: hidden;
 }
 
-.label-cliq {
-    font-size: 0.7em;
+@media screen and (max-width: 1000px) {
+    #cirqCliqDiv {
+        display: none;
+    }
+    .div-params {
+        background-color: rgba(255, 255, 255, 0);
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
+    }
+    .label-cliq {
+        display: none;
+    }
 }
 
 .switch {
