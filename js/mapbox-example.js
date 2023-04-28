@@ -21940,6 +21940,33 @@ let boisRuisseauCrann2 = [
     48.19297556272684
   ]
 ];
+let remonterVersPalae1 = [
+  [
+    -3.7406811514237575,
+    48.19332611038456
+  ],
+  [
+    -3.739337298667067,
+    48.19362472224236
+  ],
+  [
+    -3.7391133232076186,
+    48.194321476476205
+  ],
+  [
+    -3.7392066463160916,
+    48.19490624503857
+  ],
+  [
+    -3.7397105910998505,
+    48.19581448935941
+  ],
+  [
+    -3.7397852495859922,
+    48.19671027620683
+  ]
+];
+
 
 let tabStatesPortions = [
   "verger1",
@@ -21957,7 +21984,9 @@ let tabStatesPortions = [
   "halage1",
   false,
   "boisRuisseauCrann2",
-  false
+  false,
+  "remonterVersPalae1",
+  false,
 ]
 
 //fonction pour ajouter une portion
@@ -22034,6 +22063,7 @@ function addPortions() {
   addPortion("saintGoazec1", "souff", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
   addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
 }
 
 function removePortions() {
@@ -22045,6 +22075,7 @@ function removePortions() {
   map.removeLayer("saintGoazec1");
   map.removeLayer("halage1");
   map.removeLayer("boisRuisseauCrann2");
+  map.removeLayer("remonterVersPalae1");
 
   map.removeSource("verger1");
   map.removeSource("verger2");
@@ -22054,6 +22085,7 @@ function removePortions() {
   map.removeSource("saintGoazec1");
   map.removeSource("halage1");
   map.removeSource("boisRuisseauCrann2");
+  map.removeSource("remonterVersPalae1");
 }
 
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
