@@ -58,21 +58,15 @@ h1 {
     width: 8vw;
     min-width: 180px;
     height: auto;
+    top: 1vh;
 }
     
 .legend h4 {
     margin: 0 0 10px;
 }
 
-@media screen and (min-width: 1000px) {
-    .legend {
-        top: 5vh;
-    }
-}
-
 @media screen and (max-width: 1000px) {
     .legend {
-        top: 1vh;
         left: 1vw;
         min-width: 0px; /*pour suppr celui de la classe parente*/
         width: 150px;
@@ -181,7 +175,7 @@ h4 {
     position: absolute;
     z-index: 1;
     left: 1vw;
-    top: 40vh;
+    top: 250px;
     width: 8vw;
     min-width: 100px;
     height: 120px; /* changer la taille de la div des paramètres */
