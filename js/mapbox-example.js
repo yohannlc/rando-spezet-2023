@@ -22029,7 +22029,7 @@ function addPortions() {
   addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
   addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
   addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
   addPortion("henry1", "tronco", henry1, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "souff", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
