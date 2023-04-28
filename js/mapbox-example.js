@@ -21744,11 +21744,12 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 /* ------------------------------------------------ Création des portions ------------------------------------------------ */
 /* - débrouissaillage - tronçonneuse - coupage d'herbe Pierre-Yves - souffleur */
 
-lineWitdhPortions = 12;
+lineWitdhPortions = 15;
+lineWitdhPortionsPoly = 20;
 colorDebrou = "rgb(49, 218, 51)"; //Vert
 colorTronco = "rgb(88, 61, 21)"; //Marron
-colorPY = "rgb(123, 144, 63)"; //Vert/jaune foncé
-colorSouff = "rgb(233, 27, 27)"; //Rouge
+colorPY = "rgb(120, 116, 255)";
+colorSouff = "rgb(255, 255, 0)"; //Jaune
 lineOpacityPortions = 0.6;
 
 let verger1 = [
@@ -21787,10 +21788,6 @@ let verger1 = [
   [
     -3.709950490912263,
     48.18228971696803
-  ],
-  [
-    -3.7098358622787373,
-    48.182213286794735
   ]
 ];
 let verger2 = [
@@ -21841,6 +21838,103 @@ let stang1 = [
     48.176549231917136
   ]
 ];
+let stang2 = [
+  [
+    -3.6917027714159474,
+    48.177441391918165
+  ],
+  [
+    -3.6914659970710204,
+    48.17756603961348
+  ]
+];
+let saintGoazec1 =  [
+  [
+    -3.758221096147878,
+    48.15388443035749
+  ],
+  [
+    -3.758288577660153,
+    48.153254159167716
+  ],
+  [
+    -3.760458508316134,
+    48.15284492471328
+  ],
+  [
+    -3.7617182575180124,
+    48.153223336842196
+  ],
+  [
+    -3.7632838784987825,
+    48.15290211434305
+  ],
+  [
+    -3.7654302914935585,
+    48.15309639110528
+  ],
+  [
+    -3.768406927889089,
+    48.15259103092214
+  ],
+  [
+    -3.772439783133507,
+    48.15227183208012
+  ],
+  [
+    -3.7757187165789503,
+    48.15226554742378
+  ],
+  [
+    -3.778600511189893,
+    48.15190355418369
+  ],
+  [
+    -3.78003037500622,
+    48.1532340613486
+  ]
+];
+let halage1 = [
+  [
+    -3.75098475976219,
+    48.18409370673476
+  ],
+  [
+    -3.750461496649791,
+    48.185869793009175
+  ],
+  [
+    -3.750770697579952,
+    48.18685295716094
+  ],
+  [
+    -3.7515318075610082,
+    48.187645817739366
+  ],
+  [
+    -3.752768611280885,
+    48.18858137744641
+  ],
+  [
+    -3.7554087115277355,
+    48.189453494559814
+  ]
+];
+
+let tabStatesPortions = [
+  "verger1",
+  false,
+  "verger2",
+  false,
+  "stang1",
+  false,
+  "stang2",
+  false,
+  "saintGoazec1",
+  false,
+  "halage1",
+  false,
+]
 
 //fonction pour ajouter une portion
 function addPortion(portionName, portionType, portionCoordinates, portionLineWitdh, portionLineOpacity) {
@@ -21901,19 +21995,43 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
     circuitHoverEnter(portionName);
     circuitHoverLeave(portionName);
   } else {
-    portionsHoverEnter(portionName, portionType);
-    portionsHoverLeave(portionName, portionType);
+    portionsHoverEnter(portionName);
+    portionsHoverLeave(portionName);
     portionsClick(portionName);
   }
+}
+
+function addPortions() {
+  addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("saintGoazec1", "souff", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
+  addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
+}
+
+function removePortions() {
+  map.removeLayer("verger1");
+  map.removeLayer("verger2");
+  map.removeLayer("stang1");
+  map.removeLayer("stang2");
+  map.removeLayer("saintGoazec1");
+  map.removeLayer("halage1");
+  map.removeSource("verger1");
+  map.removeSource("verger2");
+  map.removeSource("stang1"); 
+  map.removeSource("stang2"); 
+  map.removeSource("saintGoazec1");
+  map.removeSource("halage1");
 }
 
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
 
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  colorRavito = "rgb(248, 248, 42)";
+  colorRavito = "rgb(244, 49, 5)";
   circleRadius = 8;
 } else {
-  colorRavito = "rgb(255, 255, 0)";
+  colorRavito = "rgb(255, 46, 0)";
   circleRadius = 10;
 }
 
@@ -22036,12 +22154,6 @@ function addCircuitsVTT() {
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
 }
 
-function addPortions() {
-  addPortion("verger1", "debrou", verger1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("verger2", "debrou", verger2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
-}
-
 function addPoints() {
   addPoint("ravito1", "ravito", ravito1, colorRavito);
   addPoint("ravito2", "ravito", ravito2, colorRavito);
@@ -22057,15 +22169,6 @@ let tabStatesCircuits = {
   stateCircuit13: [false, "circuit13"],
   stateCircuit17: [false, "circuit17"],
 };
-
-let tabStatesPortions = [
-  "verger1",
-  false,
-  "verger2",
-  false,
-  "stang1",
-  false,
-]
 
 // Voir si on a coché la case "Circuits Cliquables"
 let checkboxCircCliq = document.getElementById("cirqCliq");
@@ -22237,25 +22340,18 @@ function cacherDivTexteId() { // Fonction pour cacher
 }
 
 // Fonctions pour gérer le hover sur les portions
-function portionsHoverEnter(portion, type) {
+function portionsHoverEnter(portion) {
   map.on('mouseenter', portion, function(e) {
     map.getCanvas().style.cursor = 'pointer';
     afficherDivTexteId(portion);
-    if (type = 'debrou') {
-      map.setPaintProperty(portion, 'line-color', colorDebrou);
-    } else if (type = 'tronco') {
-      map.setPaintProperty(portion, 'line-color', colorTronco);
-    } else if (type = 'py') {
-      map.setPaintProperty(portion, 'line-color', colorPy);
-    } else if (type = 'souff') {
-      map.setPaintProperty(portion, 'line-color', colorSouff);
+    if (portion.includes("Goazec")) {
+      map.setPaintProperty(portion, 'line-width', lineWitdhPortionsPoly+10);
     } else {
-      map.setPaintProperty(portion, 'line-color', colorPortions);
+      map.setPaintProperty(portion, 'line-width', lineWitdhPortions+10);
     }
-    map.setPaintProperty(portion, 'line-width', lineWitdhPortions+10);
   });
 }
-function portionsHoverLeave(portion, type) {
+function portionsHoverLeave(portion) {
   map.on('mouseleave', portion, function(e) {
     let ok = true;
     // si un des bools de tabStatesPortions est à true, on ne fait rien
@@ -22267,18 +22363,11 @@ function portionsHoverLeave(portion, type) {
     if (ok) {
       cacherDivTexteId();
       map.getCanvas().style.cursor = '';
-      if (type = 'debrou') {
-        map.setPaintProperty(portion, 'line-color', colorDebrou);
-      } else if (type = 'tronco') {
-        map.setPaintProperty(portion, 'line-color', colorTronco);
-      } else if (type = 'py') {
-        map.setPaintProperty(portion, 'line-color', colorPy);
-      } else if (type = 'souff') {
-        map.setPaintProperty(portion, 'line-color', colorSouff);
+      if (portion.includes("Goazec")) {
+        map.setPaintProperty(portion, 'line-width', lineWitdhPortionsPoly);
       } else {
-        map.setPaintProperty(portion, 'line-color', colorPortions);
+        map.setPaintProperty(portion, 'line-width', lineWitdhPortions);
       }
-      map.setPaintProperty(portion, 'line-width', lineWitdhPortions);
     }
   });
 }
@@ -22334,13 +22423,4 @@ function changeType(checkboxType) {
     type = 'vttAvecPo';
     addPortions();
   }
-}
-
-function removePortions() {
-  map.removeLayer("verger1");
-  map.removeLayer("verger2");
-  map.removeLayer("stang1");
-  map.removeSource("verger1");
-  map.removeSource("verger2");
-  map.removeSource("stang1");
 }

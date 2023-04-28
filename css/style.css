@@ -59,6 +59,10 @@ h1 {
     min-width: 180px;
     height: auto;
 }
+    
+.legend h4 {
+    margin: 0 0 10px;
+}
 
 @media screen and (min-width: 1000px) {
     .legend {
@@ -68,19 +72,19 @@ h1 {
 
 @media screen and (max-width: 1000px) {
     .legend {
-        top: 1vh;
+        top: 5vh;
         left: 1vw;
-        min-width: 1px;
+        min-width: 0px; /*pour suppr celui de la classe parente*/
         width: 150px;
         font-size: 15px;
         height: auto;
     }
+    .legend h4 {
+        margin: 0 0 5px;
+    }
+
 }
-    
-.legend h4 {
-    margin: 0 0 10px;
-}
-    
+
 .legend div span {
     border-bottom: 30%;
     display: inline-block;
@@ -257,4 +261,8 @@ input:checked + .slider:before {
 
 .close:hover {
     cursor: pointer;
+}
+
+.mapboxgl-ctrl-group {
+    margin-top: 10px;
 }
