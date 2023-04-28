@@ -72,7 +72,7 @@ h1 {
 
 @media screen and (max-width: 1000px) {
     .legend {
-        top: 5vh;
+        top: 1vh;
         left: 1vw;
         min-width: 0px; /*pour suppr celui de la classe parente*/
         width: 150px;
@@ -91,7 +91,6 @@ h1 {
     margin-right: 5px;
     width: 20px;
 }
-
 
 #legendRavitos {
     height: 15px;
@@ -205,6 +204,9 @@ span {
     .div-params {
         background-color: rgba(255, 255, 255, 0);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
+        width: auto;
+        height: auto;
+        top: 200px;
     }
     .label-cliq {
         display: none;
