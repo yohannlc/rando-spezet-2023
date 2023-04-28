@@ -28,7 +28,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   color13 = 'rgb(129, 97, 154)';
   color17 = 'rgb(0, 166, 147)';
   
-  offset = 0.00025;
+  offset = 0.0001;
 } else {
   lineWitdhCircuit = 4;
   color25 = 'rgb(0, 209, 255)';
@@ -21848,6 +21848,16 @@ let stang2 = [
     48.17756603961348
   ]
 ];
+let henry1 = [
+  [
+    -3.6630237644391457,
+    48.159840506234474
+  ],
+  [
+    -3.662648018031774,
+    48.15987763858479
+  ]
+];
 let saintGoazec1 =  [
   [
     -3.758221096147878,
@@ -21930,6 +21940,8 @@ let tabStatesPortions = [
   false,
   "stang2",
   false,
+  "henry1",
+  false,
   "saintGoazec1",
   false,
   "halage1",
@@ -22006,6 +22018,7 @@ function addPortions() {
   addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
   addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
   addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("henry1", "tronco", henry1, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "souff", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
 }
@@ -22015,12 +22028,15 @@ function removePortions() {
   map.removeLayer("verger2");
   map.removeLayer("stang1");
   map.removeLayer("stang2");
+  map.removeLayer("henry1");
   map.removeLayer("saintGoazec1");
   map.removeLayer("halage1");
+
   map.removeSource("verger1");
   map.removeSource("verger2");
   map.removeSource("stang1"); 
-  map.removeSource("stang2"); 
+  map.removeSource("stang2");
+  map.removeSource("henry1");
   map.removeSource("saintGoazec1");
   map.removeSource("halage1");
 }
