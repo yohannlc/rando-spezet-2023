@@ -22070,20 +22070,20 @@ function removePortions() {
   map.removeLayer("verger1");
   map.removeLayer("verger2");
   map.removeLayer("stang1");
-  map.removeLayer("stang2");
+  //map.removeLayer("stang2");
   map.removeLayer("henry1");
   map.removeLayer("saintGoazec1");
-  map.removeLayer("halage1");
+  //map.removeLayer("halage1");
   map.removeLayer("boisRuisseauCrann2");
   map.removeLayer("remonterVersPalae1");
 
   map.removeSource("verger1");
   map.removeSource("verger2");
   map.removeSource("stang1"); 
-  map.removeSource("stang2");
+  //map.removeSource("stang2");
   map.removeSource("henry1");
   map.removeSource("saintGoazec1");
-  map.removeSource("halage1");
+  //map.removeSource("halage1");
   map.removeSource("boisRuisseauCrann2");
   map.removeSource("remonterVersPalae1");
 }
@@ -22483,6 +22483,7 @@ function pointHoverLeave(point) {
 function changeType(checkboxType) {
   if (checkboxType.checked) {
     type = 'vttAvecPo';
+    console.log("Add portions");
     addPortions();
   } else {
     type = 'vttSansPo';
