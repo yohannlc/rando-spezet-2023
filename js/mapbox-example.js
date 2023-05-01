@@ -21858,6 +21858,16 @@ let henry1 = [
     48.15987763858479
   ]
 ];
+let cozic1 = [
+  [
+    -3.738341217039448,
+    48.164407629737696
+  ],
+  [
+    -3.7382325002593007,
+    48.164457831434845
+  ]
+];
 let saintGoazec1 =  [
   [
     -3.758221096147878,
@@ -21940,6 +21950,64 @@ let boisRuisseauCrann2 = [
     48.19297556272684
   ]
 ];
+let descenteKerdaffret1 = [
+  [
+    -3.7492537324247337,
+    48.189954002521404
+  ],
+  [
+    -3.749080584681792,
+    48.19010383160304
+  ],
+  [
+    -3.7492689037241007,
+    48.190722846465746
+  ],
+  [
+    -3.749113296199141,
+    48.191025928442656
+  ],
+  [
+    -3.749001829001145,
+    48.19113086740529
+  ],
+  [
+    -3.7488594279250833,
+    48.19147549587542
+  ],
+  [
+    -3.7488581299649013,
+    48.191672306952654
+  ],
+  [
+    -3.7488794197661264,
+    48.19196915478122
+  ],
+  [
+    -3.748997753085206,
+    48.1921413866462
+  ],
+  [
+    -3.749263090767144,
+    48.192299628463374
+  ],
+  [
+    -3.7495252032816317,
+    48.19249127443187
+  ],
+  [
+    -3.7496018975102245,
+    48.192591846980726
+  ],
+  [
+    -3.7498076515844367,
+    48.19272073169479
+  ],
+  [
+    -3.749969637457525,
+    48.192791262248306
+  ]
+];
 let remonterVersPalae1 = [
   [
     -3.7406811514237575,
@@ -21979,6 +22047,8 @@ let tabStatesPortions = [
   false,
   "henry1",
   false,
+  "cozic1",
+  false,
   "saintGoazec1",
   false,
   "halage1",
@@ -21986,6 +22056,8 @@ let tabStatesPortions = [
   "boisRuisseauCrann2",
   false,
   "remonterVersPalae1",
+  false,
+  "descenteKerdaffret1",
   false,
 ]
 
@@ -22055,37 +22127,43 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
 }
 
 function addPortions() {
-  addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
   //addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
   addPortion("henry1", "tronco", henry1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("saintGoazec1", "souff", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
+  addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
   addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
 }
 
 function removePortions() {
-  map.removeLayer("verger1");
-  map.removeLayer("verger2");
-  map.removeLayer("stang1");
+  //map.removeLayer("verger1");
+  //map.removeLayer("verger2");
+  //map.removeLayer("stang1");
   //map.removeLayer("stang2");
   map.removeLayer("henry1");
+  map.removeLayer("cozic1");
   map.removeLayer("saintGoazec1");
   //map.removeLayer("halage1");
   map.removeLayer("boisRuisseauCrann2");
-  map.removeLayer("remonterVersPalae1");
+  //map.removeLayer("remonterVersPalae1");
+  //map.removeLayer("descenteKerdaffret1");
 
-  map.removeSource("verger1");
-  map.removeSource("verger2");
-  map.removeSource("stang1"); 
+  //map.removeSource("verger1");
+  //map.removeSource("verger2");
+  //map.removeSource("stang1"); 
   //map.removeSource("stang2");
   map.removeSource("henry1");
+  map.removeSource("cozic1");
   map.removeSource("saintGoazec1");
   //map.removeSource("halage1");
   map.removeSource("boisRuisseauCrann2");
-  map.removeSource("remonterVersPalae1");
+  //map.removeSource("remonterVersPalae1");
+  //map.removeSource("descenteKerdaffret1");
 }
 
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
@@ -22098,15 +22176,15 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   circleRadius = 10;
 }
 
-let ravito1 = [
+let ravito1Cudel = [
   -3.682843734443054,
   48.160898532989194
 ];
-let ravito2 = [
+let ravito2BallTrap = [
   -3.76203019252074,
   48.155110934494644
 ];
-let ravito3 = [
+let ravito3Kerdaffret = [
   -3.7496976272579445,
   48.1897297331804
 ];
@@ -22220,9 +22298,9 @@ function addCircuitsVTT() {
 }
 
 function addPoints() {
-  addPoint("ravito1", "ravito", ravito1, colorRavito);
-  addPoint("ravito2", "ravito", ravito2, colorRavito);
-  addPoint("ravito3", "ravito", ravito3, colorRavito);
+  addPoint("ravito1Cudel", "ravito", ravito1Cudel, colorRavito);
+  addPoint("ravito2BallTrap", "ravito", ravito2BallTrap, colorRavito);
+  addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
 }
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
@@ -22379,25 +22457,47 @@ legendItems.forEach(function(item, index) {
 // Gérer l'affichage de la popup de texte
 function afficherDivTexteId(portionName) {
   // Sépare le mot en lettre et en chiffre
-  const match = portionName.match(/^([a-zA-Z]+)(\d+)/);
+  const match = portionName.match(/^([a-zA-Z]+)(\d+)?([a-zA-Z\s]*)/);
   if (!match) {
     // La chaîne ne correspond pas au format attendu
     return;
   }
   const lettre = match[1];
-  const chiffre = match[2];
+  const chiffre = match[2] || "";
+  const texte = match[3] ? match[3].replace(/\d+/g, '').trim() : "";
   
-  // Met la première lettre en majuscule
-  const lettreMajuscule = lettre.charAt(0).toUpperCase() + lettre.slice(1);
+  // Met la première lettre de chaque mot en majuscule
+  const lettreMajuscule = lettre.replace(/([a-z])([A-Z])/g, '$1 $2').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const texteMajuscule = texte.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
   
   // Affiche le texte dans l'élément HTML
   const textId = document.getElementById("textId");
-  textId.innerHTML = `${lettreMajuscule} ${chiffre}`;
+  textId.innerHTML = `${lettreMajuscule} ${chiffre} ${texteMajuscule}`;
+  
+  // Affiche la description dans une autre balise HTML
+  const descriptionId = document.getElementById("descriptionId");
+  console.log(portionName);
+  if (descriptions.hasOwnProperty(portionName)) {
+    console.log(portionName, "has description");
+    descriptionId.innerHTML = descriptions[portionName];
+  } else {
+    console.log(portionName, "has no description");
+    descriptionId.innerHTML = "";
+  }
   
   // Affiche la div
   const divTexteId = document.getElementById("divTexteId");
   divTexteId.classList.add("show");
 }
+
+const descriptions = {
+  "saintGoazec1": "Les deux bois sont a nettoyer.<br><br>Faire une journée dédiée je pense.",
+  "ravito2BallTrap": "Ravitaillement situé à l'entrée du parcours de Ball-Trap"
+  // Ajoutez ici les autres descriptions
+};
+
+
+
 
 
 function cacherDivTexteId() { // Fonction pour cacher
