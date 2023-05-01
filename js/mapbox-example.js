@@ -22483,7 +22483,6 @@ function pointHoverLeave(point) {
 function changeType(checkboxType) {
   if (checkboxType.checked) {
     type = 'vttAvecPo';
-    console.log("Add portions");
     addPortions();
   } else {
     type = 'vttSansPo';
