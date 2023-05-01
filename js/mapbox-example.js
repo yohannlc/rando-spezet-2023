@@ -5,8 +5,8 @@ Types d'affichage disponibles :
   - circuits VTT sans portions
 */
 //type = 'all';
-//type = 'vttSansPo';
-type = 'vttAvecPo';
+type = 'vttSansPo';
+//type = 'vttAvecPo';
 
 /*
 Styles de la carte disponibles :
@@ -22199,8 +22199,10 @@ map.on('load', () => {
     //Création des circuits marche
     addCircuitsMarche();
   } else {
-    //Création des portions
-    addPortions();
+    if (type == "vttAvecPo") {
+      //Création des portions
+      addPortions();
+    }
   }
 
 });
@@ -22480,10 +22482,10 @@ function pointHoverLeave(point) {
 // Fonction qui change le type de d'affichage
 function changeType(checkboxType) {
   if (checkboxType.checked) {
-    type = 'vttSansPo';
-    removePortions();
-  } else {
     type = 'vttAvecPo';
     addPortions();
+  } else {
+    type = 'vttSansPo';
+    removePortions();
   }
 }
