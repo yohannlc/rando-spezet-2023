@@ -22784,6 +22784,9 @@ function addCircuitsMarche() {
   addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+  //display la div d'id =legendCircuitsMarche
+  const divTexteId = document.getElementById("legendCircuitsMarche");
+  divTexteId.classList.add("show");
 }
 
 function removePortions() {
@@ -22820,6 +22823,10 @@ function removeCircuitsMarche() {
   map.removeSource("circuit17");
   map.removeSource("circuit13");
   map.removeSource("circuit8");
+
+  //hide la div d'id =legendCircuitsMarche
+  const divTexteId = document.getElementById("legendCircuitsMarche");
+  divTexteId.classList.remove("show");
 }
 
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
