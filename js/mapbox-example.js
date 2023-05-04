@@ -22149,7 +22149,7 @@ function removePortions() {
   map.removeLayer("cozic1");
   map.removeLayer("saintGoazec1");
   //map.removeLayer("halage1");
-  map.removeLayer("boisRuisseauCrann2");
+  map.removeLayer("boisRuxisseauCrann2");
   //map.removeLayer("remonterVersPalae1");
   //map.removeLayer("descenteKerdaffret1");
 
@@ -22492,7 +22492,9 @@ function afficherDivTexteId(portionName) {
 
 const descriptions = {
   "saintGoazec1": "Les deux bois sont a nettoyer.<br><br>Faire une journée dédiée je pense.",
-  "ravito2BallTrap": "Ravitaillement situé à l'entrée du parcours de Ball-Trap"
+  "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
+  "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
+  "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
   // Ajoutez ici les autres descriptions
 };
 
