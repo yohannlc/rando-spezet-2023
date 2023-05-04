@@ -22966,7 +22966,7 @@ function changeCheckboxCircCliq() {
 }
 
 // Enregistrer les éléments de la légende dans une variable
-const legendItems = document.querySelectorAll('#county-legend div');
+const legendItems = document.querySelectorAll('#legendCircuitsVTT div');
 
 let items = [];
 for (let i of legendItems) {
