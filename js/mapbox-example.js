@@ -23114,12 +23114,9 @@ function afficherDivTexteId(portionName) {
   
   // Affiche la description dans une autre balise HTML
   const descriptionId = document.getElementById("descriptionId");
-  console.log(portionName);
   if (descriptions.hasOwnProperty(portionName)) {
-    console.log(portionName, "has description");
     descriptionId.innerHTML = descriptions[portionName];
   } else {
-    console.log(portionName, "has no description");
     descriptionId.innerHTML = "";
   }
   
