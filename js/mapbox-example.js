@@ -25,9 +25,9 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
   color45 = 'rgb(255, 108, 0)';
-  color8 = 'rgb(159, 175, 78)';
-  color13 = 'rgb(0, 166, 147)';
-  color17 = 'rgb(129, 97, 154)';
+  color8 = 'rgb(0, 166, 147)';
+  color13 = 'rgb(129, 97, 154)';
+  color17 = 'rgb(236, 75, 75)';
   offset = 0.0001;
 } else {
   lineWitdhCircuit = 4;
@@ -22343,36 +22343,25 @@ let coordsCircuit8 = [
   ]
 ];
 
-if (type == "all") {
-  for (let i = 0; i < coordsCircuit35.length; i++) {
-    coordsCircuit35[i][0] -= offset;
-    coordsCircuit35[i][1] -= offset;
-  }
-  for (let i = 0; i < coordsCircuit25.length; i++) {
-    coordsCircuit25[i][0] -= offset*2;
-    coordsCircuit25[i][1] -= offset*2;
-  }
-  for (let i = 0; i < coordsCircuit17.length; i++) {
-    coordsCircuit17[i][0] += offset;
-    coordsCircuit17[i][1] += offset;
-  }
-  for (let i = 0; i < coordsCircuit13.length; i++) {
-    coordsCircuit13[i][0] += offset*2;
-    coordsCircuit13[i][1] += offset*2;
-  }
-  for (let i = 0; i < coordsCircuit8.length; i++) {
-    coordsCircuit8[i][0] += offset*3;
-    coordsCircuit8[i][1] += offset*3;
-  }
-} else {
-  for (let i = 0; i < coordsCircuit45.length; i++) {
-    coordsCircuit45[i][0] += offset;
-    coordsCircuit45[i][1] += offset;
-  }
-  for (let i = 0; i < coordsCircuit25.length; i++) {
-    coordsCircuit25[i][0] -= offset;
-    coordsCircuit25[i][1] -= offset;
-  }
+for (let i = 0; i < coordsCircuit35.length; i++) {
+  coordsCircuit35[i][0] -= offset;
+  coordsCircuit35[i][1] -= offset;
+}
+for (let i = 0; i < coordsCircuit25.length; i++) {
+  coordsCircuit25[i][0] -= offset*2;
+  coordsCircuit25[i][1] -= offset*2;
+}
+for (let i = 0; i < coordsCircuit17.length; i++) {
+  coordsCircuit17[i][0] += offset;
+  coordsCircuit17[i][1] += offset;
+}
+for (let i = 0; i < coordsCircuit13.length; i++) {
+  coordsCircuit13[i][0] += offset*2;
+  coordsCircuit13[i][1] += offset*2;
+}
+for (let i = 0; i < coordsCircuit8.length; i++) {
+  coordsCircuit8[i][0] += offset*3;
+  coordsCircuit8[i][1] += offset*3;
 }
 
 // Savoir quel est le type d'appareil (pc ou smartphone)
