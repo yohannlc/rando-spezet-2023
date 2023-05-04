@@ -4,7 +4,8 @@ Types d'affichage disponibles :
   - circuits VTT avec portions
   - circuits VTT sans portions
 */
-type = 'all';
+//type = 'all';
+type = 'notAll';
 typePo = 'vttSansPo';
 //typePo = 'vttAvecPo';
 
@@ -22912,11 +22913,11 @@ map.on('load', () => {
   if (type == "all") {
     //Création des circuits marche
     addCircuitsMarche();
-  } else {
-    if (typePo == "vttAvecPo") {
-      //Création des portions
-      addPortions();
-    }
+  }
+
+  if (typePo == "vttAvecPo") {
+    //Création des portions
+    addPortions();
   }
 
 });
