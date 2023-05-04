@@ -179,7 +179,7 @@ h4 {
     top: 250px;
     width: 8vw;
     min-width: 100px;
-    height: 120px; /* changer la taille de la div des paramètres */
+    height: 10px; /* changer la taille de la div des paramètres */
     overflow: hidden;
 }
 
