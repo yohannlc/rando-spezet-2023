@@ -22925,7 +22925,6 @@ function addCircuitsVTT() {
   addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion('arrow35n1', 'circuit', arrow35n1, lineWitdhCircuit, lineOpacityCircuit);
 }
 
 function addPoints() {
