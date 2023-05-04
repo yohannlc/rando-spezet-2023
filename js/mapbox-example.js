@@ -22882,25 +22882,6 @@ if (smartphone == true) {
   zoomStart = 10.8; //zoom d'un smartphone pour voir tous les circuits
 }
 
-// Fonction pour changer le style de la map (standby)
-// function changeMapStyle() {
-//   let checkboxMapStyle = document.getElementById("mapStyleCliq").checked;
-//   //Si la checkbox est cochée mapStyleCliq, on change la carte pour satellite, sinon on change pour classique
-//   let mapStyle = "mapbox://styles/mapbox/outdoors-v12";
-//   if (checkboxMapStyle == true) {
-//     mapStyle = "mapbox://styles/mapbox/satellite-streets-v12";
-//   }
-//   map.setStyle(mapStyle);
-//   //Il faut réafficher les portions sur la map en changeant les couleurs
-//   map.removeLayer("circuit45");
-//   map.removeLayer("circuit35");
-//   map.removeLayer("circuit25");
-//   addPortion("circuit45", "circuit", circuit45, 3, 1);
-//   addPortion("circuit35", "circuit", circuit35, 3, 1);
-//   addPortion("circuit25", "circuit", circuit25, 3, 1);
-
-// }
-
 // Création de la map
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9oYW5ubGMiLCJhIjoiY2xnczI4cHJ1MGF4dDNsb2NienBja3pxbCJ9.pmfEZTINyfbOowGB0I77QA';
 var map = new mapboxgl.Map({
@@ -22944,6 +22925,7 @@ function addCircuitsVTT() {
   addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion('arrow35n1', 'circuit', arrow35n1, lineWitdhCircuit, lineOpacityCircuit);
 }
 
 function addPoints() {
@@ -23250,3 +23232,24 @@ function changeType(checkboxType) {
     removePortions();
   }
 }
+
+
+/*
+  Fonction pour changer le style de la map (standby)
+  function changeMapStyle() {
+    let checkboxMapStyle = document.getElementById("mapStyleCliq").checked;
+    //Si la checkbox est cochée mapStyleCliq, on change la carte pour satellite, sinon on change pour classique
+    let mapStyle = "mapbox://styles/mapbox/outdoors-v12";
+    if (checkboxMapStyle == true) {
+      mapStyle = "mapbox://styles/mapbox/satellite-streets-v12";
+    }
+    map.setStyle(mapStyle);
+    //Il faut réafficher les portions sur la map en changeant les couleurs
+    map.removeLayer("circuit45");
+    map.removeLayer("circuit35");
+    map.removeLayer("circuit25");
+    addPortion("circuit45", "circuit", circuit45, 3, 1);
+    addPortion("circuit35", "circuit", circuit35, 3, 1);
+    addPortion("circuit25", "circuit", circuit25, 3, 1);
+  }
+*/
