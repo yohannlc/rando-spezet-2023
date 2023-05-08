@@ -24,7 +24,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   lineWitdhCircuit = 3;
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
-  color45 = 'rgb(255, 108, 0)';
+  color45 = 'rgb(255, 107, 0)';
   color45Cool = 'rgb(255, 58, 0)';
   color8 = 'rgb(0, 166, 147)';
   color13 = 'rgb(129, 97, 154)';
