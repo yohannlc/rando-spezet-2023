@@ -25,6 +25,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
   color45 = 'rgb(255, 108, 0)';
+  color45Cool = 'rgb(255, 58, 0)';
   color8 = 'rgb(0, 166, 147)';
   color13 = 'rgb(129, 97, 154)';
   color17 = 'rgb(236, 75, 75)';
@@ -22664,7 +22665,6 @@ let remonterVersPalae1 = [
   ]
 ];
 
-
 let tabStatesPortions = [
   "verger1",
   false,
@@ -22701,8 +22701,12 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
     portionColor = colorPY;
   } else if (portionType == "souff") {
     portionColor = colorSouff;
-  } else if (portionName == "circuit45") {
-    portionColor = color45;
+  } else if (portionName.includes("circuit45")) {
+    if (portionName == "circuit45") {
+      portionColor = color45;
+    } else {
+      portionColor = color45Cool;
+    }
   } else if (portionName == "circuit35") {
     portionColor = color35;
   } else if (portionName == "circuit25") {
@@ -22769,7 +22773,10 @@ function addPortions() {
   //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
 }
 
-function addCircuitsMarche() {
+function addCircuitsMarche() {  
+  var currentZoom = map.getZoom();
+  console.log(currentZoom);
+  
   addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
