@@ -22568,6 +22568,40 @@ let saintGoazec1 =  [
   ]
 ];
 
+let saintGoazec3 = [
+  [
+    -3.7814672300845302,
+    48.154693335854944
+  ],
+  [
+    -3.7820086157583006,
+    48.15528767139514
+  ],
+  [
+    -3.7818597879768348,
+    48.15566898235528
+  ],
+  [
+    -3.781200090848719,
+    48.15603325615004
+  ],
+  [
+    -3.7802897265321214,
+    48.15628604910171
+  ],
+  [
+    -3.7791412283855568,
+    48.15669491135817
+  ],
+  [
+    -3.7788092909282094,
+    48.15688540768351
+  ],
+  [
+    -3.7786611760755022,
+    48.157220826514646
+  ]
+];
 
 let halage1 = [
   [
@@ -22705,6 +22739,8 @@ let tabStatesPortions = [
   false,
   "saintGoazec1",
   false,
+  "saintGoazec3",
+  false,
   "halage1",
   false,
   "boisRuisseauCrann2",
@@ -22792,6 +22828,7 @@ function addPortions() {
   addPortion("henry1", "tronco", henry1, lineWitdhPortions, lineOpacityPortions);
   addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
+  addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
   //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
   addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
   //addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
@@ -22818,6 +22855,7 @@ function removePortions() {
   map.removeLayer("henry1");
   map.removeLayer("cozic1");
   map.removeLayer("saintGoazec1");
+  map.removeLayer("saintGoazec3");
   //map.removeLayer("halage1");
   map.removeLayer("boisRuisseauCrann2");
   //map.removeLayer("remonterVersPalae1");
@@ -22830,6 +22868,7 @@ function removePortions() {
   map.removeSource("henry1");
   map.removeSource("cozic1");
   map.removeSource("saintGoazec1");
+  map.removeSource("saintGoazec3");
   //map.removeSource("halage1");
   map.removeSource("boisRuisseauCrann2");
   //map.removeSource("remonterVersPalae1");
@@ -23147,11 +23186,11 @@ function afficherDivTexteId(portionName) {
 }
 
 const descriptions = {
-  "saintGoazec1": "Les deux bois sont a nettoyer.<br><br>Faire une journée dédiée je pense.",
+  "saintGoazec1": "Quelques arbres à couper peut-être. Notamment dans la boucle qui descend puis remonte (on ne la voit pas sur la trace ici, elle va vers le nord).",
+  "saintGoazec3": "Ici faudra aller check aussi. Peut-être qu'il n'y a rien à faire.",
   "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
   "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
   "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
-  // Ajoutez ici les autres descriptions
 };
 
 
