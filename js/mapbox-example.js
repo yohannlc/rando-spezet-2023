@@ -25,6 +25,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
   color45 = 'rgb(255, 108, 0)';
+  color45Cool = 'rgb(255, 58, 0)';
   color8 = 'rgb(0, 166, 147)';
   color13 = 'rgb(129, 97, 154)';
   color17 = 'rgb(236, 75, 75)';
@@ -22487,7 +22488,7 @@ let cozic1 = [
     48.164457831434845
   ]
 ];
-let saintGoazec1 =  [
+/* let saintGoazec (full) =  [
   [
     -3.758221096147878,
     48.15388443035749
@@ -22532,7 +22533,66 @@ let saintGoazec1 =  [
     -3.78003037500622,
     48.1532340613486
   ]
+];*/
+
+let saintGoazec1 =  [
+  [
+    -3.768406927889089,
+    48.15259103092214
+  ],
+  [
+    -3.772439783133507,
+    48.15227183208012
+  ],
+  [
+    -3.7757187165789503,
+    48.15226554742378
+  ],
+  [
+    -3.778600511189893,
+    48.15190355418369
+  ],
+  [
+    -3.78003037500622,
+    48.1532340613486
+  ]
 ];
+
+let saintGoazec3 = [
+  [
+    -3.7814672300845302,
+    48.154693335854944
+  ],
+  [
+    -3.7820086157583006,
+    48.15528767139514
+  ],
+  [
+    -3.7818597879768348,
+    48.15566898235528
+  ],
+  [
+    -3.781200090848719,
+    48.15603325615004
+  ],
+  [
+    -3.7802897265321214,
+    48.15628604910171
+  ],
+  [
+    -3.7791412283855568,
+    48.15669491135817
+  ],
+  [
+    -3.7788092909282094,
+    48.15688540768351
+  ],
+  [
+    -3.7786611760755022,
+    48.157220826514646
+  ]
+];
+
 let halage1 = [
   [
     -3.75098475976219,
@@ -22654,7 +22714,6 @@ let remonterVersPalae1 = [
   ]
 ];
 
-
 let tabStatesPortions = [
   "verger1",
   false,
@@ -22667,6 +22726,8 @@ let tabStatesPortions = [
   "cozic1",
   false,
   "saintGoazec1",
+  false,
+  "saintGoazec3",
   false,
   "halage1",
   false,
@@ -22689,8 +22750,12 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
     portionColor = colorPY;
   } else if (portionType == "souff") {
     portionColor = colorSouff;
-  } else if (portionName == "circuit45") {
-    portionColor = color45;
+  } else if (portionName.includes("circuit45")) {
+    if (portionName == "circuit45") {
+      portionColor = color45;
+    } else {
+      portionColor = color45Cool;
+    }
   } else if (portionName == "circuit35") {
     portionColor = color35;
   } else if (portionName == "circuit25") {
@@ -22750,13 +22815,17 @@ function addPortions() {
   //addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
   addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
+  addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
   //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
   addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
   //addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
   //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
 }
 
-function addCircuitsMarche() {
+function addCircuitsMarche() {  
+  var currentZoom = map.getZoom();
+  console.log(currentZoom);
+  
   addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
@@ -22772,6 +22841,7 @@ function removePortions() {
   //map.removeLayer("stang2");
   map.removeLayer("cozic1");
   map.removeLayer("saintGoazec1");
+  map.removeLayer("saintGoazec3");
   //map.removeLayer("halage1");
   map.removeLayer("boisRuisseauCrann2");
   //map.removeLayer("remonterVersPalae1");
@@ -22783,6 +22853,7 @@ function removePortions() {
   //map.removeSource("stang2");
   map.removeSource("cozic1");
   map.removeSource("saintGoazec1");
+  map.removeSource("saintGoazec3");
   //map.removeSource("halage1");
   map.removeSource("boisRuisseauCrann2");
   //map.removeSource("remonterVersPalae1");
@@ -23100,11 +23171,11 @@ function afficherDivTexteId(portionName) {
 }
 
 const descriptions = {
-  "saintGoazec1": "Les deux bois sont a nettoyer.<br><br>Faire une journée dédiée je pense.",
+  "saintGoazec1": "Quelques arbres à couper peut-être. Notamment dans la boucle qui descend puis remonte (on ne la voit pas sur la trace ici, elle va vers le nord).",
+  "saintGoazec3": "Ici faudra aller check aussi. Peut-être qu'il n'y a rien à faire.",
   "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
   "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
   "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
-  // Ajoutez ici les autres descriptions
 };
 
 
