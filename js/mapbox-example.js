@@ -22477,16 +22477,6 @@ let stang2 = [
     48.17756603961348
   ]
 ];
-let henry1 = [
-  [
-    -3.6630237644391457,
-    48.159840506234474
-  ],
-  [
-    -3.662648018031774,
-    48.15987763858479
-  ]
-];
 let cozic1 = [
   [
     -3.738341217039448,
@@ -22674,8 +22664,6 @@ let tabStatesPortions = [
   false,
   "stang2",
   false,
-  "henry1",
-  false,
   "cozic1",
   false,
   "saintGoazec1",
@@ -22760,7 +22748,6 @@ function addPortions() {
   //addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
   //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
   //addPortion("stang2", "tronco", stang2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("henry1", "tronco", henry1, lineWitdhPortions, lineOpacityPortions);
   addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
@@ -22783,7 +22770,6 @@ function removePortions() {
   //map.removeLayer("verger2");
   //map.removeLayer("stang1");
   //map.removeLayer("stang2");
-  map.removeLayer("henry1");
   map.removeLayer("cozic1");
   map.removeLayer("saintGoazec1");
   //map.removeLayer("halage1");
@@ -22795,7 +22781,6 @@ function removePortions() {
   //map.removeSource("verger2");
   //map.removeSource("stang1"); 
   //map.removeSource("stang2");
-  map.removeSource("henry1");
   map.removeSource("cozic1");
   map.removeSource("saintGoazec1");
   //map.removeSource("halage1");
