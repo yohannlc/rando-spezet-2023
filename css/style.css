@@ -11,6 +11,31 @@ body {
     overflow: hidden;
 }
 
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top : 8vh;
+    font-size: 1em;
+    transform: translate(-50%, -50%);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+    font-weight: bold;
+    text-align: center;
+}
+
+.popup .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+}
+
 h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 24px;
