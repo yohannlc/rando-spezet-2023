@@ -37,7 +37,7 @@ mapStyle = 'mapbox://styles/mapbox/outdoors-v12';
 
 // Déclarations des couleurs, épaisseurs et opacités des lignes en fonction du style de la carte
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  lineWitdhCircuit = 2;
+  lineWitdhCircuit = 2.5;
   color25c = 'rgb(19, 156, 69)';
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
