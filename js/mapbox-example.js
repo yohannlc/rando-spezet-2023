@@ -22985,31 +22985,31 @@ function addPoints() {
   addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
 }
 
-// Attente de changement de la valeur currentZoom = map.getZoom();
-map.on('zoomend', function() {
-  var currentZoom = map.getZoom();
-  console.log(currentZoom);
-  // changer la lineWidth des portions en fonction du zoom
-  if (currentZoom < 13) {
-    changeLineWidthCircuit(lineWitdhCircuit);
-  } else if (currentZoom >= 13 && currentZoom < 14) {
-    changeLineWidthCircuit(lineWitdhCircuit * 1.5);
-  } else {
-    changeLineWidthCircuit(lineWitdhCircuit * 3);
-  }
-});
+// // Attente de changement de la valeur currentZoom = map.getZoom();
+// map.on('zoomend', function() {
+//   var currentZoom = map.getZoom();
+//   console.log(currentZoom);
+//   // changer la lineWidth des portions en fonction du zoom
+//   if (currentZoom < 13) {
+//     changeLineWidthCircuit(lineWitdhCircuit);
+//   } else if (currentZoom >= 13 && currentZoom < 14) {
+//     changeLineWidthCircuit(lineWitdhCircuit * 1.5);
+//   } else {
+//     changeLineWidthCircuit(lineWitdhCircuit * 3);
+//   }
+// });
 
-// fonction pour changer l'épaissseur des portions
-function changeLineWidthCircuit(lineWidth) {
-  map.setPaintProperty("circuit45", 'line-width', lineWidth);
-  map.setPaintProperty("circuit35", 'line-width', lineWidth);
-  map.setPaintProperty("circuit25", 'line-width', lineWidth);
-  if (type == "all") {  
-    map.setPaintProperty("circuit8", 'line-width', lineWidth);
-    map.setPaintProperty("circuit13", 'line-width', lineWidth);
-    map.setPaintProperty("circuit17", 'line-width', lineWidth);
-  }
-}
+// // fonction pour changer l'épaissseur des portions
+// function changeLineWidthCircuit(lineWidth) {
+//   map.setPaintProperty("circuit45", 'line-width', lineWidth);
+//   map.setPaintProperty("circuit35", 'line-width', lineWidth);
+//   map.setPaintProperty("circuit25", 'line-width', lineWidth);
+//   if (type == "all") {  
+//     map.setPaintProperty("circuit8", 'line-width', lineWidth);
+//     map.setPaintProperty("circuit13", 'line-width', lineWidth);
+//     map.setPaintProperty("circuit17", 'line-width', lineWidth);
+//   }
+// }
 
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
