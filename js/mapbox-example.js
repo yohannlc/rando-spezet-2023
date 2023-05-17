@@ -1,3 +1,9 @@
+onload = function() {
+  this.alert('test');
+};
+
+
+
 /* 
 Types d'affichage disponibles :
   - tous les circtuis
