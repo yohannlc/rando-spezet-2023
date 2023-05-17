@@ -1,5 +1,5 @@
 onload = function() {
-  this.alert('test');
+  this.alert('Dernière mise à jour : 17/05/2023');
 };
 
 
