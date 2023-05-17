@@ -57,6 +57,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   offset = 0.0003;
 }
 lineOpacityCircuit = 1;
+lineOpacityBackCircuit = 0.3;
 
 // Déclaration des coordonnées des circuits
 let coordsCircuit45 = [
@@ -22388,8 +22389,9 @@ if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(naviga
 }
 
 /* ------------------------------------------------ Création des portions ------------------------------------------------ */
-/* - débrouissaillage - tronçonneuse - coupage d'herbe Pierre-Yves - souffleur */
+/* - débrouissaillage - tronçonneuse - Pierre-Yves - souffleur */
 
+// Constantes
 lineWitdhPortions = 15;
 lineWitdhPortionsPoly = 20;
 colorDebrou = "rgb(49, 218, 51)"; //Vert
@@ -22563,7 +22565,6 @@ let saintGoazec1 =  [
     48.1532340613486
   ]
 ];
-
 let saintGoazec3 = [
   [
     -3.7814672300845302,
@@ -22598,7 +22599,6 @@ let saintGoazec3 = [
     48.157220826514646
   ]
 ];
-
 let halage1 = [
   [
     -3.75098475976219,
@@ -22808,7 +22808,7 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
   } else {
     portionsHoverEnter(portionName);
     portionsHoverLeave(portionName);
-    portionsClick(portionName);
+    //portionsClick(portionName);
   }
 }
 
@@ -22825,9 +22825,7 @@ function addPortions() {
   //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
 }
 
-function addCircuitsMarche() {  
-  var currentZoom = map.getZoom();
-  console.log(currentZoom);
+function addCircuitsMarche() {
   
   addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
   addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
@@ -22987,6 +22985,33 @@ function addPoints() {
   addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
 }
 
+// Attente de changement de la valeur currentZoom = map.getZoom();
+map.on('zoomend', function() {
+  var currentZoom = map.getZoom();
+  console.log(currentZoom);
+  // changer la lineWidth des portions en fonction du zoom
+  if (currentZoom < 13) {
+    changeLineWidthCircuit(lineWitdhCircuit);
+  } else if (currentZoom >= 13 && currentZoom < 14) {
+    changeLineWidthCircuit(lineWitdhCircuit * 1.5);
+  } else {
+    changeLineWidthCircuit(lineWitdhCircuit * 3);
+  }
+});
+
+// fonction pour changer l'épaissseur des portions
+function changeLineWidthCircuit(lineWidth) {
+  map.setPaintProperty("circuit45", 'line-width', lineWidth);
+  map.setPaintProperty("circuit35", 'line-width', lineWidth);
+  map.setPaintProperty("circuit25", 'line-width', lineWidth);
+  if (type == "all") {  
+    map.setPaintProperty("circuit8", 'line-width', lineWidth);
+    map.setPaintProperty("circuit13", 'line-width', lineWidth);
+    map.setPaintProperty("circuit17", 'line-width', lineWidth);
+  }
+}
+
+
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
 let tabStatesCircuits = {
   stateCircuit25: [false, "circuit25"],
@@ -23029,7 +23054,12 @@ function resetAllTraces() {
       map.setPaintProperty(i[1], 'line-width', lineWitdhCircuit);     // On remet la largeur de la ligne à la normale
       stateLine(i[1], i[0], items[j]);                                // On remet le texte de la légende à la normale
       cacherDivTexteId();
-    }
+    } else {
+      if (!(type !="all" && (i[1] == "circuit8" || i[1] == "circuit13" || i[1] == "circuit17"))) {
+        map.setPaintProperty(i[1], 'line-opacity', lineOpacityCircuit); // On remet l'opacité de la ligne à la normale
+      }
+      
+    } 
     j++;                                                            // Permet de suivre quel élément du tableau tabStatesCircuits on est en train de traiter
   }
 
@@ -23049,16 +23079,6 @@ map.on('click', function(e) {
   resetAllTraces();
 });
 
-function stateLine(name, state, ite) {
-  if (state) {
-    map.setPaintProperty(name, 'line-width', lineWitdhCircuit+5);
-    ite.classList.add('bold');
-  } else {
-    map.setPaintProperty(name, 'line-width', lineWitdhCircuit);
-    ite.classList.remove('bold');
-  }
-}
-
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
@@ -23072,41 +23092,52 @@ if (smartphone != true) {
 
 // Fonction qui permet de cliquer sur les circuits
 function circuitsClick(circuitName) {
-  map.on('click', circuitName, function(e) {                // Lors d'un click sur le circuit
-    if(boolCircleCliq) {                                      // Si la case "Circuits Cliquables" est cochée
-      for (let i of Object.values(tabStatesCircuits)) {         // Pour chaque circuit du tableau tabStatesCircuits
-        if (i[1] == circuitName) {                                // Si le nom du circuit est le même que celui du circuit cliqué
-          if (i[0] == false) {                                      // Si le circuit n'est pas activé
-            i[0] = true;                                              // On active le circuit
-            afficherDivTexteId(circuitName);                                     // On affiche le texte du circuit
-            stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en gras le texte de la légende
-          } else {                                                  // Sinon
-            i[0] = false;                                             // On désactive le circuit
-            cacherDivTexteId();                                       // On cache le texte du circuit
-            stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en normal le texte de la légende
+  map.on('click', circuitName, function(e) {
+    if (boolCircleCliq) {
+      let clickedCircuit = null; // Garder une référence du circuit cliqué
+      for (let i of Object.values(tabStatesCircuits)) {
+        if (i[1] == circuitName) {
+          if (i[0] == false) {
+            i[0] = true;
+            afficherDivTexteId(circuitName);
+            setOnlyOneTrace(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]);
+            clickedCircuit = i; // Stocker le circuit cliqué
+          } else {
+            i[0] = false;
+            cacherDivTexteId();
+            setOnlyOneTrace(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]);
           }
+        }
+      }
+      // Désactiver les autres circuits
+      for (let i of Object.values(tabStatesCircuits)) {
+        if (i !== clickedCircuit && i[0] === true) {
+          i[0] = false;
+          cacherDivTexteId();
+          setOnlyOneTrace(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]);
         }
       }
     }
   });
 }
 
+
 // stand by ........................................................
-function portionsClick(portionName) {
-  map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
-    if (!portionName.includes("circuit")) {                   // Si la portion N'EST PAS un circuit
-      for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
-        if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
-          portionIndex = i;                                         // On enregistre l'index de la portion
-        }
-      }
-      if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
-        afficherDivTexteId(portionName);                          // On affiche le texte de la portion
-        tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
-      }
-    }
-  });
-}
+// function portionsClick(portionName) {
+//   map.on('click', portionName, function(e) {                // Lors d'un click sur la portion
+//     if (!portionName.includes("circuit")) {                   // Si la portion N'EST PAS un circuit
+//       for (let i = 0; i < tabStatesPortions.length; i+=2) {     // Pour chaque portion du tableau tabStatesPortions (i:nom, i+1:etat)
+//         if (tabStatesPortions[i] == portionName) {                // Si le nom de la portion est le même que celui de la portion cliquée
+//           portionIndex = i;                                         // On enregistre l'index de la portion
+//         }
+//       }
+//       if(tabStatesPortions[portionIndex+1] == false) {          // Si la portion n'est pas activée
+//         afficherDivTexteId(portionName);                          // On affiche le texte de la portion
+//         tabStatesPortions[portionIndex+1] = true;                 // On met l'état de la portion à true
+//       }
+//     }
+//   });
+// }
 // stand by ........................................................
 
 // Ajouter un événement de clic à chaque élément de la légende
@@ -23117,24 +23148,48 @@ legendItems.forEach(function(item, index) {
     switch(index) {
       case 0:
         tabStatesCircuits.stateCircuit25[0] = !tabStatesCircuits.stateCircuit25[0];
-        stateLine('circuit25', tabStatesCircuits.stateCircuit25[0], item);
-        afficherDivTexteId('Circuit 25');
+        //afficherDivTexteId('Circuit 25');
+        setOnlyOneTrace('circuit25', tabStatesCircuits.stateCircuit25[0], item);
         break;
       case 1:
         tabStatesCircuits.stateCircuit35[0] = !tabStatesCircuits.stateCircuit35[0];
-        stateLine('circuit35', tabStatesCircuits.stateCircuit35[0], item);
-        afficherDivTexteId('Circuit 35');
+        //afficherDivTexteId('Circuit 35');
+        setOnlyOneTrace('circuit35', tabStatesCircuits.stateCircuit35[0], item);
         break;
       case 2:
         tabStatesCircuits.stateCircuit45[0] = !tabStatesCircuits.stateCircuit45[0];
-        stateLine('circuit45', tabStatesCircuits.stateCircuit45[0], item);
-        afficherDivTexteId('Circuit 45');
+        //afficherDivTexteId('Circuit 45');
+        setOnlyOneTrace('circuit45', tabStatesCircuits.stateCircuit45[0], item);
         break;
       default:
         return;
     }
   });
 });
+
+// Fonction qui permet de mettre l'opacité de tous les circuits à lineOpacityBackCircuit sauf celui en argument
+function setOnlyOneTrace(circuitName, circuitState, circuitItem) {
+  stateLine(circuitName, circuitState, circuitItem);
+  for (let i of Object.values(tabStatesCircuits)) {
+    if (i[1] != circuitName) {
+      if (!(type !="all" && (i[1] == "circuit8" || i[1] == "circuit13" || i[1] == "circuit17"))) {
+        map.setPaintProperty(i[1], 'line-opacity', lineOpacityBackCircuit); // On remet l'opacité de la ligne à la normale
+      }
+    }
+  }
+}
+
+function stateLine(name, state, ite) {
+  if (state) {
+    map.setPaintProperty(name, 'line-width', lineWitdhCircuit+5);
+    ite.classList.add('bold');
+  } else {
+    map.setPaintProperty(name, 'line-width', lineWitdhCircuit);
+    ite.classList.remove('bold');
+  }
+}
+
+
 
 /* ------------------------------------------------ Hover ------------------------------------------------ */
 
@@ -23179,12 +23234,9 @@ const descriptions = {
   "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
 };
 
-
-
-
-
 function cacherDivTexteId() { // Fonction pour cacher
   divTexteId.classList.remove("show");
+  resetAllTraces();
 }
 
 // Fonctions pour gérer le hover sur les portions
