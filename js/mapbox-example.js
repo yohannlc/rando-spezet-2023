@@ -33,12 +33,19 @@ Styles de la carte disponibles :
 mapStyle = 'mapbox://styles/mapbox/outdoors-v12';
 //mapStyle = 'mapbox://styles/mapbox/satellite-v9';
 
-/* ------------------------------------------------ Création des circuits ------------------------------------------------ */
 
-// Déclarations des couleurs, épaisseurs et opacités des lignes en fonction du style de la carte
+// Savoir quel est le type d'appareil (pc ou smartphone)
+smartphone = false; //par défaut, on considère que c'est un pc
+if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { //si c'est un smartphone
+  smartphone = true;
+}
+
+/* ------------------------------------------------ Circuits ------------------------------------------------ */
+
+// Constantes
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   lineWitdhCircuit = 2.5;
-  color25c = 'rgb(19, 156, 69)';
+  color25c = 'rgb(170, 200, 0)';
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
   color45 = 'rgb(255, 108, 0)';
@@ -60,7 +67,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
 lineOpacityCircuit = 1;
 lineOpacityBackCircuit = 0.3;
 
-// Déclaration des coordonnées des circuits
+// Coordonnées
 let coordsCircuit45 = [
       [
         -3.713795,
@@ -34356,10 +34363,29 @@ for (let i = 0; i < coordsCircuit8.length; i++) {
   coordsCircuit8[i][1] += offset*2.5;
 }
 
-// Savoir quel est le type d'appareil (pc ou smartphone)
-smartphone = false; //par défaut, on considère que c'est un pc
-if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) { //si c'est un smartphone
-  smartphone = true;
+// Fonctions
+function addCircuitsMarche() {
+  
+  addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
+  //display la div d'id =legendCircuitsMarche
+  const divTexteId = document.getElementById("legendCircuitsMarche");
+  divTexteId.classList.add("show");
+}
+
+function removeCircuitsMarche() {
+  map.removeLayer("circuit17");
+  map.removeLayer("circuit13");
+  map.removeLayer("circuit8");
+
+  map.removeSource("circuit17");
+  map.removeSource("circuit13");
+  map.removeSource("circuit8");
+
+  //hide la div d'id =legendCircuitsMarche
+  const divTexteId = document.getElementById("legendCircuitsMarche");
+  divTexteId.classList.remove("show");
 }
 
 /* ------------------------------------------------ Création des portions ------------------------------------------------ */
@@ -34374,6 +34400,7 @@ colorPY = "rgb(120, 116, 255)";
 colorSouff = "rgb(255, 255, 0)"; //Jaune
 lineOpacityPortions = 0.6;
 
+// Coordonnées
 let verger1 = [
   [
     -3.7132816684802776,
@@ -34717,7 +34744,7 @@ let tabStatesPortions = [
   false,
 ]
 
-//fonction pour ajouter une portion
+// Fonctions
 function addPortion(portionName, portionType, portionCoordinates, portionLineWitdh, portionLineOpacity) {
   
   if (portionType == "debrou") {
@@ -34801,16 +34828,6 @@ function addPortions() {
   //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
 }
 
-function addCircuitsMarche() {
-  
-  addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit8", "circuit", coordsCircuit8, lineWitdhCircuit, lineOpacityCircuit);
-  //display la div d'id =legendCircuitsMarche
-  const divTexteId = document.getElementById("legendCircuitsMarche");
-  divTexteId.classList.add("show");
-}
-
 function removePortions() {
   //map.removeLayer("verger1");
   //map.removeLayer("verger2");
@@ -34835,22 +34852,9 @@ function removePortions() {
   //map.removeSource("descenteKerdaffret1");
 }
 
-function removeCircuitsMarche() {
-  map.removeLayer("circuit17");
-  map.removeLayer("circuit13");
-  map.removeLayer("circuit8");
-
-  map.removeSource("circuit17");
-  map.removeSource("circuit13");
-  map.removeSource("circuit8");
-
-  //hide la div d'id =legendCircuitsMarche
-  const divTexteId = document.getElementById("legendCircuitsMarche");
-  divTexteId.classList.remove("show");
-}
-
 /* ------------------------------------------------ Création des points ------------------------------------------------ */
 
+// Constantes
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   colorRavito = "rgb(244, 49, 5)";
   circleRadius = 8;
@@ -34859,6 +34863,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   circleRadius = 10;
 }
 
+// Coordonnées
 let ravito1Cudel = [
   -3.682843734443054,
   48.160898532989194
@@ -34872,7 +34877,7 @@ let ravito3Kerdaffret = [
   48.1897297331804
 ];
 
-//fonction pour ajouter un point
+// Fonctions
 function addPoint(pointName, pointType, pointCoordinates, pointColor) {
   map.addSource(pointName, {
     'type': 'geojson',
@@ -34905,6 +34910,7 @@ function addPoint(pointName, pointType, pointCoordinates, pointColor) {
 
 /* ------------------------------------------------ Création de la carte ------------------------------------------------ */
 
+// Zoom de départ en fonction du support
 zoomStart = 12.3; //zoom d'un pc pour voir tous les circuits
 if (smartphone == true) {
   zoomStart = 10.8; //zoom d'un smartphone pour voir tous les circuits
@@ -34949,19 +34955,6 @@ map.on('load', () => {
 
 });
 
-function addCircuitsVTT() {
-  addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
-  addPortion("circuit25c", "circuit", coordsCircuit25c, lineWitdhCircuit, lineOpacityCircuit);
-}
-
-function addPoints() {
-  addPoint("ravito1Cudel", "ravito", ravito1Cudel, colorRavito);
-  addPoint("ravito2BallTrap", "ravito", ravito2BallTrap, colorRavito);
-  addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
-}
-
 // Attente de changement de la valeur currentZoom = map.getZoom();
 map.on('zoomend', function() {
   var currentZoom = map.getZoom();
@@ -34976,7 +34969,21 @@ map.on('zoomend', function() {
   }
 });
 
-// fonction pour changer l'épaissseur des portions
+// Fonctions
+function addCircuitsVTT() {
+  addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
+  addPortion("circuit25c", "circuit", coordsCircuit25c, lineWitdhCircuit, lineOpacityCircuit);
+}
+
+function addPoints() {
+  addPoint("ravito1Cudel", "ravito", ravito1Cudel, colorRavito);
+  addPoint("ravito2BallTrap", "ravito", ravito2BallTrap, colorRavito);
+  addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
+}
+
+// Fonction pour changer l'épaissseur des portions
 function changeLineWidthCircuit(lineWidth) {
   map.setPaintProperty("circuit45", 'line-width', lineWidth);
   map.setPaintProperty("circuit35", 'line-width', lineWidth);
@@ -34991,6 +34998,8 @@ function changeLineWidthCircuit(lineWidth) {
 
 
 /* ------------------------------------------------ OnClick ------------------------------------------------ */
+
+// Tableaux
 let tabStatesCircuits = {
   stateCircuit25c: [false, "circuit25c"],
   stateCircuit25: [false, "circuit25"],
@@ -35006,15 +35015,6 @@ let checkboxCircCliq = document.getElementById("cirqCliq");
 checkboxCircCliq.checked = false;
 boolCircleCliq = false;
 
-function changeCheckboxCircCliq() {
-  if (document.getElementById("cirqCliq").checked == true) {
-    boolCircleCliq = true;
-  } else {
-    boolCircleCliq = false;
-    resetAllTraces();
-  }
-}
-
 // Enregistrer les éléments de la légende dans une variable
 const legendItems = document.querySelectorAll('#legendCircuitsVTT div');
 
@@ -35024,6 +35024,16 @@ for (let i of legendItems) {
 }
 
 let reset = false;
+
+// Fonctions
+function changeCheckboxCircCliq() {
+  if (document.getElementById("cirqCliq").checked == true) {
+    boolCircleCliq = true;
+  } else {
+    boolCircleCliq = false;
+    resetAllTraces();
+  }
+}
 
 function resetAllTraces() {
   let j = 0;
