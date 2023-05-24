@@ -10,7 +10,6 @@ let type = 'notAll';
 let typePo = 'vttSansPo';
 //typePo = 'vttAvecPo';
 
-
 /*
 Styles de la carte disponibles :
   - Normal : mapbox://styles/mapbox/outdoors-v12

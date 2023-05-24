@@ -1,5 +1,3 @@
-/* ------------------------------------------------ States ------------------------------------------------ */
-
 let tabStatesPortions = [
   "verger1",false,
   "verger2",false,
@@ -22,8 +20,6 @@ let tabStatesCircuits = {
   stateCircuit13: [false, "circuit13"],
   stateCircuit17: [false, "circuit17"],
 };
-
-/* ------------------------------------------------ Création de la carte ------------------------------------------------ */
 
 // Création de la map
 mapboxgl.accessToken = 'pk.eyJ1IjoieW9oYW5ubGMiLCJhIjoiY2xnczI4cHJ1MGF4dDNsb2NienBja3pxbCJ9.pmfEZTINyfbOowGB0I77QA';
@@ -67,14 +63,6 @@ map.on('zoomend', function() {
 });
 
 
-/* ------------------------------------------------ OnClick ------------------------------------------------ */
-
-// Voir si on a coché la case "Circuits Cliquables"
-let checkboxCircCliq = document.getElementById("cirqCliq");
-checkboxCircCliq.checked = false;
-boolCircleCliq = false;
-
-let reset = false;
 
 // Lors d'un click n'importe où sur la carte
 map.on('click', function(e) {
@@ -84,34 +72,11 @@ map.on('click', function(e) {
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
-  circuitsClick('circuit25c');
-  circuitsClick('circuit25');
-  circuitsClick('circuit35');
-  circuitsClick('circuit45');
-  circuitsClick('circuit8');
-  circuitsClick('circuit13');
-  circuitsClick('circuit17');
-}
-
-// Fonction qui permet de cliquer sur les circuits
-function circuitsClick(circuitName) {
-  map.on('click', circuitName, function(e) {                // Lors d'un click sur le circuit
-      if(boolCircleCliq) {                                      // Si la case "Circuits Cliquables" est cochée
-      for (let i of Object.values(tabStatesCircuits)) {         // Pour chaque circuit du tableau tabStatesCircuits
-          if (i[1] == circuitName) {                                // Si le nom du circuit est le même que celui du circuit cliqué
-          if (i[0] == false) {                                      // Si le circuit n'est pas activé
-              i[0] = true;                                              // On active le circuit
-              afficherDivTexteId(circuitName);                          // On affiche le texte du circuit
-              //stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en gras le texte de la légende
-              setOnlyOneTrace(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)])
-          } else {                                                  // Sinon
-              i[0] = false;                                             // On désactive le circuit
-              cacherDivTexteId();                                       // On cache le texte du circuit
-              //stateLine(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)]); // On met en normal le texte de la légende
-              setOnlyOneTrace(e.features[0].properties.name, i[0], items[Object.values(tabStatesCircuits).indexOf(i)])
-          }
-          }
-      }
-      }
-  });
+  circuitsClick('circuit25c',map);
+  circuitsClick('circuit25', map);
+  circuitsClick('circuit35', map);
+  circuitsClick('circuit45', map);
+  circuitsClick('circuit8', map);
+  circuitsClick('circuit13', map);
+  circuitsClick('circuit17', map);
 }

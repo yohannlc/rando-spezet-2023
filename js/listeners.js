@@ -14,8 +14,6 @@ window.addEventListener('DOMContentLoaded', function() {
   setTimeout(hidePopup, 8000);
 });
 
-
-
 // Enregistrer les éléments de la légende dans une variable
 const legendItems = document.querySelectorAll('#legendCircuitsVTT div');
 
@@ -23,7 +21,6 @@ let items = [];
 for (let i of legendItems) {
   items.push(i);
 }
-
 
 // Ajouter un événement de clic à chaque élément de la légende
 legendItems.forEach(function(item, index) {
@@ -56,3 +53,8 @@ legendItems.forEach(function(item, index) {
     }
   });
 });
+
+// Voir si on a coché la case "Circuits Cliquables"
+let checkboxCircCliq = document.getElementById("cirqCliq");
+checkboxCircCliq.checked = false;
+boolCircleCliq = false;
