@@ -21,3 +21,53 @@ function stateLine(name, state, ite) {
         ite.classList.remove('bold');
     }
 }
+
+// Fonction qui change le type de d'affichage
+function changeTypeAll(checkboxTypeAll) {
+    if (checkboxTypeAll.checked) {
+        type = 'all';
+        addCircuitsMarche();
+    } else {
+        type = 'notAll';
+        removeCircuitsMarche();
+    }
+}
+
+function changeType(checkboxType) {
+    if (checkboxType.checked) {
+        typePo = 'vttAvecPo';
+        addPortions();
+    } else {
+        typePo = 'vttSansPo';
+        removePortions();
+    }
+}
+
+function changeCheckboxCircCliq() {
+    if (document.getElementById("cirqCliq").checked == true) {
+        boolCircleCliq = true;
+    } else {
+        boolCircleCliq = false;
+        resetAllTraces();
+    }
+}
+
+/*
+  Fonction pour changer le style de la map (standby)
+  function changeMapStyle() {
+    let checkboxMapStyle = document.getElementById("mapStyleCliq").checked;
+    //Si la checkbox est cochée mapStyleCliq, on change la carte pour satellite, sinon on change pour classique
+    let mapStyle = "mapbox://styles/mapbox/outdoors-v12";
+    if (checkboxMapStyle == true) {
+      mapStyle = "mapbox://styles/mapbox/satellite-streets-v12";
+    }
+    map.setStyle(mapStyle);
+    //Il faut réafficher les portions sur la map en changeant les couleurs
+    map.removeLayer("circuit45");
+    map.removeLayer("circuit35");
+    map.removeLayer("circuit25");
+    addPortion("circuit45", "circuit", circuit45, 3, 1);
+    addPortion("circuit35", "circuit", circuit35, 3, 1);
+    addPortion("circuit25", "circuit", circuit25, 3, 1);
+  }
+*/
