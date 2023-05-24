@@ -66,41 +66,44 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
       portionsHoverLeave(portionName);
       //portionsClick(portionName);
     }
-  }
+}
   
-  function addPortions() {
-    //addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
-    //addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
-    //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
-    addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
-    addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
-    addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
-    //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
-    addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
-    //addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
-    //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
-  }
+function addPortions() {
+  addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("henry", "debrou", henry, lineWitdhPortions, lineOpacityPortions);
+  addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
+  addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
+  //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("boisRuisseauCrann2", "tronco", boisRuisseauCrann2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("remonterVersPalae1", "py", remonterVersPalae1, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("descenteKerdaffret1", "py", descenteKerdaffret1, lineWitdhPortions, lineOpacityPortions);
+}
   
-  function removePortions() {
-    //map.removeLayer("verger1");
-    //map.removeLayer("verger2");
-    //map.removeLayer("stang1");
-    map.removeLayer("cozic1");
-    map.removeLayer("saintGoazec1");
-    map.removeLayer("saintGoazec3");
-    //map.removeLayer("halage1");
-    map.removeLayer("boisRuisseauCrann2");
-    //map.removeLayer("remonterVersPalae1");
-    //map.removeLayer("descenteKerdaffret1");
-  
-    //map.removeSource("verger1");
-    //map.removeSource("verger2");
-    //map.removeSource("stang1");
-    map.removeSource("cozic1");
-    map.removeSource("saintGoazec1");
-    map.removeSource("saintGoazec3");
-    //map.removeSource("halage1");
-    map.removeSource("boisRuisseauCrann2");
-    //map.removeSource("remonterVersPalae1");
-    //map.removeSource("descenteKerdaffret1");
-  }
+function removePortions() {
+  map.removeLayer("verger1");
+  map.removeLayer("verger2");
+  //map.removeLayer("stang1");
+  map.removeLayer("henry");
+  map.removeLayer("cozic1");
+  map.removeLayer("saintGoazec1");
+  map.removeLayer("saintGoazec3");
+  //map.removeLayer("halage1");
+  map.removeLayer("boisRuisseauCrann2");
+  map.removeLayer("remonterVersPalae1");
+  //map.removeLayer("descenteKerdaffret1");
+
+  map.removeSource("verger1");
+  map.removeSource("verger2");
+  //map.removeSource("stang1");
+  map.removeSource("henry");
+  map.removeSource("cozic1");
+  map.removeSource("saintGoazec1");
+  map.removeSource("saintGoazec3");
+  //map.removeSource("halage1");
+  map.removeSource("boisRuisseauCrann2");
+  map.removeSource("remonterVersPalae1");
+  //map.removeSource("descenteKerdaffret1");
+}
