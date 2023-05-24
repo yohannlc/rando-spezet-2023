@@ -95,10 +95,10 @@ for (let i = 0; i < coordsCircuit35.length; i++) {
 /* --------------------------------- Portions --------------------------------- */
 lineWitdhPortions = 15;
 lineWitdhPortionsPoly = 20;
-colorDebrou = "rgb(49, 218, 51)"; //Vert
-colorTronco = "rgb(88, 61, 21)"; //Marron
-colorPY = "rgb(120, 116, 255)";
-colorSouff = "rgb(255, 255, 0)"; //Jaune
+colorDebrou = "rgb(0, 174, 255)";
+colorTronco = "rgb(88, 61, 21)";
+colorSouff = "rgb(184, 21, 21)";
+colorPY = "rgb(255, 255, 0)";
 lineOpacityPortions = 0.6;
 
 /* --------------------------------- Points --------------------------------- */
