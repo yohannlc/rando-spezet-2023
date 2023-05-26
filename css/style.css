@@ -11,6 +11,8 @@ body {
     overflow: hidden;
 }
 
+/* ------------------ PopUp ------------------ */
+
 .popup {
     display: none;
     position: fixed;
@@ -36,6 +38,8 @@ body {
     cursor: pointer;
 }
 
+/* ------------------ Global ------------------ */
+
 h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 24px;
@@ -46,6 +50,27 @@ h1 {
     text-align: center;
     text-transform: uppercase;
 }
+
+h4 {
+    margin: 0px;
+    padding: 0px;
+}
+
+p {
+    margin: 0px;
+    padding: 0px;
+}
+
+span {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+/* ------------------ Map ------------------ */
 
 .div-map {
     display: flex;
@@ -64,6 +89,10 @@ h1 {
     padding: 0;
 }
 
+.mapboxgl-ctrl-group {
+    margin-top: 10px;
+}
+
 @media screen and (max-width: 1000px) {
     .div-map {
         width: 100vw;
@@ -71,19 +100,26 @@ h1 {
     }
 }
 
+/* ------------------ left-component ------------------ */
+
+.left-component {
+    position: absolute;
+    z-index: 1;
+    left: 1vw;
+    top: 1vh;
+}
+
+/* ------------------ Legend ------------------ */
+
 .legend {
     border-radius: 3px;
     background-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: 10px;
-    position: absolute;
-    z-index: 1;
-    left: 1vw;
     width: 8vw;
     min-width: 180px;
     height: auto;
-    top: 1vh;
 }
     
 .legend h4 {
@@ -92,7 +128,6 @@ h1 {
 
 @media screen and (max-width: 1000px) {
     .legend {
-        left: 1vw;
         min-width: 0px; /*pour suppr celui de la classe parente*/
         width: 150px;
         font-size: 15px;
@@ -101,7 +136,6 @@ h1 {
     .legend h4 {
         margin: 0 0 5px;
     }
-
 }
 
 .legend div span {
@@ -138,92 +172,7 @@ h1 {
     visibility: visible;
 }
 
-@media screen and (max-width: 1000px) and (max-height: 800px) {
-    #cirqCliqDiv {
-        display: none;
-    }
-    .div-params {
-        background-color: rgba(255, 255, 255, 0);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
-        width: auto;
-        height: auto;
-        top: 200px;
-    }
-    .label-cliq {
-        display: none;
-    }
-}
-
-.div-texte {
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 20px;
-    position: absolute;
-    z-index: 10;
-    right: 1vw;
-    top: 22vh;
-    height: 70vh;
-    width: 18vw;
-    min-width: 300px;
-}
-
-@media screen and (max-width: 1000px) {
-    .div-texte {
-        left: 5vw;
-        right: 5vw;
-        top: 1.5vh;
-        height: 20vh;
-        width: auto;
-    }
-}
-
-#divTexteId {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-}
-
-#divTexteId.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.div-texte-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0px 0px 20px 0px;
-}
-
-.div-texte-top h4 {
-    margin: 0;
-}
-
-.close {
-    align-self: center;
-}
-  
-p {
-    margin: 0px;
-    padding: 0px;
-}
-
-h4 {
-    margin: 0px;
-    padding: 0px;
-}
-
-.bold {
-    font-weight: bold;
-}
-
-.para {
-    margin: 20px 0px;
-    font-size: 15px;
-}
+/* ------------------ Parameters ------------------ */
 
 .div-params {
     background-color: rgba(255, 255, 255, 0.1);
@@ -231,10 +180,6 @@ h4 {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: 10px;
-    position: absolute;
-    z-index: 1;
-    left: 1vw;
-    top: 275px;
     width: 7vw;
     min-width: 100px;
     height: 180px; /* changer la taille de la div des paramètres */
@@ -245,26 +190,23 @@ h4 {
     font-size: 0.7em;
 }
 
-span {
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 @media screen and (max-width: 1000px) {
-    #cirqCliqDiv {
-        display: none;
-    }
     .div-params {
         background-color: rgba(255, 255, 255, 0);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
         width: auto;
         height: auto;
-        top: 200px;
     }
+
     .label-cliq {
         display: none;
     }
+
+    #cirqCliqDiv {
+        display: none;
+    }
 }
+
 
 .switch {
     position: relative;
@@ -321,10 +263,65 @@ input:checked + .slider:before {
     transform: translateX(60%);
 }
 
+/* ------------------ Text right for details ------------------ */
+
+.div-texte {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 20px;
+    position: absolute;
+    z-index: 10;
+    right: 1vw;
+    top: 22vh;
+    height: 70vh;
+    width: 18vw;
+    min-width: 300px;
+}
+
+@media screen and (max-width: 1000px) {
+    .div-texte {
+        left: 5vw;
+        right: 5vw;
+        top: 1.5vh;
+        height: 20vh;
+        width: auto;
+    }
+}
+
+#divTexteId {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+}
+
+#divTexteId.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.div-texte-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 0px 20px 0px;
+}
+
+.div-texte-top h4 {
+    margin: 0;
+}
+
+.close {
+    align-self: center;
+}
+
 .close:hover {
     cursor: pointer;
 }
 
-.mapboxgl-ctrl-group {
-    margin-top: 10px;
+.parag {
+    margin: 20px 0px;
+    font-size: 15px;
 }
