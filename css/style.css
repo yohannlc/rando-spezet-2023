@@ -117,9 +117,6 @@ span {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: 10px;
-    width: 8vw;
-    min-width: 180px;
-    height: auto;
 }
     
 .legend h4 {
@@ -180,10 +177,10 @@ span {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: 10px;
-    width: 7vw;
-    min-width: 100px;
+    width: 8vw;
     height: 180px; /* changer la taille de la div des paramètres */
     overflow: hidden;
+    margin: 10px 0px 0px 0px;
 }
 
 .label-cliq {
@@ -194,7 +191,7 @@ span {
     .div-params {
         background-color: rgba(255, 255, 255, 0);
         box-shadow: 0 1px 2px rgba(0, 0, 0, 0);
-        width: auto;
+        width: 15vw;
         height: auto;
     }
 
@@ -207,6 +204,7 @@ span {
     }
 }
 
+/* --- Buttons --- */
 
 .switch {
     position: relative;
@@ -229,12 +227,12 @@ span {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.184);
+    background-color: rgba(148, 148, 148, 0.8);
     -webkit-transition: .4s;
     transition: .4s;
     border-radius: 100px;
     width: 50px;
-}
+}   
 
 .slider:before {
     position: absolute;
@@ -261,6 +259,12 @@ input:checked + .slider:before {
     -webkit-transform: translateX(60%);
     -ms-transform: translateX(60%);
     transform: translateX(60%);
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* ------------------ Text right for details ------------------ */
@@ -324,4 +328,22 @@ input:checked + .slider:before {
 .parag {
     margin: 20px 0px;
     font-size: 15px;
+}
+
+/* ------------------ End properties ------------------ */
+
+.legend-satellite {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.params-satellite {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+@media screen and (max-width: 1000px) {
+    .params-satellite {
+        background-color: rgba(255, 255, 255, 0.6);
+    }
 }

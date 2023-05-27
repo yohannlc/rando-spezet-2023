@@ -1,22 +1,9 @@
-/* 
-Types d'affichage disponibles :
-  - tous les circtuis
-  - circuits VTT avec portions
-  - circuits VTT sans portions
-*/
+//let type = 'all'; // all = on veut voir toutes les traces en entier, utile pour prendre un screen
+let type = 'notAll'; // notAll = plus pour le mode logiciel, ou on peut zoomer donc pas besoin de gros offset
+let typePo = 'vttSansPo'; // état initial : on affiche les circuits VTT sans portions
 
-//type = 'all';
-let type = 'notAll';
-let typePo = 'vttSansPo';
-//typePo = 'vttAvecPo';
-
-/*
-Styles de la carte disponibles :
-  - Normal : mapbox://styles/mapbox/outdoors-v12
-  - Satellite : mapbox://styles/mapbox/satellite-v9
-*/
 let mapStyle = 'mapbox://styles/mapbox/outdoors-v12';
-//mapStyle = 'mapbox://styles/mapbox/satellite-v9';
+//let mapStyle = 'mapbox://styles/mapbox/satellite-streets-v12';
 
 // Savoir quel est le type d'appareil (pc ou smartphone)
 let smartphone = false; //par défaut, on considère que c'est un pc
@@ -42,8 +29,7 @@ const descriptions = {
 
 // constantes selon le type de carte : couleurs et offset
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  lineWitdhCircuit = 2.5;
-  color25c = 'rgb(170, 200, 0)';
+  color25c = 'rgb(223, 236, 31)';
   color25 = 'rgb(54, 147, 191)';
   color35 = 'rgb(196, 94, 189)';
   color45 = 'rgb(255, 108, 0)';
@@ -51,16 +37,28 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   color8 = 'rgb(0, 166, 147)';
   color13 = 'rgb(129, 97, 154)';
   color17 = 'rgb(236, 75, 75)';
-  offset = 0.00015;
-} else {
-  lineWitdhCircuit = 4;
-  color25 = 'rgb(0, 209, 255)';
+  if (type == 'all') {
+    lineWitdhCircuit = 2.5;
+    offset = 0.00015;
+  } else {
+    lineWitdhCircuit = 4;
+    offset = 0.00005;
+  }
+} else { // mapbox://styles/mapbox/satellite-streets-v12
+  color25c = 'rgb(229, 229, 71)';
+  color25 = 'rgb(14, 170, 243)';
   color35 = 'rgb(209, 0, 255)';
   color45 = 'rgb(255, 108, 0)';
-  color17 = 'rgb(247, 26, 26)';
-  color13 = 'rgb(95, 63, 21)';
-  color8 = 'rgb(241, 241, 68)';
-  offset = 0.0001;
+  color8 = 'rgb(58, 218, 85)';
+  color13 = 'rgb(255, 0, 120)';
+  color17 = 'rgb(252, 143, 128)';
+  if (type == 'all') {
+    lineWitdhCircuit = 2.5;
+    offset = 0.00015;
+  } else {
+    lineWitdhCircuit = 5;
+    offset = 0.00005;
+  }
 }
 lineOpacityCircuit = 1;
 lineOpacityBackCircuit = 0.3;
@@ -95,11 +93,18 @@ for (let i = 0; i < coordsCircuit35.length; i++) {
 /* --------------------------------- Portions --------------------------------- */
 lineWitdhPortions = 15;
 lineWitdhPortionsPoly = 20;
+lineOpacityPortions = 0.6;
 colorDebrou = "rgb(0, 174, 255)";
-colorTronco = "rgb(88, 61, 21)";
 colorSouff = "rgb(184, 21, 21)";
 colorPY = "rgb(255, 255, 0)";
-lineOpacityPortions = 0.6;
+
+if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
+  colorTronco = "rgb(88, 61, 21)";
+  lineOpacityPortions = 0.6;
+} else { // mapbox://styles/mapbox/satellite-streets-v12
+  colorTronco = "rgb(244, 214, 148)";
+  lineOpacityPortions = 0.8;
+}
 
 /* --------------------------------- Points --------------------------------- */
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {

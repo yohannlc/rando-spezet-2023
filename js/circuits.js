@@ -35,6 +35,18 @@ function removeCircuitsMarche() {
     divTexteId.classList.remove("show");
 }
 
+function removeCircuitsVTT() {
+    map.removeLayer("circuit45");
+    map.removeLayer("circuit35");
+    map.removeLayer("circuit25");
+    map.removeLayer("circuit25c");
+
+    map.removeSource("circuit45");
+    map.removeSource("circuit35");
+    map.removeSource("circuit25");
+    map.removeSource("circuit25c");
+}
+
 // Fonction pour changer l'épaissseur des portions
 function changeLineWidthCircuit(lineWidth) {
     map.setPaintProperty("circuit45", 'line-width', lineWidth);

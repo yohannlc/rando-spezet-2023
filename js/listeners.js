@@ -36,6 +36,8 @@ legendItems.forEach(function(item, index) {
         console.log("after :", index);
         tabStatesCircuits.stateCircuit25[0] = !tabStatesCircuits.stateCircuit25[0];
         //afficherDivTexteId('Circuit 25');
+        //ajouter la class "legendColor" à TOUTES les divs qui ont pour parent la div d'id "legendCircuitsVTT"
+        document.getElementById("legendCircuitsVTT").querySelectorAll("div").forEach(function(item) {item.classList.add("legendColor");});
         setOnlyOneTrace('circuit25', tabStatesCircuits.stateCircuit25[0], item);
         break;
       case 2:
@@ -55,6 +57,6 @@ legendItems.forEach(function(item, index) {
 });
 
 // Voir si on a coché la case "Circuits Cliquables"
-let checkboxCircCliq = document.getElementById("cirqCliq");
-checkboxCircCliq.checked = false;
+// let checkboxCircCliq = document.getElementById("cirqCliq");
+// checkboxCircCliq.checked = false;
 boolCircleCliq = false;

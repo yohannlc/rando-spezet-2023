@@ -11,6 +11,17 @@ function setOnlyOneTrace(circuitName, circuitState, circuitItem) {
     }
 }
 
+function changeLegend() {
+    const divLegend = document.getElementById("legend");
+    if (mapStyle == 'mapbox://styles/mapbox/satellite-streets-v12') {
+        //ajouter la classe "legend-satellite" à la div d'id "legend"
+        divLegend.classList.add("legend-satellite");
+    } else {
+        //enlever la classe "legend-satellite" à la div d'id "legend"
+        divLegend.classList.remove("legend-satellite");
+    }
+}
+
 // Fonction qui change le width de la line et sa légende en argument en bold et met reset le reste 
 function stateLine(name, state, ite) {
     if (state) {
@@ -51,23 +62,3 @@ function changeCheckboxCircCliq() {
         resetAllTraces();
     }
 }
-
-/*
-  Fonction pour changer le style de la map (standby)
-  function changeMapStyle() {
-    let checkboxMapStyle = document.getElementById("mapStyleCliq").checked;
-    //Si la checkbox est cochée mapStyleCliq, on change la carte pour satellite, sinon on change pour classique
-    let mapStyle = "mapbox://styles/mapbox/outdoors-v12";
-    if (checkboxMapStyle == true) {
-      mapStyle = "mapbox://styles/mapbox/satellite-streets-v12";
-    }
-    map.setStyle(mapStyle);
-    //Il faut réafficher les portions sur la map en changeant les couleurs
-    map.removeLayer("circuit45");
-    map.removeLayer("circuit35");
-    map.removeLayer("circuit25");
-    addPortion("circuit45", "circuit", circuit45, 3, 1);
-    addPortion("circuit35", "circuit", circuit35, 3, 1);
-    addPortion("circuit25", "circuit", circuit25, 3, 1);
-  }
-*/

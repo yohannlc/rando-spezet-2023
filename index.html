@@ -33,7 +33,7 @@
     <div class="div-map">
         <div id='map'></div>
         <div class="left-component">
-            <div class="legend">
+            <div id="legend" class="legend">
                 <h4>Circuits</h4>
                 <div class="flex">
                     <div id="legendCircuitsVTT">
@@ -48,15 +48,15 @@
                         <div class="legend-circuit"><span style="background-color: rgb(236, 75, 75); height: 3px;"></span>17 km</div>
                     </div>
                 </div>
-                <div class="legend-circuit"><span style="background-color: rgb(0, 174, 255); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Débroussailleuse</div>
-                <div class="legend-circuit"><span style="background-color: rgb(184, 21, 21); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Souffleur</div>
-                <div class="legend-circuit"><span style="background-color: rgb(88, 61, 21); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Tronçonneuse</div>
+                <div class="legend-circuit"><span style="background-color: rgb(0, 174, 255); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Débroussailler</div>
+                <div class="legend-circuit"><span style="background-color: rgb(184, 21, 21); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Souffler</div>
+                <div class="legend-circuit"><span style="background-color: rgb(88, 61, 21); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Tronçonner</div>
                 <div class="legend-circuit"><span style="background-color: rgb(255, 255, 0); height: 10px; opacity: 0.7; border-radius: 100px;"></span>Pierre-Yves</div>
                 
                 <div><span style="background-color: rgb(244, 49, 5)" id="legendRavitos"></span>Ravitos</div>
             </div>
             <div id="divParamsId" class="div-params">
-                <div id="typeAllCliqDiv">
+                <div id="typeAllCliqDiv" class="flex-column">
                     <span class="label-cliq" value="">Circuits marches</span>
                     <label class="switch">
                         <input type="checkbox" id="typeAllCliq" onclick="changeTypeAll(this)">
@@ -64,7 +64,7 @@
                     </label>
                 </div>
 
-                <div id="typeCliqDiv">
+                <div id="typeCliqDiv" class="flex-column">
                     <span class="label-cliq" value="">Afficher les portions</span>
                     <label class="switch">
                         <input type="checkbox" id="typeCliq" onclick="changeType(this)">
@@ -72,18 +72,21 @@
                     </label>
                 </div>
 
-                <div id="cirqCliqDiv">
+                <div class="flex-column">
+                    <span class="label-cliq" value="">Vue satellite</span>
+                    <label class="switch">
+                        <input type="checkbox" id="mapStyleCliq" onclick="changeMapStyle()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <!-- <div id="cirqCliqDiv" class="flex-row">
                     <span class="label-cliq" value="">Circuits cliquables</span>
                     <label class="switch">
                         <input type="checkbox" id="cirqCliq" onclick="changeCheckboxCircCliq() ">
                         <span class="slider"></span>
                     </label>
-                </div>
-                <!-- <span class="label-cliq" value="">Vue satellites</span>
-                <label class="switch">
-                    <input type="checkbox" id="mapStyleCliq" onclick="changeMapStyle()">
-                    <span class="slider"></span>
-                </label> -->
+                </div> -->
             </div>
         </div>  
         <script src="js\listeners.js"></script>
