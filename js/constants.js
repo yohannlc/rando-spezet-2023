@@ -27,41 +27,41 @@ const descriptions = {
 
 /* --------------------------------- Circuits --------------------------------- */
 
-// constantes selon le type de carte : couleurs et offset
-if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  color25c = 'rgb(223, 236, 31)';
-  color25 = 'rgb(54, 147, 191)';
-  color35 = 'rgb(196, 94, 189)';
-  color45 = 'rgb(255, 108, 0)';
-  color45c = 'rgb(255, 58, 0)';
-  color8 = 'rgb(0, 166, 147)';
-  color13 = 'rgb(129, 97, 154)';
-  color17 = 'rgb(236, 75, 75)';
-  if (type == 'all') {
-    lineWitdhCircuit = 2.5;
-    offset = 0.00015;
-  } else {
-    lineWitdhCircuit = 4;
-    offset = 0.00005;
-  }
-} else { // mapbox://styles/mapbox/satellite-streets-v12
-  color25c = 'rgb(229, 229, 71)';
-  color25 = 'rgb(14, 170, 243)';
-  color35 = 'rgb(209, 0, 255)';
-  color45 = 'rgb(255, 108, 0)';
-  color8 = 'rgb(58, 218, 85)';
-  color13 = 'rgb(255, 0, 120)';
-  color17 = 'rgb(252, 143, 128)';
-  if (type == 'all') {
-    lineWitdhCircuit = 2.5;
-    offset = 0.00015;
-  } else {
-    lineWitdhCircuit = 5;
-    offset = 0.00005;
-  }
-}
+// constantes selon le type de carte : couleurs, offset et opacité
+color25c_Out = 'rgb(223, 236, 31)';
+color25_Out = 'rgb(54, 147, 191)';
+color35_Out = 'rgb(196, 94, 189)';
+color45_Out = 'rgb(255, 108, 0)';
+color8_Out = 'rgb(0, 166, 147)';
+color13_Out = 'rgb(129, 97, 154)';
+color17_Out = 'rgb(236, 75, 75)';
+
+color25c_Sat = 'rgb(229, 229, 71)';
+color25_Sat = 'rgb(14, 170, 243)';
+color35_Sat = 'rgb(213, 0, 255)';
+color45_Sat = 'rgb(255, 135, 0)';
+color8_Sat = 'rgb(58, 218, 85)';
+color13_Sat = 'rgb(255, 0, 120)';
+color17_Sat = 'rgb(252, 143, 128)';
+
+lineWitdhCircuit_Out_All = 2.5;
+offset_Out_All = 0.00015;
+lineWitdhCircuit_Out_NotAll = 5;
+offset_Out_NotAll = 0.00008;
+
+lineWitdhCircuit_Sat = 5;
+offset_Sat = 0.00005;
+
 lineOpacityCircuit = 1;
 lineOpacityBackCircuit = 0.3;
+
+if (type == 'all') {
+  lineWitdhCircuit = lineWitdhCircuit_Out_All;
+  offset = offset_Out_All;
+} else {
+  lineWitdhCircuit = lineWitdhCircuit_Out_NotAll;
+  offset = offset_Out_NotAll;
+}
 
 // Décalage des traces
 for (let i = 0; i < coordsCircuit35.length; i++) {
@@ -94,23 +94,41 @@ for (let i = 0; i < coordsCircuit35.length; i++) {
 lineWitdhPortions = 15;
 lineWitdhPortionsPoly = 20;
 lineOpacityPortions = 0.6;
-colorDebrou = "rgb(0, 174, 255)";
-colorSouff = "rgb(184, 21, 21)";
-colorPY = "rgb(255, 255, 0)";
+
+colorDebrou_Out = "rgb(0, 174, 255)";
+colorDebrou_Sat = "rgb(0, 255, 255)";
+
+colorSouff_Out = "rgb(184, 21, 21)";
+colorSouff_Sat = "rgb(255, 0, 0)";
+
+colorPY_Out = "rgb(255, 255, 0)";
+colorPY_Sat = "rgb(255, 255, 0)";
+
+colorTronco_Out = "rgb(88, 61, 21)";
+colorTronco_Sat = "rgb(244, 214, 148)";
+
+lineOpacityPortions_Out = 0.6;
+lineOpacityPortions_Sat = 0.8;
 
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  colorTronco = "rgb(88, 61, 21)";
-  lineOpacityPortions = 0.6;
+  colorTronco = colorTronco_Out;
+  lineOpacityPortions = lineOpacityPortions_Out;
 } else { // mapbox://styles/mapbox/satellite-streets-v12
-  colorTronco = "rgb(244, 214, 148)";
-  lineOpacityPortions = 0.8;
+  colorTronco = colorTronco_Sat;
+  lineOpacityPortions = lineOpacityPortions_Sat;
 }
 
 /* --------------------------------- Points --------------------------------- */
+circleRadius_Out = 8;
+circleRadius_Sat = 10;
+
+colorRavito_Out = "rgb(244, 49, 5)";
+colorRavito_Sat = "rgb(255, 46, 0)";
+
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-  colorRavito = "rgb(244, 49, 5)";
-  circleRadius = 8;
+  colorRavito = colorRavito_Out;
+  circleRadius = circleRadius_Out;
 } else {
-  colorRavito = "rgb(255, 46, 0)";
-  circleRadius = 10;
+  colorRavito = colorRavito_Sat;
+  circleRadius = circleRadius_Sat;
 }

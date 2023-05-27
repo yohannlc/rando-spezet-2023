@@ -12,13 +12,83 @@ function setOnlyOneTrace(circuitName, circuitState, circuitItem) {
 }
 
 function changeLegend() {
-    const divLegend = document.getElementById("legend");
+    const divLegend = document.getElementById("divLegendId");
+    const divParams = document.getElementById("divParamsId");
+
+    var divs = document.getElementsByClassName('legend-circuit');
+
     if (mapStyle == 'mapbox://styles/mapbox/satellite-streets-v12') {
         //ajouter la classe "legend-satellite" à la div d'id "legend"
         divLegend.classList.add("legend-satellite");
+        divParams.classList.add("params-satellite");
+
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25c_Sat + '; height: 3px;');
+        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
+        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
+        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
+        divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Sat + '; height: 3px;');
+        divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Sat + '; height: 3px;');
+        divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Sat + '; height: 3px;');
+        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Sat + '; height: 3px;');
+        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Sat + '; height: 3px;');
+        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Sat + '; height: 3px;');
+        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Sat + '; height: 3px;');
     } else {
         //enlever la classe "legend-satellite" à la div d'id "legend"
         divLegend.classList.remove("legend-satellite");
+        divParams.classList.remove("params-satellite");
+
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25c_Out + '; height: 3px;');
+        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
+        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
+        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
+        divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Out + '; height: 3px;');
+        divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Out + '; height: 3px;');
+        divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Out + '; height: 3px;');
+        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Out + '; height: 3px;');
+        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Out + '; height: 3px;');
+        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
+        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
+    }
+}
+
+function changeConstants() {
+    if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
+        color25c = color25c_Out;
+        color25 = color25_Out;
+        color35 = color35_Out;
+        color45 = color45_Out;
+        color8 = color8_Out;
+        color13 = color13_Out;
+        color17 = color17_Out;
+        if (type == 'all') {
+            lineWitdhCircuit = lineWitdhCircuit_Out;
+            offset = offset_Out_All;
+        } else {
+            lineWitdhCircuit = lineWitdhCircuit_Out_NotAll;
+            offset = offset_Out_NotAll;
+        }
+
+        colorDebrou = colorDebrou_Out;
+        colorSouff = colorSouff_Out;
+        colorPY = colorPY_Out;
+        colorTronco = colorTronco_Out;
+
+    } else { // mapbox://styles/mapbox/satellite-streets-v12
+        color25c = color25c_Sat;
+        color25 = color25_Sat;
+        color35 = color35_Sat;
+        color45 = color45_Sat;
+        color8 = color8_Sat;
+        color13 = color13_Sat;
+        color17 = color17_Sat;
+        lineWitdhCircuit = lineWitdhCircuit_Sat;
+        offset = offset_Sat;
+
+        colorDebrou = colorDebrou_Sat;
+        colorSouff = colorSouff_Sat;
+        colorPY = colorPY_Sat;
+        colorTronco = colorTronco_Sat;
     }
 }
 

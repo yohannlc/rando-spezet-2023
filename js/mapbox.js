@@ -69,7 +69,7 @@ function changeMapStyle() {
   }
   map = createMap(mapStyle);
   changeLegend();
-  
+  changeConstants();
 
   // Attente de changement de la valeur currentZoom = map.getZoom();
   map.on('zoomend', function() {
@@ -90,26 +90,6 @@ function changeMapStyle() {
   });
 }
 
-// // Attente de changement de la valeur currentZoom = map.getZoom();
-// map.on('zoomend', function() {
-//   var currentZoom = map.getZoom();
-//   console.log(currentZoom);
-//   // changer la lineWidth des portions en fonction du zoom
-//   if (currentZoom < 13) {
-//     changeLineWidthCircuit(lineWitdhCircuit);
-//   } else if (currentZoom >= 13 && currentZoom < 14  ) {
-//     changeLineWidthCircuit(lineWitdhCircuit * 0.8);
-//   } else {
-//     changeLineWidthCircuit(lineWitdhCircuit * 0.6);
-//   }
-// });
-
-// // Lors d'un click n'importe où sur la carte
-// map.on('click', function(e) {
-//   console.log("Reset");
-//   resetAllTraces();
-// });
-
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
@@ -121,3 +101,26 @@ if (smartphone != true) {
   circuitsClick('circuit13', map);
   circuitsClick('circuit17', map);
 }
+
+
+/*
+  // Attente de changement de la valeur currentZoom = map.getZoom();
+  map.on('zoomend', function() {
+    var currentZoom = map.getZoom();
+    console.log(currentZoom);
+    // changer la lineWidth des portions en fonction du zoom
+    if (currentZoom < 13) {
+      changeLineWidthCircuit(lineWitdhCircuit);
+    } else if (currentZoom >= 13 && currentZoom < 14  ) {
+      changeLineWidthCircuit(lineWitdhCircuit * 0.8);
+    } else {
+      changeLineWidthCircuit(lineWitdhCircuit * 0.6);
+    }
+  });
+
+  // Lors d'un click n'importe où sur la carte
+  map.on('click', function(e) {
+    console.log("Reset");
+    resetAllTraces();
+  });
+*/
