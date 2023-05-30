@@ -73,7 +73,7 @@ function addPortions() {
   addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
   //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
   addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
   addPortion("kerbeleg1", "debrou", kerbeleg1, lineWitdhPortions, lineOpacityPortions);
   addPortion("kerbeleg2", "debrou", kerbeleg2, lineWitdhPortions, lineOpacityPortions);
   addPortion("kerbeleg3", "debrou", kerbeleg3, lineWitdhPortions, lineOpacityPortions);
@@ -91,7 +91,7 @@ function removePortions() {
   map.removeLayer("verger1");
   map.removeLayer("verger2");
   //map.removeLayer("stang1");
-  map.removeLayer("champLise");
+  //map.removeLayer("champLise");
   map.removeLayer("henry");
   map.removeLayer("cozic1");
   map.removeLayer("kerbeleg1");
@@ -108,7 +108,7 @@ function removePortions() {
   map.removeSource("verger1");
   map.removeSource("verger2");
   //map.removeSource("stang1");
-  map.removeSource("champLise");
+  //map.removeSource("champLise");
   map.removeSource("henry");
   map.removeSource("cozic1");
   map.removeSource("kerbeleg1");
