@@ -2,13 +2,18 @@ let tabStatesPortions = [
   "verger1",false,
   "verger2",false,
   "stang1",false,
+  "champLise",false,
   "cozic1",false,
+  "kerbeleg1",false,
+  "kerbeleg2",false,
+  "kerbeleg3",false,
   "saintGoazec1",false,
   "saintGoazec3",false,
   "halage1",false,
-  "boisRuisseauCrann2",false,
-  "remonterVersPalae1",false,
-  "descenteKerdaffret1",false,
+  "boisRuisseauCrann",false,
+  "remonterVersPalae",false,
+  "descenteKerdaffret",false,
+  "parcALapin",false,
 ]
 
 let tabStatesCircuits = {
