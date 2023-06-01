@@ -78,13 +78,17 @@ function addPortions() {
   addPortion("kerbeleg2", "debrou", kerbeleg2, lineWitdhPortions, lineOpacityPortions);
   addPortion("kerbeleg3", "debrou", kerbeleg3, lineWitdhPortions, lineOpacityPortions);
   addPortion("henry", "debrou", henry, lineWitdhPortions, lineOpacityPortions);
+  addPortion("taquetDuPeintre", "debrou", taquetDuPeintre, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
   //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
   addPortion("boisRuisseauCrann", "tronco", boisRuisseauCrann, lineWitdhPortions, lineOpacityPortions);
-  addPortion("remonterVersPalae", "py", remonterVersPalae, lineWitdhPortions, lineOpacityPortions);
+  //addPortion("remonterVersPalae", "py", remonterVersPalae, lineWitdhPortions, lineOpacityPortions);
   addPortion("descenteKerdaffret", "py", descenteKerdaffret, lineWitdhPortions, lineOpacityPortions);
-  addPortion("parcALapin", "py", parcALapin, lineWitdhPortions, lineOpacityPortions);
+  addPortion("palae", "py", palae, lineWitdhPortions, lineOpacityPortions);
+  addPortion("boisPalae", "tronco", boisPalae, lineWitdhPortions, lineOpacityPortions);
+  addPortion("parcALapin", "debrou", parcALapin, lineWitdhPortions, lineOpacityPortions);
+  addPortion("apresPontPierre", "py", apresPontPierre, lineWitdhPortions, lineOpacityPortions);
 }
   
 function removePortions() {
@@ -93,6 +97,7 @@ function removePortions() {
   //map.removeLayer("stang1");
   //map.removeLayer("champLise");
   map.removeLayer("henry");
+  map.removeLayer("taquetDuPeintre");
   map.removeLayer("cozic1");
   map.removeLayer("kerbeleg1");
   map.removeLayer("kerbeleg2");
@@ -100,16 +105,20 @@ function removePortions() {
   map.removeLayer("saintGoazec1");
   map.removeLayer("saintGoazec3");
   //map.removeLayer("halage1");
-  map.removeLayer("boisRuisseauCrann");
-  map.removeLayer("remonterVersPalae");
   map.removeLayer("descenteKerdaffret");
+  map.removeLayer("boisRuisseauCrann");
+  //map.removeLayer("remonterVersPalae");
+  map.removeLayer("palae");
+  map.removeLayer("boisPalae");
   map.removeLayer("parcALapin");
+  map.removeLayer("apresPontPierre");
 
   map.removeSource("verger1");
   map.removeSource("verger2");
   //map.removeSource("stang1");
   //map.removeSource("champLise");
   map.removeSource("henry");
+  map.removeSource("taquetDuPeintre");
   map.removeSource("cozic1");
   map.removeSource("kerbeleg1");
   map.removeSource("kerbeleg2");
@@ -117,8 +126,11 @@ function removePortions() {
   map.removeSource("saintGoazec1");
   map.removeSource("saintGoazec3");
   //map.removeSource("halage1");
-  map.removeSource("boisRuisseauCrann");
-  map.removeSource("remonterVersPalae");
   map.removeSource("descenteKerdaffret");
+  map.removeSource("boisRuisseauCrann");
+  //map.removeSource("remonterVersPalae");
+  map.removeSource("palae");
+  map.removeSource("boisPalae");
   map.removeSource("parcALapin");
+  map.removeSource("apresPontPierre");
 }
