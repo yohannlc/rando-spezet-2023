@@ -19,11 +19,14 @@ if (smartphone == true) {
 
 const descriptions = {
   "champLise": "Y'a des cultures dans son champ donc faudra aller faire à la débroussailleuse à pied.",
+  "cozic1": "Arbre à couper",
   "saintGoazec1": "Quelques arbres à couper peut-être. Notamment dans la boucle qui descend puis remonte (on ne la voit pas sur la trace ici, elle va vers le nord).",
   "saintGoazec3": "Ici faudra aller check aussi. Peut-être qu'il n'y a rien à faire.",
   "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
   "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
   "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
+  "boisRuisseauCrann": "Arbre à couper",
+  "boisPalae": "Bois à nettoyer, souffleur et quelques arbres",
   "parcALapin": "Pierre-Yves a fait au sol, faire un coup sur les côtés",
 };
 
