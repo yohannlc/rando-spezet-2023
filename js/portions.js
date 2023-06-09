@@ -12,12 +12,12 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
       if (portionName == "circuit45") {
         portionColor = color45;
       } else {
-        portionColor = color45c;
+        portionColor = color45f;
       }
     } else if (portionName == "circuit35") {
       portionColor = color35;
-    } else if (portionName == "circuit25c") {
-      portionColor = color25c;
+    } else if (portionName == "circuit45f") {
+      portionColor = color45f;
     } else if (portionName == "circuit25") {
       portionColor = color25;
     } else if (portionName == "circuit17") {

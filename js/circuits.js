@@ -2,7 +2,7 @@ function addCircuitsVTT() {
     addPortion("circuit45", "circuit", coordsCircuit45, lineWitdhCircuit, lineOpacityCircuit);
     addPortion("circuit35", "circuit", coordsCircuit35, lineWitdhCircuit, lineOpacityCircuit);
     addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
-    addPortion("circuit25c", "circuit", coordsCircuit25c, lineWitdhCircuit, lineOpacityCircuit);
+    addPortion("circuit45f", "circuit", coordsCircuit45f, lineWitdhCircuit, lineOpacityCircuit);
 }
 
 function addPoints() {
@@ -39,12 +39,12 @@ function removeCircuitsVTT() {
     map.removeLayer("circuit45");
     map.removeLayer("circuit35");
     map.removeLayer("circuit25");
-    map.removeLayer("circuit25c");
+    map.removeLayer("circuit45f");
 
     map.removeSource("circuit45");
     map.removeSource("circuit35");
     map.removeSource("circuit25");
-    map.removeSource("circuit25c");
+    map.removeSource("circuit45f");
 }
 
 // Fonction pour changer l'épaissseur des portions
@@ -52,7 +52,7 @@ function changeLineWidthCircuit(lineWidth) {
     map.setPaintProperty("circuit45", 'line-width', lineWidth);
     map.setPaintProperty("circuit35", 'line-width', lineWidth);
     map.setPaintProperty("circuit25", 'line-width', lineWidth);
-    map.setPaintProperty("circuit25c", 'line-width', lineWidth);
+    map.setPaintProperty("circuit45f", 'line-width', lineWidth);
     if (type == "all") {  
         map.setPaintProperty("circuit8", 'line-width', lineWidth);
         map.setPaintProperty("circuit13", 'line-width', lineWidth);

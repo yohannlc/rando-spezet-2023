@@ -22,7 +22,7 @@ function changeLegend() {
         divLegend.classList.add("legend-satellite");
         divParams.classList.add("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25c_Sat + '; height: 3px;');
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Sat + '; height: 3px;');
         divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
         divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
         divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
@@ -38,7 +38,7 @@ function changeLegend() {
         divLegend.classList.remove("legend-satellite");
         divParams.classList.remove("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25c_Out + '; height: 3px;');
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Out + '; height: 3px;');
         divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
         divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
         divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
@@ -54,7 +54,7 @@ function changeLegend() {
 
 function changeConstants() {
     if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
-        color25c = color25c_Out;
+        color45f = color45f_Out;
         color25 = color25_Out;
         color35 = color35_Out;
         color45 = color45_Out;
@@ -75,7 +75,7 @@ function changeConstants() {
         colorTronco = colorTronco_Out;
 
     } else { // mapbox://styles/mapbox/satellite-streets-v12
-        color25c = color25c_Sat;
+        color45f = color45f_Sat;
         color25 = color25_Sat;
         color35 = color35_Sat;
         color45 = color45_Sat;

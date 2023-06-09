@@ -17,7 +17,7 @@ let tabStatesPortions = [
 ]
 
 let tabStatesCircuits = {
-  stateCircuit25c: [false, "circuit25c"],
+  stateCircuit45f: [false, "circuit45f"],
   stateCircuit25: [false, "circuit25"],
   stateCircuit35: [false, "circuit35"],
   stateCircuit45: [false, "circuit45"],
@@ -98,7 +98,7 @@ function changeMapStyle() {
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
-  circuitsClick('circuit25c',map);
+  circuitsClick('circuit45f',map);
   circuitsClick('circuit25', map);
   circuitsClick('circuit35', map);
   circuitsClick('circuit45', map);
