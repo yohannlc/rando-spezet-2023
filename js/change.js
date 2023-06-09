@@ -22,10 +22,10 @@ function changeLegend() {
         divLegend.classList.add("legend-satellite");
         divParams.classList.add("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Sat + '; height: 3px;');
-        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
-        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
-        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
+        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
+        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
+        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Sat + '; height: 3px;');
         divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Sat + '; height: 3px;');
         divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Sat + '; height: 3px;');
         divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Sat + '; height: 3px;');
@@ -38,10 +38,10 @@ function changeLegend() {
         divLegend.classList.remove("legend-satellite");
         divParams.classList.remove("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Out + '; height: 3px;');
-        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
-        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
-        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
+        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
+        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
+        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
+        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Out + '; height: 3px;');
         divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Out + '; height: 3px;');
         divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Out + '; height: 3px;');
         divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Out + '; height: 3px;');
@@ -62,7 +62,7 @@ function changeConstants() {
         color13 = color13_Out;
         color17 = color17_Out;
         if (type == 'all') {
-            lineWitdhCircuit = lineWitdhCircuit_Out;
+            lineWitdhCircuit = lineWitdhCircuit_Out_All;
             offset = offset_Out_All;
         } else {
             lineWitdhCircuit = lineWitdhCircuit_Out_NotAll;

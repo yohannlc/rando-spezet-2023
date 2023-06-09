@@ -76,9 +76,10 @@ function addPortions() {
   addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
   addPortion("karnArVern", "py", karnArVern, lineWitdhPortions, lineOpacityPortions);
   //addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
-  addPortion("kerbeleg1", "debrou", kerbeleg1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("kerbeleg2", "debrou", kerbeleg2, lineWitdhPortions, lineOpacityPortions);
-  addPortion("kerbeleg3", "debrou", kerbeleg3, lineWitdhPortions, lineOpacityPortions);
+  addPortion("kerbellec1", "debrou", kerbellec1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("kerbellec2", "debrou", kerbellec2, lineWitdhPortions, lineOpacityPortions);
+  addPortion("kerbellec3", "debrou", kerbellec3, lineWitdhPortions, lineOpacityPortions);
+  addPortion("kerbellec4", "debrou", kerbellec4, lineWitdhPortions, lineOpacityPortions);
   addPortion("henry", "debrou", henry, lineWitdhPortions, lineOpacityPortions);
   addPortion("taquetDuPeintre", "debrou", taquetDuPeintre, lineWitdhPortions, lineOpacityPortions);
   addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
@@ -102,9 +103,10 @@ function removePortions() {
   map.removeLayer("taquetDuPeintre");
   map.removeLayer("cozic1");
   map.removeLayer("karnArVern");
-  map.removeLayer("kerbeleg1");
-  map.removeLayer("kerbeleg2");
-  map.removeLayer("kerbeleg3");
+  map.removeLayer("kerbellec1");
+  map.removeLayer("kerbellec2");
+  map.removeLayer("kerbellec3");
+  map.removeLayer("kerbellec4");
   map.removeLayer("saintGoazec1");
   map.removeLayer("saintGoazec3");
   //map.removeLayer("halage1");
@@ -114,7 +116,6 @@ function removePortions() {
   map.removeLayer("boisPalae");
   map.removeLayer("parcALapin");
   map.removeLayer("apresPontPierre");
-
   map.removeSource("verger1");
   map.removeSource("verger2");
   map.removeSource("hautKarnArVern");
@@ -124,9 +125,10 @@ function removePortions() {
   map.removeSource("taquetDuPeintre");
   map.removeSource("cozic1");
   map.removeSource("karnArVern");
-  map.removeSource("kerbeleg1");
-  map.removeSource("kerbeleg2");
-  map.removeSource("kerbeleg3");
+  map.removeSource("kerbellec1");
+  map.removeSource("kerbellec2");
+  map.removeSource("kerbellec3");
+  map.removeSource("kerbellec4");
   map.removeSource("saintGoazec1");
   map.removeSource("saintGoazec3");
   //map.removeSource("halage1");

@@ -4,9 +4,9 @@ let tabStatesPortions = [
   "stang1",false,
   "champLise",false,
   "cozic1",false,
-  "kerbeleg1",false,
-  "kerbeleg2",false,
-  "kerbeleg3",false,
+  "kerbellec1",false,
+  "kerbellec2",false,
+  "kerbellec3",false,
   "saintGoazec1",false,
   "saintGoazec3",false,
   "halage1",false,
@@ -17,10 +17,10 @@ let tabStatesPortions = [
 ]
 
 let tabStatesCircuits = {
-  stateCircuit45f: [false, "circuit45f"],
   stateCircuit25: [false, "circuit25"],
   stateCircuit35: [false, "circuit35"],
   stateCircuit45: [false, "circuit45"],
+  stateCircuit45f: [false, "circuit45f"],
   stateCircuit8: [false, "circuit8"],
   stateCircuit13: [false, "circuit13"],
   stateCircuit17: [false, "circuit17"],
@@ -50,6 +50,7 @@ function createMap(myMapStyle) {
   map.on('load', () => {
     addCircuitsVTT();
     addPoints();
+    addPolygons();
     if (type == "all") {addCircuitsMarche();}
     if (typePo == "vttAvecPo") {addPortions();}
   });
@@ -98,10 +99,10 @@ function changeMapStyle() {
 // Si on est pas sur un smartphone, il y a la fonction qui permet de cliquer sur les circuits directement sur la carte
 // Sinon, il faut cocher la case "Circuits Cliquables" pour pouvoir cliquer sur les circuits sur la carte
 if (smartphone != true) { 
-  circuitsClick('circuit45f',map);
   circuitsClick('circuit25', map);
   circuitsClick('circuit35', map);
   circuitsClick('circuit45', map);
+  circuitsClick('circuit45f',map);
   circuitsClick('circuit8', map);
   circuitsClick('circuit13', map);
   circuitsClick('circuit17', map);

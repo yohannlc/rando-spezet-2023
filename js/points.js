@@ -28,3 +28,9 @@ function addPoint(pointName, pointType, pointCoordinates, pointColor) {
       pointHoverLeave(pointName);
     }
   }
+
+function addPoints() {
+  addPoint("ravito1Cudel", "ravito", ravito1Cudel, colorRavito);
+  addPoint("ravito2BallTrap", "ravito", ravito2BallTrap, colorRavito);
+  addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
+}

@@ -28,27 +28,26 @@ legendItems.forEach(function(item, index) {
     resetAllTraces();
     switch(index) {
       case 0:
-        tabStatesCircuits.stateCircuit25c[0] = !tabStatesCircuits.stateCircuit25c[0];
-        //afficherDivTexteId('Circuit 25c');
-        setOnlyOneTrace('circuit25c', tabStatesCircuits.stateCircuit25c[0], item);
-        break;
-      case 1:
-        console.log("after :", index);
         tabStatesCircuits.stateCircuit25[0] = !tabStatesCircuits.stateCircuit25[0];
         //afficherDivTexteId('Circuit 25');
-        //ajouter la class "legendColor" à TOUTES les divs qui ont pour parent la div d'id "legendCircuitsVTT"
-        document.getElementById("legendCircuitsVTT").querySelectorAll("div").forEach(function(item) {item.classList.add("legendColor");});
         setOnlyOneTrace('circuit25', tabStatesCircuits.stateCircuit25[0], item);
         break;
-      case 2:
+      case 1:
         tabStatesCircuits.stateCircuit35[0] = !tabStatesCircuits.stateCircuit35[0];
         //afficherDivTexteId('Circuit 35');
+        //ajouter la class "legendColor" à TOUTES les divs qui ont pour parent la div d'id "legendCircuitsVTT"
+        document.getElementById("legendCircuitsVTT").querySelectorAll("div").forEach(function(item) {item.classList.add("legendColor");});
         setOnlyOneTrace('circuit35', tabStatesCircuits.stateCircuit35[0], item);
         break;
-      case 3:
-        tabStatesCircuits.stateCircuit45[0] = !tabStatesCircuits.stateCircuit45[0];
+      case 2:
+        tabStatesCircuits.stateCircuit45[0] = !tabStatesCircuits.stateCircuit35[0];
         //afficherDivTexteId('Circuit 45');
         setOnlyOneTrace('circuit45', tabStatesCircuits.stateCircuit45[0], item);
+        break;
+      case 3:
+        tabStatesCircuits.stateCircuit45f[0] = !tabStatesCircuits.stateCircuit45f[0];
+        //afficherDivTexteId('Circuit 45f');
+        setOnlyOneTrace('circuit45f', tabStatesCircuits.stateCircuit45f[0], item);
         break;
       default:
         return;
