@@ -3,7 +3,6 @@ let type = 'notAll'; // notAll = plus pour le mode logiciel, ou on peut zoomer d
 let typePo = 'vttSansPo'; // état initial : on affiche les circuits VTT sans portions
 
 let mapStyle = 'mapbox://styles/mapbox/outdoors-v12';
-//let mapStyle = 'mapbox://styles/mapbox/satellite-streets-v12';
 
 // Savoir quel est le type d'appareil (pc ou smartphone)
 let smartphone = false; //par défaut, on considère que c'est un pc
@@ -54,7 +53,8 @@ color17_Sat = 'rgb(252, 143, 128)';
 lineWitdhCircuit_Out_All = 2.5;
 offset_Out_All = 0.00015;
 lineWitdhCircuit_Out_NotAll = 5;
-offset_Out_NotAll = 0.00008;
+// offset_Out_NotAll = 0.00008;
+offset_Out_NotAll = 0.00006;
 
 lineWitdhCircuit_Sat = 5;
 offset_Sat = 0.00005;
@@ -140,6 +140,6 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   circleRadius = circleRadius_Sat;
 }
 
-/* --------------------------------- Points --------------------------------- */
+/* --------------------------------- Polygons --------------------------------- */
 colorFleche1 = "rgb(244, 49, 5)";
 colorFleche2 = "rgb(244, 49, 5)";
