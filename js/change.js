@@ -74,6 +74,8 @@ function changeConstants() {
         colorPY = colorPY_Out;
         colorTronco = colorTronco_Out;
 
+        colorFleche1 = color45f_Out;
+        colorFleche2 = color35_Out;
     } else { // mapbox://styles/mapbox/satellite-streets-v12
         color45f = color45f_Sat;
         color25 = color25_Sat;
@@ -89,6 +91,9 @@ function changeConstants() {
         colorSouff = colorSouff_Sat;
         colorPY = colorPY_Sat;
         colorTronco = colorTronco_Sat;
+
+        colorFleche1 = color45f_Sat;
+        colorFleche2 = color35_Sat;
     }
 }
 
