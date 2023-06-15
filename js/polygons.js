@@ -9,7 +9,7 @@ function addPolygon(polygonName, polygonCoordinates, polygonColor) {
       },
       "geometry": {
         "type": "Polygon",
-        "coordinates": [polygonCoordinates]
+        "coordinates": polygonCoordinates
       }
     }
   });
@@ -22,6 +22,7 @@ function addPolygon(polygonName, polygonCoordinates, polygonColor) {
       'fill-opacity': 1
     }
   });
+
 }
 
 function addPolygons() {

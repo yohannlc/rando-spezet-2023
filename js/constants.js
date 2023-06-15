@@ -141,5 +141,5 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
 }
 
 /* --------------------------------- Polygons --------------------------------- */
-colorFleche1 = "rgb(244, 49, 5)";
-colorFleche2 = "rgb(244, 49, 5)";
+colorFleche1 = color45f_Out;
+colorFleche2 = color35_Out;
