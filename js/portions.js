@@ -79,6 +79,7 @@ function addPortions() {
   // addPortion("karnArVern", "py", karnArVern, lineWitdhPortions, lineOpacityPortions);
   addPortion("herbeAvantPoulancerf", "debrou", herbeAvantPoulancerf, lineWitdhPortions, lineOpacityPortions);
   // addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
+  addPortion("avantKermariou", "cotes", avantKermariou, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec1", "debrou", kerbellec1, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec2", "debrou", kerbellec2, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec3", "debrou", kerbellec3, lineWitdhPortions, lineOpacityPortions);
@@ -112,6 +113,7 @@ function removePortions() {
   removePortion("herbeAvantPoulancerf");
   // removePortion("stang1");
   // removePortion("champLise");
+  removePortion("avantKermariou");
   removePortion("henry");
   removePortion("derriereCudel");
   removePortion("avantGaecNormand");
