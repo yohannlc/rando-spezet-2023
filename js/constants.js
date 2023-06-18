@@ -84,8 +84,8 @@ for (let i = 0; i < coordsCircuit35.length; i++) {
     coordsCircuit35[i][1] += offset;
   }
   for (let i = 0; i < coordsCircuit25.length; i++) {
-    coordsCircuit25[i][0] -= offset*2;
-    coordsCircuit25[i][1] -= offset*2;
+    coordsCircuit25[i][0] += offset*2;
+    coordsCircuit25[i][1] += offset*2;
   }
   for (let i = 0; i < coordsCircuit45f.length; i++) {
     coordsCircuit45f[i][0] -= offset;
