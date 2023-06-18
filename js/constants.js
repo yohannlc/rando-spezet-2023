@@ -27,6 +27,7 @@ const descriptions = {
   "henry": "Peut-être faire un coup ici",
   "ravitoBisMaguet": "45 - 12<sup>e</sup> km",
   "derriereCudel": "Prendre un sécateur ou un truc assez gros pendant le balisage",
+  "avantGaecNormand": "Faire les côtés, c'est très limite",
   "taquetDuPeintre": "Faire les côtés",
   "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
   "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
