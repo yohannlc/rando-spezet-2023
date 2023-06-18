@@ -50,6 +50,7 @@ function changeLegend() {
         divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
         divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
     }
+    divs[11].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorCotes + '; height: 3px;');
 }
 
 function changeConstants() {
@@ -123,12 +124,10 @@ function changeType(checkboxType) {
     if (checkboxType.checked) {
         typePo = 'vttAvecPo';
         addPortions();
-        console.log('addPortions()');
         addLegendPortions();
     } else {
         typePo = 'vttSansPo';
         removePortions();
-        console.log('removePortions()');
         removeLegendPortions();
     }
 }

@@ -6,6 +6,8 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
       portionColor = colorTronco;
     } else if (portionType == "py") {
       portionColor = colorPY;
+    } else if (portionType == "cotes") {
+      portionColor = colorCotes;
     } else if (portionType == "souff") {
       portionColor = colorSouff;
     } else if (portionName.includes("circuit45")) {
@@ -69,28 +71,32 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
 }
   
 function addPortions() {
-  addPortion("verger1", "py", verger1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("verger2", "py", verger2, lineWitdhPortions, lineOpacityPortions);
-  //addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("hautKarnArVern", "py", hautKarnArVern, lineWitdhPortions, lineOpacityPortions);
-  // addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
-  addPortion("karnArVern", "py", karnArVern, lineWitdhPortions, lineOpacityPortions);
-  addPortion("herbeAvantPoulancerf", "py", herbeAvantPoulancerf, lineWitdhPortions, lineOpacityPortions)
-  //addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger1", "cotes", verger1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("verger2", "cotes", verger2, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("stang1", "debrou", stang1, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("hautKarnArVern", "py", hautKarnArVern, lineWitdhPortions, lineOpacityPortions);
+  addPortion("cozic1", "tronco", cozic1, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("karnArVern", "py", karnArVern, lineWitdhPortions, lineOpacityPortions);
+  addPortion("herbeAvantPoulancerf", "debrou", herbeAvantPoulancerf, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("champLise", "debrou", champLise, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec1", "debrou", kerbellec1, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec2", "debrou", kerbellec2, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec3", "debrou", kerbellec3, lineWitdhPortions, lineOpacityPortions);
   // addPortion("kerbellec4", "debrou", kerbellec4, lineWitdhPortions, lineOpacityPortions);
   addPortion("henry", "debrou", henry, lineWitdhPortions, lineOpacityPortions);
-  addPortion("taquetDuPeintre", "debrou", taquetDuPeintre, lineWitdhPortions, lineOpacityPortions);
+  addPortion("derriereCudel", "cotes", derriereCudel, lineWitdhPortions, lineOpacityPortions);
+  addPortion("avantGaecNormand", "cotes", avantGaecNormand, lineWitdhPortions, lineOpacityPortions);
+  addPortion("taquetDuPeintre", "cotes", taquetDuPeintre, lineWitdhPortions, lineOpacityPortions);
+  addPortion("apresCudel", "debrou", apresCudel, lineWitdhPortions, lineOpacityPortions);
   // addPortion("saintGoazec1", "tronco", saintGoazec1, lineWitdhPortionsPoly, lineOpacityPortions);
   // addPortion("saintGoazec3", "tronco", saintGoazec3, lineWitdhPortionsPoly, lineOpacityPortions);
-  //addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
-  //addPortion("remonterVersPalae", "py", remonterVersPalae, lineWitdhPortions, lineOpacityPortions);
-  //addPortion("descenteKerdaffret", "py", descenteKerdaffret, lineWitdhPortions, lineOpacityPortions);
-  addPortion("palae", "py", palae, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("halage1", "py", halage1, lineWitdhPortions, lineOpacityPortions);
+  addPortion("halageAvantPasserelle", "debrou", halageAvantPasserelle, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("remonterVersPalae", "py", remonterVersPalae, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("descenteKerdaffret", "py", descenteKerdaffret, lineWitdhPortions, lineOpacityPortions);
+  addPortion("palae", "cotes", palae, lineWitdhPortions, lineOpacityPortions);
   // addPortion("boisPalae", "tronco", boisPalae, lineWitdhPortions, lineOpacityPortions);
-  addPortion("parcALapin", "debrou", parcALapin, lineWitdhPortions, lineOpacityPortions);
+  // addPortion("parcALapin", "cotes", parcALapin, lineWitdhPortions, lineOpacityPortions);
   // addPortion("apresPontPierre", "py", apresPontPierre, lineWitdhPortions, lineOpacityPortions);
 }
 
@@ -102,14 +108,17 @@ function removePortion(portionName) {
 function removePortions() {
   removePortion("verger1");
   removePortion("verger2");
-  removePortion("hautKarnArVern");
+  // removePortion("hautKarnArVern");
   removePortion("herbeAvantPoulancerf");
   // removePortion("stang1");
   // removePortion("champLise");
   removePortion("henry");
+  removePortion("derriereCudel");
+  removePortion("avantGaecNormand");
   removePortion("taquetDuPeintre");
-  // removePortion("cozic1");
-  removePortion("karnArVern");
+  removePortion("apresCudel");
+  removePortion("cozic1");
+  // removePortion("karnArVern");
   // removePortion("kerbellec1");
   // removePortion("kerbellec2");
   // removePortion("kerbellec3");
@@ -117,10 +126,11 @@ function removePortions() {
   // removePortion("saintGoazec1");
   // removePortion("saintGoazec3");
   // removePortion("halage1");
+  removePortion("halageAvantPasserelle");
   // removePortion("descenteKerdaffret");
   // removePortion("remonterVersPalae");
   removePortion("palae");
   // removePortion("boisPalae");
-  removePortion("parcALapin");
+  // removePortion("parcALapin");
   // removePortion("apresPontPierre");
 }

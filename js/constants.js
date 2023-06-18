@@ -17,16 +17,23 @@ if (smartphone == true) {
 }
 
 const descriptions = {
+  "verger1": "Faire les côtés avec une débroussailleuse",
+  "verger2": "Faire les côtés avec une débroussailleuse",
   "herbeAvantPoulancerf":"Refaire un coup d'ici la randonnée, les côtés sont retombés",
   "champLise": "Hélène s'en occupe",
   "cozic1": "Arbre à couper",
   "saintGoazec1": "Quelques arbres à couper peut-être. Notamment dans la boucle qui descend puis remonte (on ne la voit pas sur la trace ici, elle va vers le nord).",
   "saintGoazec3": "Ici faudra aller check aussi. Peut-être qu'il n'y a rien à faire.",
+  "henry": "Peut-être faire un coup ici",
   "ravitoBisMaguet": "45 - 12<sup>e</sup> km",
+  "derriereCudel": "Prendre un sécateur ou un truc assez gros pendant le balisage",
+  "taquetDuPeintre": "Faire les côtés",
   "ravito1Cudel": "35 - 10<sup>e</sup> km<br>45 - 18<sup>e</sup> km<br>",
   "ravito2BallTrap": "25 - 11<sup>e</sup> km<br>35 - 19<sup>e</sup> km<br>45 - 27<sup>e</sup> km<br>",
+  "halageAvantPasserelle": "Fin du halage avant de prendre la nouvelle passerelle pour remonter chez Thierry : faudra faire un coup nous même",
   "ravito3Kerdaffret": "25 - 20<sup>e</sup> km<br>35 - 28<sup>e</sup> km<br>45 - 36<sup>e</sup> km<br>",
   "boisRuisseauCrann": "Arbre à couper",
+  "palae": "Faire les côtés aussi",
   "boisPalae": "Bois à nettoyer, souffleur et quelques arbres",
   "parcALapin": "Pierre-Yves a fait au sol, faire un coup sur les côtés",
 };
@@ -113,6 +120,8 @@ colorPY_Sat = "rgb(255, 255, 0)";
 
 colorTronco_Out = "rgb(88, 61, 21)";
 colorTronco_Sat = "rgb(244, 214, 148)";
+
+colorCotes = "rgb(0, 255, 162)";
 
 lineOpacityPortions_Out = 0.6;
 lineOpacityPortions_Sat = 0.8;
