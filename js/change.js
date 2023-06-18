@@ -123,9 +123,13 @@ function changeType(checkboxType) {
     if (checkboxType.checked) {
         typePo = 'vttAvecPo';
         addPortions();
+        console.log('addPortions()');
+        addLegendPortions();
     } else {
         typePo = 'vttSansPo';
         removePortions();
+        console.log('removePortions()');
+        removeLegendPortions();
     }
 }
 
@@ -136,4 +140,14 @@ function changeCheckboxCircCliq() {
         boolCircleCliq = false;
         resetAllTraces();
     }
+}
+
+function addLegendPortions() {
+    const divTexteId = document.getElementById("legendPortions");
+    divTexteId.classList.add("show");
+}
+
+function removeLegendPortions() {
+    const divTexteId = document.getElementById("legendPortions");
+    divTexteId.classList.remove("show");
 }

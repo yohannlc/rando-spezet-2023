@@ -16,13 +16,13 @@ body {
 .popup {
     display: none;
     position: fixed;
-    left: 50%;
-    top : 8vh;
+    left: 50vw;
+    top: 8vh;
     font-size: 1em;
     transform: translate(-50%, -50%);
     border-radius: 5px;
     background-color: #f9f9f9;
-    padding: 20px;
+    padding: 2vh;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     z-index: 9999;
@@ -93,13 +93,6 @@ span {
     margin-top: 10px;
 }
 
-@media screen and (max-width: 1000px) {
-    .div-map {
-        width: 100vw;
-        height: 100vh;
-    }
-}
-
 /* ------------------ left-component ------------------ */
 
 .left-component {
@@ -121,6 +114,7 @@ span {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
     font: 20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
     padding: 10px;
+    height: auto;
 }
     
 .legend h4 {
@@ -129,10 +123,9 @@ span {
 
 @media screen and (max-width: 1000px) {
     .legend {
-        min-width: 0px; /*pour suppr celui de la classe parente*/
-        width: auto;
         font-size: 15px;
         height: auto;
+        max-width: 50vw;
     }
     .legend h4 {
         margin: 0 0 5px;
@@ -163,14 +156,19 @@ span {
 }
 
 #legendCircuitsMarche {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
+    display: none;
 }
 
 #legendCircuitsMarche.show {
-    opacity: 1;
-    visibility: visible;
+    display: block;
+}
+
+#legendPortions {
+    display: none;
+}
+
+#legendPortions.show {
+    display: block;
 }
 
 /* ------------------ Parameters ------------------ */
