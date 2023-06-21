@@ -1,4 +1,4 @@
-//let type = 'all'; // all = on veut voir toutes les traces en entier, utile pour prendre un screen
+// let type = 'all'; // all = on veut voir toutes les traces en entier, utile pour prendre un screen
 let type = 'notAll'; // notAll = plus pour le mode logiciel, ou on peut zoomer donc pas besoin de gros offset
 let typePo = 'vttSansPo'; // état initial : on affiche les circuits VTT sans portions
 
@@ -65,18 +65,31 @@ lineWitdhCircuit_Out_NotAll = 5;
 // offset_Out_NotAll = 0.00008;
 offset_Out_NotAll = 0.00006;
 
-lineWitdhCircuit_Sat = 5;
-offset_Sat = 0.00005;
+
+lineWitdhCircuit_Sat_All = 3;
+offset_Sat_All = 0.0002;
+lineWitdhCircuit_Sat_NotAll = 5;
+offset_Sat_NotAll = 0.00005;
 
 lineOpacityCircuit = 1;
 lineOpacityBackCircuit = 0.15;
 
 if (type == 'all') {
-  lineWitdhCircuit = lineWitdhCircuit_Out_All;
-  offset = offset_Out_All;
+  if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
+    lineWitdhCircuit = lineWitdhCircuit_Out_All;
+    offset = offset_Out_All;
+  } else {
+    lineWitdhCircuit = lineWitdhCircuit_Sat_All;
+    offset = offset_Sat_All;
+  }
 } else {
-  lineWitdhCircuit = lineWitdhCircuit_Out_NotAll;
-  offset = offset_Out_NotAll;
+  if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
+    lineWitdhCircuit = lineWitdhCircuit_Out_NotAll;
+    offset = offset_Out_NotAll;
+  } else {
+    lineWitdhCircuit = lineWitdhCircuit_Sat_NotAll;
+    offset = offset_Sat_NotAll;
+  }
 }
 
 // Décalage des traces
@@ -137,11 +150,12 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
 }
 
 /* --------------------------------- Points --------------------------------- */
-circleRadius_Out = 8;
-circleRadius_Sat = 10;
+circleRadius_Out = 10;
+circleRadius_Sat = 15;
 
 colorRavito_Out = "rgb(244, 49, 5)";
-colorRavito_Sat = "rgb(255, 46, 0)";
+// colorRavito_Sat = "rgb(255, 46, 0)";
+colorRavito_Sat = "rgb(0, 255, 162)";
 
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
   colorRavito = colorRavito_Out;
@@ -152,5 +166,7 @@ if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
 }
 
 /* --------------------------------- Polygons --------------------------------- */
-colorFleche1 = color45f_Out;
-colorFleche2 = color35_Out;
+colorFleche45f = color45f_Sat;
+colorFleche45 = color45_Sat;
+colorFleche35 = color35_Sat;
+colorFleche25 = color25_Sat;
