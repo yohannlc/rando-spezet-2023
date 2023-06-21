@@ -143,6 +143,7 @@ span {
     height: 15px;
     width: 15px;
     border-radius: 100px;
+    text-align: center;
 }
 
 .clickable:hover {
@@ -152,10 +153,11 @@ span {
 .flex {
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 
 #legendCircuitsMarche {
+
+    margin-left: 10px;
     display: none;
 }
 

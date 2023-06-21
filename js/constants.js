@@ -154,7 +154,6 @@ circleRadius_Out = 10;
 circleRadius_Sat = 15;
 
 colorRavito_Out = "rgb(244, 49, 5)";
-// colorRavito_Sat = "rgb(255, 46, 0)";
 colorRavito_Sat = "rgb(0, 255, 162)";
 
 if (mapStyle == 'mapbox://styles/mapbox/outdoors-v12') {
