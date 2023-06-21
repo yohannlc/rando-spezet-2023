@@ -67,7 +67,7 @@ offset_Out_NotAll = 0.00006;
 
 
 lineWitdhCircuit_Sat_All = 3;
-offset_Sat_All = 0.0002;
+offset_Sat_All = 0.0003;
 lineWitdhCircuit_Sat_NotAll = 5;
 offset_Sat_NotAll = 0.00005;
 

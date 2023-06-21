@@ -34,6 +34,6 @@ function addPoints() {
   addPoint("ravito2BallTrap", "ravito", ravito2BallTrap, colorRavito);
   addPoint("ravito3Kerdaffret", "ravito", ravito3Kerdaffret, colorRavito);
   addPoint("ravitoBisMaguet", "ravito", ravitoBisMaguet, colorRavito);
-  addPoint("ravitoChapelle", "ravito", ravitoChapelle, colorRavito);
-  addPoint("ravitoValentin", "ravito", ravitoValentin, colorRavito);
+  // addPoint("ravitoChapelle", "ravito", ravitoChapelle, colorRavito);
+  // addPoint("ravitoValentin", "ravito", ravitoValentin, colorRavito);
 }
