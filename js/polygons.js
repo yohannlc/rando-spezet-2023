@@ -33,7 +33,7 @@ function addPolygons() {
   addPolygon("fleche3_25", fleche3_25, colorFleche25);
   addPolygon("fleche4_25", fleche4_25, colorFleche25);
   addPolygon("fleche2_45", fleche2_45, colorFleche45);
-  addPolygon("fleche2_45f", fleche2_45f, colorFleche45f);
+  // addPolygon("fleche2_45f", fleche2_45f, colorFleche45f);
   addPolygon("fleche1_35", fleche1_35, colorFleche35);
   addPolygon("fleche3_45", fleche3_45, colorFleche45);
   addPolygon("fleche3_45f", fleche3_45f, colorFleche45f);
