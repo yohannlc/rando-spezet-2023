@@ -49,9 +49,12 @@ function createMap(myMapStyle) {
   // Ajout des traces (circuits et portions)
   map.on('load', () => {
     addCircuitsVTT();
-    addPoints();
     addPolygons();
-    if (type == "all") {addCircuitsMarche();}
+    if (type == "all") {
+      addCircuitsMarche();
+      addPolygonsAll();
+    }
+    addPoints();
     if (typePo == "vttAvecPo") {addPortions();}
   });
 

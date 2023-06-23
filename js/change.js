@@ -75,6 +75,8 @@ function changeConstants() {
         colorPY = colorPY_Out;
         colorTronco = colorTronco_Out;
 
+        colorRavito = colorRavito_Out;
+
         colorFleche1 = color45f_Out;
         colorFleche2 = color35_Out;
     } else { // mapbox://styles/mapbox/satellite-streets-v12
@@ -85,13 +87,21 @@ function changeConstants() {
         color8 = color8_Sat;
         color13 = color13_Sat;
         color17 = color17_Sat;
-        lineWitdhCircuit = lineWitdhCircuit_Sat;
-        offset = offset_Sat;
+
+        if (type == 'all') {
+            lineWitdhCircuit = lineWitdhCircuit_Sat_All;
+            offset = offset_Sat_All;
+        } else {
+            lineWitdhCircuit = lineWitdhCircuit_Sat_NotAll;
+            offset = offset_Sat_NotAll;
+        }
 
         colorDebrou = colorDebrou_Sat;
         colorSouff = colorSouff_Sat;
         colorPY = colorPY_Sat;
         colorTronco = colorTronco_Sat;
+
+        colorRavito = colorRavito_Sat;
 
         colorFleche1 = color45f_Sat;
         colorFleche2 = color35_Sat;
