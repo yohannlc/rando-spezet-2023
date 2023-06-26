@@ -29,7 +29,7 @@ function addPortion(portionName, portionType, portionCoordinates, portionLineWit
     } else if (portionName == "circuit8") {
       portionColor = color8;
     } else {
-      portionColor = "rgb(0, 0, 0)";
+      portionColor = colorDebrou;
     }
     
     map.addSource(portionName, {

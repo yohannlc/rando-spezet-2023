@@ -12,45 +12,45 @@ function setOnlyOneTrace(circuitName, circuitState, circuitItem) {
 }
 
 function changeLegend() {
-    const divLegend = document.getElementById("divLegendId");
-    const divParams = document.getElementById("divParamsId");
+    // const divLegend = document.getElementById("divLegendId");
+    // const divParams = document.getElementById("divParamsId");
 
-    var divs = document.getElementsByClassName('legend-circuit');
+    // var divs = document.getElementsByClassName('legend-circuit');
 
-    if (mapStyle == 'mapbox://styles/mapbox/satellite-streets-v12') {
-        //ajouter la classe "legend-satellite" à la div d'id "legend"
-        divLegend.classList.add("legend-satellite");
-        divParams.classList.add("params-satellite");
+    // if (mapStyle == 'mapbox://styles/mapbox/satellite-streets-v12') {
+    //     //ajouter la classe "legend-satellite" à la div d'id "legend"
+    //     divLegend.classList.add("legend-satellite");
+    //     divParams.classList.add("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
-        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
-        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
-        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Sat + '; height: 3px;');
-        divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Sat + '; height: 3px;');
-        divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Sat + '; height: 3px;');
-        divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Sat + '; height: 3px;');
-        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Sat + '; height: 3px;');
-        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Sat + '; height: 3px;');
-        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Sat + '; height: 3px;');
-        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Sat + '; height: 3px;');
-    } else {
-        //enlever la classe "legend-satellite" à la div d'id "legend"
-        divLegend.classList.remove("legend-satellite");
-        divParams.classList.remove("params-satellite");
+    //     divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Sat + '; height: 3px;');
+    //     divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Sat + '; height: 3px;');
+    //     divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Sat + '; height: 3px;');
+    //     divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Sat + '; height: 3px;');
+    //     divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Sat + '; height: 3px;');
+    //     divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Sat + '; height: 3px;');
+    //     divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Sat + '; height: 3px;');
+    //     divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Sat + '; height: 3px;');
+    //     divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Sat + '; height: 3px;');
+    //     divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Sat + '; height: 3px;');
+    //     divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Sat + '; height: 3px;');
+    // } else {
+    //     //enlever la classe "legend-satellite" à la div d'id "legend"
+    //     divLegend.classList.remove("legend-satellite");
+    //     divParams.classList.remove("params-satellite");
 
-        divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
-        divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
-        divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
-        divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Out + '; height: 3px;');
-        divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Out + '; height: 3px;');
-        divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Out + '; height: 3px;');
-        divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Out + '; height: 3px;');
-        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Out + '; height: 3px;');
-        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Out + '; height: 3px;');
-        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
-        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
-    }
-    divs[11].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorCotes + '; height: 3px;');
+    //     divs[0].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color25_Out + '; height: 3px;');
+    //     divs[1].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color35_Out + '; height: 3px;');
+    //     divs[2].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45_Out + '; height: 3px;');
+    //     divs[3].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color45f_Out + '; height: 3px;');
+    //     divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Out + '; height: 3px;');
+    //     divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Out + '; height: 3px;');
+    //     divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Out + '; height: 3px;');
+    //     divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Out + '; height: 3px;');
+    //     divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Out + '; height: 3px;');
+    //     divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
+    //     divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
+    // }
+    // divs[11].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorCotes + '; height: 3px;');
 }
 
 function changeConstants() {
@@ -152,11 +152,11 @@ function changeCheckboxCircCliq() {
 }
 
 function addLegendPortions() {
-    const divTexteId = document.getElementById("legendPortions");
-    divTexteId.classList.add("show");
+    // const divTexteId = document.getElementById("legendPortions");
+    // divTexteId.classList.add("show");
 }
 
 function removeLegendPortions() {
-    const divTexteId = document.getElementById("legendPortions");
-    divTexteId.classList.remove("show");
+    // const divTexteId = document.getElementById("legendPortions");
+    // divTexteId.classList.remove("show");
 }

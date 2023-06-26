@@ -5,6 +5,11 @@ function addCircuitsVTT() {
     addPortion("circuit25", "circuit", coordsCircuit25, lineWitdhCircuit, lineOpacityCircuit);
 }
 
+function addDebalisage() {
+    addPortion("debalisage1", "circuit", coordsDebalisage1, lineWitdhCircuit, lineOpacityCircuit);
+    addPortion("debalisage2", "circuit", coordsDebalisage2, lineWitdhCircuit, lineOpacityCircuit);
+}
+
 function addCircuitsMarche() {
     addPortion("circuit17", "circuit", coordsCircuit17, lineWitdhCircuit, lineOpacityCircuit);
     addPortion("circuit13", "circuit", coordsCircuit13, lineWitdhCircuit, lineOpacityCircuit);
@@ -43,13 +48,16 @@ function removeCircuitsVTT() {
 
 // Fonction pour changer l'épaissseur des portions
 function changeLineWidthCircuit(lineWidth) {
-    map.setPaintProperty("circuit45f", 'line-width', lineWidth);
-    map.setPaintProperty("circuit45", 'line-width', lineWidth);
-    map.setPaintProperty("circuit35", 'line-width', lineWidth);
-    map.setPaintProperty("circuit25", 'line-width', lineWidth);
-    if (type == "all") {  
-        map.setPaintProperty("circuit8", 'line-width', lineWidth);
-        map.setPaintProperty("circuit13", 'line-width', lineWidth);
-        map.setPaintProperty("circuit17", 'line-width', lineWidth);
-    }
+    // map.setPaintProperty("circuit45f", 'line-width', lineWidth);
+    // map.setPaintProperty("circuit45", 'line-width', lineWidth);
+    // map.setPaintProperty("circuit35", 'line-width', lineWidth);
+    // map.setPaintProperty("circuit25", 'line-width', lineWidth);
+    // if (type == "all") {  
+    //     map.setPaintProperty("circuit8", 'line-width', lineWidth);
+    //     map.setPaintProperty("circuit13", 'line-width', lineWidth);
+    //     map.setPaintProperty("circuit17", 'line-width', lineWidth);
+    // }
+    
+    map.setPaintProperty("debalisage1", 'line-width', lineWidth);
+    map.setPaintProperty("debalisage2", 'line-width', lineWidth);
 }
