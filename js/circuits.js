@@ -7,7 +7,6 @@ function addCircuitsVTT() {
 
 function addDebalisage() {
     addPortion("debalisage1", "circuit", coordsDebalisage1, lineWitdhCircuit, lineOpacityCircuit);
-    addPortion("debalisage2", "circuit", coordsDebalisage2, lineWitdhCircuit, lineOpacityCircuit);
 }
 
 function addCircuitsMarche() {
@@ -59,5 +58,4 @@ function changeLineWidthCircuit(lineWidth) {
     // }
     
     map.setPaintProperty("debalisage1", 'line-width', lineWidth);
-    map.setPaintProperty("debalisage2", 'line-width', lineWidth);
 }
