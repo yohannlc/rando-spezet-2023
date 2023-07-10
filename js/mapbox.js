@@ -49,13 +49,13 @@ function createMap(myMapStyle) {
   // Ajout des traces (circuits et portions)
   map.on('load', () => {
     addDebalisage();
-    // addCircuitsVTT();
+    addCircuitsVTT();
     // addPolygons();
-    // if (type == "all") {
-    //   addCircuitsMarche();
-    //   addPolygonsAll();
-    // }
-    // addPoints();
+    if (type == "all") {
+      addCircuitsMarche();
+      // addPolygonsAll();
+    }
+    addPoints();
     // if (typePo == "vttAvecPo") {addPortions();}
   });
 
@@ -78,7 +78,7 @@ function changeMapStyle() {
     map.remove();
   }
   map = createMap(mapStyle);
-  // changeLegend();
+  changeLegend();
   changeConstants();
 
   // Attente de changement de la valeur currentZoom = map.getZoom();

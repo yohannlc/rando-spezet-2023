@@ -16,6 +16,7 @@ function resetAllTraces() {
     }
   
     // Pour chaque portion du tableau tabStatesPortions
+    /*
     reset = true;
     for (let i = 0; i < tabStatesPortions.length; i+=2) {
       if (tabStatesPortions[i+1]) {                                                     // Si la trace est activée
@@ -24,6 +25,7 @@ function resetAllTraces() {
         map.setPaintProperty(tabStatesPortions[i], 'line-width', lineWitdhPortions);      // On remet la largeur de la ligne à la normale
       }
     }
+    */
 }
 
 // Gérer l'affichage de la popup de texte

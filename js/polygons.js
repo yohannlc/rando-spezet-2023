@@ -46,7 +46,7 @@ function addPolygons() {
 }
 
 function addPolygonsAll() {
-  // addPolygon("flecheMarche1", flecheMarche1, color13_Sat);
-  // addPolygon("flecheMarche2", flecheMarche2, color8_Sat);
-  // addPolygon("flecheMarche3", flecheMarche3, color17_Sat);
+  addPolygon("flecheMarche1", flecheMarche1, color13_Sat);
+  addPolygon("flecheMarche2", flecheMarche2, color8_Sat);
+  addPolygon("flecheMarche3", flecheMarche3, color17_Sat);
 }

@@ -47,15 +47,15 @@ function removeCircuitsVTT() {
 
 // Fonction pour changer l'épaissseur des portions
 function changeLineWidthCircuit(lineWidth) {
-    // map.setPaintProperty("circuit45f", 'line-width', lineWidth);
-    // map.setPaintProperty("circuit45", 'line-width', lineWidth);
-    // map.setPaintProperty("circuit35", 'line-width', lineWidth);
-    // map.setPaintProperty("circuit25", 'line-width', lineWidth);
-    // if (type == "all") {  
-    //     map.setPaintProperty("circuit8", 'line-width', lineWidth);
-    //     map.setPaintProperty("circuit13", 'line-width', lineWidth);
-    //     map.setPaintProperty("circuit17", 'line-width', lineWidth);
-    // }
+    map.setPaintProperty("circuit45f", 'line-width', lineWidth);
+    map.setPaintProperty("circuit45", 'line-width', lineWidth);
+    map.setPaintProperty("circuit35", 'line-width', lineWidth);
+    map.setPaintProperty("circuit25", 'line-width', lineWidth);
+    if (type == "all") {  
+        map.setPaintProperty("circuit8", 'line-width', lineWidth);
+        map.setPaintProperty("circuit13", 'line-width', lineWidth);
+        map.setPaintProperty("circuit17", 'line-width', lineWidth);
+    }
     
     map.setPaintProperty("debalisage1", 'line-width', lineWidth);
 }
