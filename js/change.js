@@ -29,10 +29,10 @@ function changeLegend() {
         divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Sat + '; height: 3px;');
         divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Sat + '; height: 3px;');
         divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Sat + '; height: 3px;');
-        // divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Sat + '; height: 3px;');
-        // divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Sat + '; height: 3px;');
-        // divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Sat + '; height: 3px;');
-        // divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Sat + '; height: 3px;');
+        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Sat + '; height: 3px;');
+        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Sat + '; height: 3px;');
+        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Sat + '; height: 3px;');
+        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Sat + '; height: 3px;');
     } else {
         //enlever la classe "legend-satellite" à la div d'id "legend"
         divLegend.classList.remove("legend-satellite");
@@ -45,12 +45,12 @@ function changeLegend() {
         divs[4].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color8_Out + '; height: 3px;');
         divs[5].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color13_Out + '; height: 3px;');
         divs[6].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + color17_Out + '; height: 3px;');
-        // divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Out + '; height: 3px;');
-        // divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Out + '; height: 3px;');
-        // divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
-        // divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
+        divs[7].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorDebrou_Out + '; height: 3px;');
+        divs[8].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorSouff_Out + '; height: 3px;');
+        divs[9].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorTronco_Out + '; height: 3px;');
+        divs[10].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorPY_Out + '; height: 3px;');
     }
-    // divs[11].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorCotes + '; height: 3px;');
+    divs[11].getElementsByTagName('span')[0].setAttribute('style', 'background-color: ' + colorCotes + '; height: 3px;');
 }
 
 function changeConstants() {
@@ -131,6 +131,7 @@ function changeTypeAll(checkboxTypeAll) {
 }
 
 function changeType(checkboxType) {
+    console.log('Change type');
     if (checkboxType.checked) {
         typePo = 'vttAvecPo';
         addPortions();

@@ -1,18 +1,18 @@
-// window.addEventListener('DOMContentLoaded', function() {
-//   var popup = document.getElementById('popup');
-//   var closeButton = popup.querySelector('.close');
+window.addEventListener('DOMContentLoaded', function() {
+  var popup = document.getElementById('popup');
+  var closeButton = popup.querySelector('.close');
 
-//   function hidePopup() {
-//     popup.style.opacity = '0';
-//     setTimeout(function() {
-//       popup.style.display = 'none';
-//     }, 500); // Durée de transition définie dans la propriété "transition" en CSS (0.5s)
-//   }
+  function hidePopup() {
+    popup.style.opacity = '0';
+    setTimeout(function() {
+      popup.style.display = 'none';
+    }, 500); // Durée de transition définie dans la propriété "transition" en CSS (0.5s)
+  }
 
-//   popup.style.display = 'block';
-//   closeButton.addEventListener('click', hidePopup);
-//   setTimeout(hidePopup, 8000);
-// });
+  popup.style.display = 'block';
+  closeButton.addEventListener('click', hidePopup);
+  setTimeout(hidePopup, 8000);
+});
 
 // Enregistrer les éléments de la légende dans une variable
 const legendItems = document.querySelectorAll('#legendCircuitsVTT div');
